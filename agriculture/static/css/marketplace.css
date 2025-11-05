@@ -32,11 +32,36 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--Gris-clair);
     color: var(--text-color);
     line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+}
+
+/* Assurer que tous les conteneurs principaux ne dépassent pas */
+.marketplace-navbar,
+.marketplace-main,
+.navbar-container,
+.marketplace-content,
+.annonces-grid,
+.annonce-card,
+img {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* ===============================================================
@@ -52,6 +77,8 @@ body {
     right: 0;
     z-index: 1000;
     padding: 0 20px;
+    width: 100%;
+    max-width: 100%;
 }
 
 .navbar-container {
@@ -61,6 +88,8 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     height: 70px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .navbar-left {
@@ -279,13 +308,20 @@ body {
 }
 
 .mobile-menu-header {
-    display: flex;
+    display: none; /* Masqué par défaut sur mobile/tablette */
     align-items: center;
     justify-content: space-between;
     padding: 20px;
     border-bottom: 1px solid #e9ecef;
     background: var(--Vert-sénégalais);
     color: var(--Blanc);
+}
+
+/* Afficher uniquement sur les grands écrans (≥ 1200px) */
+@media (min-width: 1200px) {
+    .mobile-menu-header {
+        display: flex;
+    }
 }
 
 .user-profile-mobile {
@@ -1027,6 +1063,48 @@ body {
    =============================================================== */
 
 @media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .marketplace-navbar {
+        padding: 0 15px;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .navbar-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 15px;
+    }
+    
+    .marketplace-main {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px 15px;
+        box-sizing: border-box;
+    }
+    
+    .search-filters-section,
+    .results-section {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .annonces-grid {
+        width: 100%;
+        max-width: 100%;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .annonce-card {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
     .hamburger-menu {
         display: flex;
     }
@@ -1100,13 +1178,27 @@ body {
 }
 
 @media (max-width: 480px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .marketplace-navbar {
+        padding: 0 10px;
+        width: 100%;
+        max-width: 100%;
+    }
+    
     .navbar-container {
         padding: 0 10px;
+        width: 100%;
+        max-width: 100%;
     }
     
     .search-bar input {
         width: 150px;
+        max-width: 150px;
         padding: 10px 12px 10px 35px;
+        box-sizing: border-box;
     }
     
     .logo-text {
@@ -1115,21 +1207,35 @@ body {
     
     .marketplace-main {
         padding: 15px 10px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     .filters-section,
     .results-section {
         padding: 20px 15px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     .annonce-content {
         padding: 15px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     .annonce-prix {
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
     }
 }
 

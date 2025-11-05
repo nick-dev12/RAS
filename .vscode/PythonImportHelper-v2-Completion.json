@@ -430,6 +430,22 @@
         "documentation": {}
     },
     {
+        "label": "musique_plantes_view",
+        "importPath": "agriculture.personal_views.musique_plantes_views",
+        "description": "agriculture.personal_views.musique_plantes_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.musique_plantes_views",
+        "documentation": {}
+    },
+    {
+        "label": "projets_view",
+        "importPath": "agriculture.personal_views.projets_views",
+        "description": "agriculture.personal_views.projets_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.projets_views",
+        "documentation": {}
+    },
+    {
         "label": "home_views",
         "importPath": "agriculture.personal_views",
         "description": "agriculture.personal_views",
@@ -550,6 +566,30 @@
         "documentation": {}
     },
     {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "login",
         "importPath": "django.contrib.auth",
         "description": "django.contrib.auth",
@@ -603,6 +643,30 @@
         "description": "django.contrib.auth.decorators",
         "isExtraImport": true,
         "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "messages",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
         "documentation": {}
     },
     {
@@ -1235,12 +1299,30 @@
         "documentation": {}
     },
     {
+        "label": "musique_plantes_view",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.musique_plantes_views",
+        "description": "agriculture.personal_views.musique_plantes_views",
+        "peekOfCode": "def musique_plantes_view(request):\n    \"\"\"\n    Vue pour afficher les produits audio pour les plantes\n    \"\"\"\n    # Données simulées pour les produits audio\n    produits_audio = [\n        {\n            'id': 1,\n            'titre': 'Sons de la Nature - Forêt Tropicale',\n            'description': 'Enregistrement authentique des sons de la forêt tropicale. Aide à la croissance et au bien-être des plantes.',",
+        "detail": "agriculture.personal_views.musique_plantes_views",
+        "documentation": {}
+    },
+    {
         "label": "offline_view",
         "kind": 2,
         "importPath": "agriculture.personal_views.offline_views",
         "description": "agriculture.personal_views.offline_views",
         "peekOfCode": "def offline_view(request):\n    \"\"\"\n    Vue pour afficher la page offline\n    \"\"\"\n    return render(request, 'agriculture/offline.html')",
         "detail": "agriculture.personal_views.offline_views",
+        "documentation": {}
+    },
+    {
+        "label": "projets_view",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.projets_views",
+        "description": "agriculture.personal_views.projets_views",
+        "peekOfCode": "def projets_view(request):\n    \"\"\"\n    Page des projets communs - Voir, contribuer et rejoindre des projets\n    \"\"\"\n    user = request.user\n    # Données simulées des projets\n    projets = [\n        {\n            'id': 1,\n            'titre': 'Coopérative de production de riz bio',",
+        "detail": "agriculture.personal_views.projets_views",
         "documentation": {}
     },
     {

@@ -11,6 +11,8 @@ from agriculture.personal_views.dashboard_views import (
     communaute_view
 )
 from agriculture.personal_views.videos_views import videos_view
+from agriculture.personal_views.musique_plantes_views import musique_plantes_view
+from agriculture.personal_views.projets_views import projets_view
 
 urlpatterns = [
     # Routeur principal pour rediriger vers le bon tableau de bord
@@ -35,5 +37,11 @@ urlpatterns = [
     path('communaute/', communaute_view, name='communaute'),
     
     # Vidéos Agricoles (format vertical TikTok)
-    path('videos/', videos_view, name='videos')
+    path('videos/', videos_view, name='videos'),
+    
+    # Musique pour les plantes
+    path('musique-plantes/', musique_plantes_view, name='musique_plantes'),
+    
+    # Projets Communs
+    path('projets/', projets_view, name='projets'),
 ]

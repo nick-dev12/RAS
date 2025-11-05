@@ -1,8 +1,8 @@
 // Service Worker pour le Réseau Agricole du Sénégal (PWA)
 // Version du cache - Incrémenter pour forcer une mise à jour
-const CACHE_NAME = 'ras-v1.0.2';
-const RUNTIME_CACHE = 'ras-runtime-v1.0.2';
-const SYNC_QUEUE = 'ras-sync-queue-v1.0.2';
+const CACHE_NAME = 'ras-v1.0.3';
+const RUNTIME_CACHE = 'ras-runtime-v1.0.3';
+const SYNC_QUEUE = 'ras-sync-queue-v1.0.3';
 const OFFLINE_PAGE = '/offline.html';
 
 // Fichiers à mettre en cache lors de l'installation (fichiers critiques)
@@ -104,7 +104,17 @@ self.addEventListener('fetch', (event) => {
   }
   
   // Gérer les requêtes POST pour la synchronisation
+  // IMPORTANT: Exclure les routes d'authentification et de déconnexion
+  const authRoutes = ['/login/', '/register/', '/logout/', '/admin/'];
+  const isAuthRoute = authRoutes.some(route => url.pathname.includes(route));
+  
   if (request.method === 'POST') {
+    // Ne pas intercepter les requêtes d'authentification - laisser passer normalement
+    if (isAuthRoute) {
+      // Laisser la requête passer normalement sans interception
+      return;
+    }
+    
     event.respondWith(
       fetch(request)
         .then((response) => {

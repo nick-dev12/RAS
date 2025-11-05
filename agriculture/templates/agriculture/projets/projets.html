@@ -1,0 +1,286 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    {% include 'agriculture/partials/pwa_meta.html' %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/newsfeed.css' %}">
+    <link rel="stylesheet" href="{% static 'css/projets.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mobile_navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/logo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pwa_install.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar Supérieure -->
+    <nav class="newsfeed-navbar">
+        <!-- Bouton hamburger pour mobile -->
+        <button class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <div class="navbar-container">
+            <!-- Logo et Recherche -->
+            <div class="navbar-left">
+                {% include 'agriculture/partials/logo.html' %}
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Rechercher un projet..." id="search-projets">
+                </div>
+            </div>
+            
+            <!-- Navigation Centrale -->
+            <div class="navbar-center">
+                <a href="{% url 'home' %}" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Accueil</span>
+                </a>
+                <a href="{% url 'newsfeed' %}" class="nav-item">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Actualités</span>
+                </a>
+                <a href="{% url 'projets' %}" class="nav-item active">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Projets</span>
+                </a>
+                <a href="{% url 'agriculteur_dashboard' %}" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+            
+            <!-- Profil et Projets -->
+            <div class="navbar-right">
+                <a href="{% url 'projets' %}" class="projet-btn active">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Projets</span>
+                </a>
+                <div class="user-menu">
+                    <div class="user-avatar">
+                        <span>{{ user.first_name|first }}{{ user.last_name|first }}</span>
+                    </div>
+                    <div class="user-dropdown">
+                        <a href="{% url 'agriculteur_dashboard' %}" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            Mon Profil
+                        </a>
+                        <a href="{% url 'logout' %}" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Déconnexion
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu mobile (partial) -->
+    {% include 'agriculture/partials/mobile_navigation.html' with active_page='projets' %}
+
+    <!-- Contenu Principal -->
+    <main class="projets-main">
+        <!-- Section Statistiques -->
+        <section class="projets-stats-section">
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>{{ stats.total_projets }}</h3>
+                        <p>Projets actifs</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>{{ stats.total_participants }}</h3>
+                        <p>Participants</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>{{ stats.total_budget|floatformat:0 }} FCFA</h3>
+                        <p>Budget total</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>{{ stats.total_collecte|floatformat:0 }} FCFA</h3>
+                        <p>Collecté</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Filtres -->
+        <section class="projets-filters-section">
+            <div class="filters-container">
+                <div class="filter-group">
+                    <label for="filter-categorie">Catégorie</label>
+                    <select id="filter-categorie" class="filter-select">
+                        {% for cat in categories %}
+                        <option value="{% if cat == 'Toutes' %}all{% else %}{{ cat|lower }}{% endif %}">{{ cat }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-region">Région</label>
+                    <select id="filter-region" class="filter-select">
+                        {% for reg in regions %}
+                        <option value="{% if reg == 'Toutes' %}all{% else %}{{ reg|lower }}{% endif %}">{{ reg }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-statut">Statut</label>
+                    <select id="filter-statut" class="filter-select">
+                        {% for stat in statuts %}
+                        <option value="{% if stat == 'Tous' %}all{% else %}{{ stat|lower }}{% endif %}">{{ stat }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button class="btn-create-projet" id="btn-create-projet">
+                    <i class="fas fa-plus"></i>
+                    <span>Créer un projet</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section Projets -->
+        <section class="projets-list-section">
+            <div class="projets-grid" id="projets-grid">
+                {% for projet in projets %}
+                <div class="projet-card" 
+                     data-categorie="{{ projet.categorie|lower }}" 
+                     data-region="{{ projet.region|lower }}"
+                     data-statut="{{ projet.statut|lower }}">
+                    <!-- Image du projet -->
+                    <div class="projet-image">
+                        <img src="{{ projet.image }}" alt="{{ projet.titre }}">
+                        <div class="projet-badge-statut statut-{{ projet.statut|lower|slugify }}">
+                            {{ projet.statut }}
+                        </div>
+                        <div class="projet-badge-categorie">
+                            {{ projet.categorie }}
+                        </div>
+                    </div>
+                    
+                    <!-- Contenu du projet -->
+                    <div class="projet-content">
+                        <div class="projet-header">
+                            <h3 class="projet-titre">{{ projet.titre }}</h3>
+                            <div class="projet-region">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>{{ projet.region }}</span>
+                            </div>
+                        </div>
+                        
+                        <p class="projet-description">{{ projet.description|truncatewords:20 }}</p>
+                        
+                        <!-- Porteur du projet -->
+                        <div class="projet-porteur">
+                            <img src="{{ projet.porteur.photo }}" alt="{{ projet.porteur.nom }}" class="porteur-photo">
+                            <div class="porteur-info">
+                                <span class="porteur-nom">{{ projet.porteur.nom }}</span>
+                                <span class="porteur-role">{{ projet.porteur.role }}</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Statistiques du projet -->
+                        <div class="projet-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-users"></i>
+                                <span>{{ projet.participants }}/{{ projet.participants_max }} participants</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Jusqu'au {{ projet.date_fin|date:"d/m/Y" }}</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Barre de progression du budget -->
+                        <div class="projet-budget">
+                            <div class="budget-header">
+                                <span class="budget-label">Budget collecté</span>
+                                <span class="budget-percentage">{{ projet.budget_collecte|floatformat:0 }} / {{ projet.budget|floatformat:0 }} FCFA</span>
+                            </div>
+                            <div class="budget-bar">
+                                <div class="budget-fill" style="width: {% widthratio projet.budget_collecte projet.budget 100 %}%"></div>
+                            </div>
+                            <div class="budget-percentage-text">
+                                {% widthratio projet.budget_collecte projet.budget 100 %}% collecté
+                            </div>
+                        </div>
+                        
+                        <!-- Tags -->
+                        <div class="projet-tags">
+                            {% for tag in projet.tags %}
+                            <span class="tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <!-- Actions -->
+                        <div class="projet-actions">
+                            <button class="btn-contribuer" data-projet-id="{{ projet.id }}">
+                                <i class="fas fa-hand-holding-heart"></i>
+                                <span>Contribuer</span>
+                            </button>
+                            <button class="btn-rejoindre" data-projet-id="{{ projet.id }}">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Rejoindre</span>
+                            </button>
+                            <button class="btn-details" data-projet-id="{{ projet.id }}">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Détails</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="no-projets">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Aucun projet trouvé</h3>
+                    <p>Créez le premier projet ou modifiez vos filtres</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Détails Projet -->
+    <div class="modal-overlay" id="projet-modal">
+        <div class="modal-container projet-modal">
+            <div class="modal-header">
+                <h2 id="modal-projet-titre">Détails du projet</h2>
+                <button class="modal-close" id="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-projet-content">
+                <!-- Contenu dynamique -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/mobile_navigation.js' %}"></script>
+    <script src="{% static 'js/projets.js' %}"></script>
+    <script src="{% static 'js/pwa.js' %}"></script>
+</body>
+</html>
+

@@ -77,6 +77,14 @@ Paramètres disponibles :
             <i class="fas fa-graduation-cap"></i>
             <span>Formations</span>
         </a>
+        <a href="{% url 'musique_plantes' %}" class="mobile-nav-item {% if active_page == 'musique_plantes' %}active{% endif %}">
+            <i class="fas fa-music"></i>
+            <span>Musique Plantes</span>
+        </a>
+        <a href="{% url 'projets' %}" class="mobile-nav-item {% if active_page == 'projets' %}active{% endif %}">
+            <i class="fas fa-project-diagram"></i>
+            <span>Projets</span>
+        </a>
         <a href="#" class="mobile-nav-item {% if active_page == 'articles' %}active{% endif %}">
             <i class="fas fa-file-alt"></i>
             <span>Articles / Actualités</span>

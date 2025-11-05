@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/communaute.css' %}">
     <link rel="stylesheet" href="{% static 'css/mobile_navigation.css' %}">
     <link rel="stylesheet" href="{% static 'css/logo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pwa_install.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -57,12 +58,12 @@
                 </a>
             </div>
             
-            <!-- Profil et Notifications -->
+            <!-- Profil et Projets -->
             <div class="navbar-right">
-                <button class="notification-btn">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge">3</span>
-                </button>
+                <a href="{% url 'projets' %}" class="projet-btn">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Projets</span>
+                </a>
                 <div class="user-menu">
                     <div class="user-avatar">
                         <span>{{ user.first_name|first }}{{ user.last_name|first }}</span>

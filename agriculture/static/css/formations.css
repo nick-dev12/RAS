@@ -42,6 +42,8 @@
     margin: 70px auto 15px;
     padding: 0 15px;
     margin-bottom: 80px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* ===============================================================
@@ -603,6 +605,45 @@
 }
 
 @media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .formations-main {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+    
+    .filters-bar-formations {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .formations-content {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .formations-center {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .formations-grid {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .formation-card {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
     .formations-main {
         margin-top: 70px;
         padding: 0 10px;
@@ -677,24 +718,48 @@
 }
 
 @media (max-width: 480px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .formations-main {
+        padding: 0 10px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
     .filters-bar-formations {
         padding: 12px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     .formation-card {
         border-radius: var(--border-radius);
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     .formation-image {
         height: 180px;
+        width: 100%;
+        max-width: 100%;
     }
     
     .formation-content {
         padding: 15px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
     
     .formation-title {
         font-size: 1.1rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     
     .formation-meta-info {
@@ -704,6 +769,11 @@
     
     .meta-item {
         font-size: 0.8rem;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
     }
 }
 

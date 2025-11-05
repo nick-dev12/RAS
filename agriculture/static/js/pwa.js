@@ -36,6 +36,11 @@ if ('serviceWorker' in navigator) {
   
   // Gérer le bouton d'installation PWA
   let deferredPrompt;
+  let installBannerShown = false;
+  
+  // Stocker dans localStorage si on a déjà montré le banner
+  const STORAGE_KEY = 'pwa_install_banner_shown';
+  const STORAGE_DISMISSED = 'pwa_install_banner_dismissed';
   
   window.addEventListener('beforeinstallprompt', (e) => {
     // Empêche l'affichage automatique du prompt
@@ -43,57 +48,359 @@ if ('serviceWorker' in navigator) {
     // Stocke l'événement pour l'utiliser plus tard
     deferredPrompt = e;
     
+    // Sauvegarder dans localStorage que le prompt est disponible
+    localStorage.setItem('pwa_deferred_prompt_available', 'true');
+    
     // Affiche un bouton personnalisé pour installer l'app
-    showInstallButton();
+    showInstallBanner();
   });
   
-  // Fonction pour afficher le bouton d'installation
-  function showInstallButton() {
-    // Crée un bouton d'installation si nécessaire
-    let installButton = document.getElementById('pwa-install-button');
-    
-    if (!installButton) {
-      installButton = document.createElement('button');
-      installButton.id = 'pwa-install-button';
-      installButton.className = 'pwa-install-btn';
-      installButton.innerHTML = '📱 Installer l\'app';
-      installButton.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: #008753;
-        color: white;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 25px;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(0, 135, 83, 0.3);
-        z-index: 10000;
-        transition: all 0.3s ease;
-      `;
-      
-      installButton.addEventListener('mouseenter', () => {
-        installButton.style.transform = 'scale(1.05)';
-        installButton.style.boxShadow = '0 6px 16px rgba(0, 135, 83, 0.4)';
-      });
-      
-      installButton.addEventListener('mouseleave', () => {
-        installButton.style.transform = 'scale(1)';
-        installButton.style.boxShadow = '0 4px 12px rgba(0, 135, 83, 0.3)';
-      });
-      
-      installButton.addEventListener('click', installApp);
-      document.body.appendChild(installButton);
-    } else {
-      installButton.style.display = 'block';
+  // Fonction pour afficher le banner d'installation
+  function showInstallBanner() {
+    // Ne pas afficher si déjà installé
+    if (checkIfInstalled()) {
+      hideInstallBanner();
+      return;
     }
+    
+    // Ne pas afficher si l'utilisateur a déjà fermé le banner
+    const dismissed = localStorage.getItem(STORAGE_DISMISSED);
+    if (dismissed === 'true') {
+      return;
+    }
+    
+    // Vérifier si le banner existe déjà
+    let installBanner = document.getElementById('pwa-install-banner');
+    
+    if (!installBanner) {
+      // Créer le banner
+      installBanner = document.createElement('div');
+      installBanner.id = 'pwa-install-banner';
+      installBanner.className = 'pwa-install-banner';
+      
+      // Chercher la navbar pour positionner le banner en dessous
+      const navbar = document.querySelector('.navbar') || 
+                     document.querySelector('.newsfeed-navbar') ||
+                     document.querySelector('.marketplace-navbar') ||
+                     document.querySelector('.musique-navbar') ||
+                     document.querySelector('header') ||
+                     document.querySelector('nav');
+      
+      if (navbar) {
+        // Ajouter le banner directement au body pour un positionnement fixed correct
+        // Le banner sera positionné en fixed sous la navbar
+        installBanner.innerHTML = `
+          <div class="phone-icon-wrapper">
+            <div class="phone-icon">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="phone-svg-icon">
+                <!-- Cadre du téléphone -->
+                <rect x="7" y="2" width="10" height="20" rx="2.5" fill="#1a1a1a" stroke="#333" stroke-width="0.5"/>
+                <!-- Écran -->
+                <rect x="8.5" y="4.5" width="7" height="14" rx="1" fill="#000"/>
+                <!-- Barre de notification -->
+                <rect x="8.5" y="4.5" width="7" height="1.5" fill="#0a0a0a"/>
+                <!-- Accueil virtuel -->
+                <rect x="11" y="19.5" width="2" height="0.5" rx="0.25" fill="#666"/>
+                <!-- Caméra frontale -->
+                <circle cx="12" cy="5.5" r="0.3" fill="#333"/>
+                <!-- Boutons latéraux -->
+                <rect x="6.5" y="7" width="0.5" height="1.5" rx="0.25" fill="#333"/>
+                <rect x="6.5" y="9.5" width="0.5" height="1.5" rx="0.25" fill="#333"/>
+                <rect x="17" y="7" width="0.5" height="1.5" rx="0.25" fill="#333"/>
+                <!-- Contenu de l'écran (icône app) -->
+                <rect x="10" y="7" width="4" height="4" rx="0.5" fill="#008753"/>
+                <circle cx="12" cy="9" r="1" fill="#fff"/>
+                <path d="M11 10.5 L12 11.5 L13 10.5" stroke="#fff" stroke-width="0.3" fill="none"/>
+              </svg>
+            </div>
+          </div>
+          <div class="install-content">
+            <div class="install-title">Installer l'application</div>
+            <div class="install-subtitle">Accès rapide depuis votre écran d'accueil</div>
+          </div>
+          <button class="install-close" id="pwa-install-close" aria-label="Fermer">
+            <i class="fas fa-times"></i>
+          </button>
+        `;
+        
+        // S'assurer que le body existe
+        if (!document.body) {
+          // Attendre que le body soit disponible
+          const bodyObserver = new MutationObserver((mutations, obs) => {
+            if (document.body) {
+              obs.disconnect();
+              document.body.appendChild(installBanner);
+              updateBannerPosition(navbar, installBanner);
+            }
+          });
+          
+          bodyObserver.observe(document.documentElement, {
+            childList: true,
+            subtree: true
+          });
+          
+          // Timeout de sécurité
+          setTimeout(() => {
+            if (document.body && !installBanner.parentNode) {
+              document.body.appendChild(installBanner);
+              updateBannerPosition(navbar, installBanner);
+            }
+          }, 500);
+        } else {
+          // Ajouter le banner au body pour un positionnement fixed correct
+          document.body.appendChild(installBanner);
+          updateBannerPosition(navbar, installBanner);
+        }
+        
+        // Ajouter les event listeners
+        installBanner.addEventListener('click', (e) => {
+          if (e.target.closest('.install-close')) {
+            return;
+          }
+          installApp();
+        });
+        
+        const closeBtn = installBanner.querySelector('#pwa-install-close');
+        if (closeBtn) {
+          closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hideInstallBanner(true); // true = dismissé par l'utilisateur
+          });
+        }
+      }
+    }
+    
+    // Afficher le banner avec animation
+    setTimeout(() => {
+      if (installBanner) {
+        installBanner.classList.add('show');
+        installBannerShown = true;
+        localStorage.setItem(STORAGE_KEY, 'true');
+      }
+    }, 500); // Délai pour l'animation
+  }
+  
+  // Vérifier et afficher le banner au chargement de la page
+  // LOGIQUE SIMPLIFIÉE : Afficher si l'app n'est pas installée, point final
+  function checkAndShowBanner() {
+    // Vérifier IMMÉDIATEMENT si l'app est déjà installée
+    if (checkIfInstalled()) {
+      hideInstallBanner();
+      return;
+    }
+    
+    // Vérifier si l'utilisateur a explicitement fermé le banner
+    const dismissed = localStorage.getItem(STORAGE_DISMISSED) === 'true';
+    if (dismissed) {
+      return;
+    }
+    
+    // Vérifier si le banner existe déjà et est visible
+    const existingBanner = document.getElementById('pwa-install-banner');
+    if (existingBanner && existingBanner.classList.contains('show')) {
+      return; // Déjà affiché
+    }
+    
+    // NOUVELLE LOGIQUE : Afficher le banner si :
+    // 1. L'app n'est pas installée (déjà vérifié)
+    // 2. L'utilisateur ne l'a pas fermé (déjà vérifié)
+    // 3. On a un manifest (PWA installable) OU on a un service worker
+    // On ne dépend PLUS du beforeinstallprompt pour l'affichage initial
+    
+    const hasManifest = document.querySelector('link[rel="manifest"]') !== null;
+    const hasServiceWorker = 'serviceWorker' in navigator;
+    
+    // Afficher le banner si la PWA est configurée (manifest ou service worker)
+    // Cela garantit que le banner s'affiche même si beforeinstallprompt n'a pas été déclenché
+    if (hasManifest || hasServiceWorker) {
+      // S'assurer que le DOM est prêt
+      if (document.body) {
+        showInstallBanner();
+      } else {
+        // Attendre que le body soit disponible
+        const bodyCheck = setInterval(() => {
+          if (document.body) {
+            clearInterval(bodyCheck);
+            showInstallBanner();
+          }
+        }, 50);
+        
+        // Timeout de sécurité après 2 secondes
+        setTimeout(() => {
+          clearInterval(bodyCheck);
+          if (document.body) {
+            showInstallBanner();
+          }
+        }, 2000);
+      }
+    }
+  }
+  
+  // Fonction pour vérifier et afficher le banner avec plusieurs tentatives
+  // EXÉCUTION IMMÉDIATE pour garantir l'affichage même avec cache
+  function initBannerCheck() {
+    // Vérification IMMÉDIATE sans attendre
+    checkAndShowBanner();
+    
+    // Vérifications supplémentaires avec des délais courts
+    // pour s'assurer que tout est chargé même après un rafraîchissement avec cache
+    const checkIntervals = [50, 100, 200, 300, 500, 1000, 2000];
+    
+    checkIntervals.forEach((delay) => {
+      setTimeout(() => {
+        // Vérifier à nouveau si le banner n'est pas déjà affiché
+        const existingBanner = document.getElementById('pwa-install-banner');
+        if (!existingBanner || !existingBanner.classList.contains('show')) {
+          checkAndShowBanner();
+        }
+      }, delay);
+    });
+  }
+  
+  // EXÉCUTION IMMÉDIATE - Ne pas attendre les événements
+  // Cette fonction s'exécute dès que le script est chargé
+  
+  // Vérifier IMMÉDIATEMENT, peu importe l'état du DOM
+  (function immediateCheck() {
+    // Vérifier tout de suite
+    checkAndShowBanner();
+    
+    // Vérifier aussi avec des délais très courts pour s'assurer
+    setTimeout(checkAndShowBanner, 10);
+    setTimeout(checkAndShowBanner, 50);
+    setTimeout(checkAndShowBanner, 100);
+    setTimeout(checkAndShowBanner, 200);
+  })();
+  
+  // Vérifier au chargement de la page (DOMContentLoaded)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initBannerCheck();
+    });
+  } else {
+    // DOM déjà chargé
+    initBannerCheck();
+  }
+  
+  // Vérifier aussi après le load complet
+  window.addEventListener('load', () => {
+    checkAndShowBanner();
+    setTimeout(checkAndShowBanner, 500);
+    setTimeout(checkAndShowBanner, 1000);
+  });
+  
+  // Vérifier aussi après un court délai pour s'assurer que tout est chargé
+  setTimeout(initBannerCheck, 100);
+  
+  // Vérification immédiate si le script est chargé après le DOM
+  if (document.readyState !== 'loading') {
+    initBannerCheck();
+  }
+  
+  // Forcer une vérification après un délai pour contrer les problèmes de cache
+  setTimeout(() => {
+    initBannerCheck();
+  }, 500);
+  
+  // Vérification supplémentaire après 2 secondes (pour les cas extrêmes)
+  setTimeout(() => {
+    checkAndShowBanner();
+  }, 2000);
+  
+  // Observer les changements dans le DOM pour détecter les navbars chargées dynamiquement
+  let domObserver = null;
+  
+  function setupDOMObserver() {
+    if (domObserver) {
+      domObserver.disconnect();
+    }
+    
+    domObserver = new MutationObserver(() => {
+      const existingBanner = document.getElementById('pwa-install-banner');
+      if (!existingBanner) {
+        // Vérifier si on peut afficher le banner
+        setTimeout(checkAndShowBanner, 500);
+      }
+    });
+    
+    // Observer les changements dans le body
+    if (document.body) {
+      domObserver.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    } else {
+      // Attendre que le body soit disponible
+      const bodyWaitObserver = new MutationObserver((mutations, obs) => {
+        if (document.body) {
+          obs.disconnect();
+          setupDOMObserver();
+        }
+      });
+      
+      bodyWaitObserver.observe(document.documentElement, {
+        childList: true,
+        subtree: true
+      });
+    }
+  }
+  
+  // Initialiser l'observer
+  setupDOMObserver();
+  
+  // Vérifier aussi lors des événements de visibilité (retour d'onglet)
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      setTimeout(checkAndShowBanner, 500);
+    }
+  });
+  
+  // Vérifier lors du focus de la fenêtre
+  window.addEventListener('focus', () => {
+    setTimeout(checkAndShowBanner, 300);
+  });
+  
+  // Vérifier lors du rafraîchissement de la page (même avec cache)
+  // Utiliser les événements qui se déclenchent toujours
+  window.addEventListener('pageshow', (event) => {
+    // pageshow se déclenche même si la page vient du cache
+    if (event.persisted) {
+      // Page chargée depuis le cache (back/forward cache ou service worker cache)
+      console.log('[PWA] Page chargée depuis le cache, vérification du banner...');
+      // Attendre un peu pour que le DOM soit prêt
+      setTimeout(() => {
+        initBannerCheck();
+      }, 100);
+    } else {
+      // Page fraîchement chargée
+      setTimeout(() => {
+        checkAndShowBanner();
+      }, 500);
+    }
+  });
+  
+  // Vérifier aussi lors de l'événement beforeunload (avant le rafraîchissement)
+  // pour s'assurer que le banner sera vérifié au prochain chargement
+  window.addEventListener('beforeunload', () => {
+    // Marquer dans sessionStorage qu'on doit vérifier le banner
+    sessionStorage.setItem('pwa_check_banner', 'true');
+  });
+  
+  // Vérifier au chargement si on doit vérifier le banner
+  if (sessionStorage.getItem('pwa_check_banner') === 'true') {
+    sessionStorage.removeItem('pwa_check_banner');
+    setTimeout(() => {
+      initBannerCheck();
+    }, 500);
   }
   
   // Fonction pour installer l'application
   function installApp() {
     if (!deferredPrompt) {
+      // Si le prompt n'est pas disponible, essayer d'afficher le prompt natif du navigateur
+      console.log('[PWA] Prompt non disponible, tentative d\'installation native...');
+      // Sur certains navigateurs, on peut essayer d'afficher un message
+      alert('Pour installer l\'application, utilisez le menu de votre navigateur :\n\n- Chrome/Edge : Menu (⋮) → "Installer l\'application"\n- Safari (iOS) : Partager → "Sur l\'écran d\'accueil"\n- Firefox : Menu → "Installer"');
       return;
     }
     
@@ -110,12 +417,10 @@ if ('serviceWorker' in navigator) {
       
       // Réinitialiser le prompt
       deferredPrompt = null;
+      localStorage.removeItem('pwa_deferred_prompt_available');
       
-      // Masquer le bouton
-      const installButton = document.getElementById('pwa-install-button');
-      if (installButton) {
-        installButton.style.display = 'none';
-      }
+      // Masquer le banner après installation
+      hideInstallBanner();
     });
   }
   
@@ -123,11 +428,67 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('appinstalled', () => {
     console.log('[PWA] Application installée');
     deferredPrompt = null;
-    const installButton = document.getElementById('pwa-install-button');
-    if (installButton) {
-      installButton.style.display = 'none';
-    }
+    localStorage.removeItem('pwa_deferred_prompt_available');
+    localStorage.setItem(STORAGE_DISMISSED, 'true');
+    hideInstallBanner();
   });
+  
+  // Vérifier si l'app est déjà installée au chargement
+  function checkIfInstalled() {
+    // Détecter si on est en mode standalone (app installée)
+    if (window.matchMedia('(display-mode: standalone)').matches || 
+        window.navigator.standalone === true ||
+        document.referrer.includes('android-app://')) {
+      hideInstallButton();
+      return true;
+    }
+    return false;
+  }
+  
+  // Fonction pour mettre à jour la position du banner
+  function updateBannerPosition(navbar, banner) {
+    if (!navbar || !banner) return;
+    
+    // Calculer la position top en fonction de la hauteur de la navbar
+    const navbarHeight = navbar.offsetHeight || 70;
+    banner.style.top = `${navbarHeight + 10}px`;
+    
+    // Mettre à jour la position si la navbar change de taille
+    const resizeObserver = new ResizeObserver(() => {
+      const newHeight = navbar.offsetHeight || 70;
+      banner.style.top = `${newHeight + 10}px`;
+    });
+    
+    resizeObserver.observe(navbar);
+  }
+  
+  // Fonction pour masquer le banner
+  function hideInstallBanner(dismissed = false) {
+    const installBanner = document.getElementById('pwa-install-banner');
+    if (installBanner) {
+      installBanner.classList.remove('show');
+      setTimeout(() => {
+        if (installBanner.parentNode) {
+          installBanner.parentNode.removeChild(installBanner);
+        }
+      }, 300);
+    }
+    
+    if (dismissed) {
+      localStorage.setItem(STORAGE_DISMISSED, 'true');
+    }
+  }
+  
+  // Fonction pour masquer le bouton (ancienne fonction, gardée pour compatibilité)
+  function hideInstallButton() {
+    hideInstallBanner();
+  }
+  
+  // Vérifier au chargement
+  if (checkIfInstalled()) {
+    console.log('[PWA] Application déjà installée');
+    hideInstallBanner();
+  }
   
   // ===============================================================
   // 🔄 SYNCHRONISATION AUTOMATIQUE

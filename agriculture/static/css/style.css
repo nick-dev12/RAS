@@ -73,6 +73,8 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100vw;
 }
 
 body {
@@ -82,6 +84,8 @@ body {
     color: var(--text-color);
     background-color: var(--white);
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
 }
 
 /* Typography */
@@ -118,6 +122,30 @@ a:hover {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Assurer que tous les conteneurs principaux ne dépassent pas */
+.header,
+.navbar,
+.nav-container,
+.hero,
+.hero-container,
+.services,
+.services-grid,
+.about,
+.about-content,
+.footer,
+.footer-content {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Images responsives */
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Header */
@@ -144,6 +172,8 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .nav-logo {
@@ -250,6 +280,57 @@ a:hover {
 
 .nav-link:hover::after {
     width: 100%;
+}
+
+/* Style pour le bouton PWA Install */
+.pwa-install-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: var(--text-color);
+    transition: color var(--transition-fast);
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0;
+}
+
+.pwa-install-btn:hover {
+    color: var(--Vert-sénégalais);
+}
+
+.pwa-install-btn i {
+    font-size: 1rem;
+}
+
+.pwa-install-btn span {
+    font-size: inherit;
+}
+
+@media (max-width: 768px) {
+    .pwa-install-btn {
+        display: flex !important;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        background: rgba(0, 135, 83, 0.1);
+        color: var(--Vert-sénégalais);
+        font-size: 0.9rem;
+    }
+    
+    .pwa-install-btn:hover {
+        background: rgba(0, 135, 83, 0.15);
+        color: var(--Vert-sénégalais);
+    }
+    
+    .pwa-install-btn i {
+        font-size: 0.9rem;
+    }
 }
 
 .nav-cta {
@@ -889,6 +970,22 @@ a:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+    
+    .container {
+        padding: 0 var(--spacing-sm);
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .nav-container {
+        padding: 0 var(--spacing-sm);
+        width: 100%;
+        max-width: 100%;
+    }
+    
     .nav-menu {
         position: fixed;
         top: 70px;
@@ -924,36 +1021,69 @@ a:hover {
         transform: translateY(-8px) rotate(-45deg);
     }
 
+    .hero {
+        padding: 100px 0 60px;
+        width: 100%;
+        max-width: 100%;
+    }
+
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
         gap: var(--spacing-2xl);
+        width: 100%;
+        max-width: 100%;
+        padding: 0 var(--spacing-sm);
+        box-sizing: border-box;
     }
 
     .hero-title {
         font-size: var(--font-size-3xl);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        width: 100%;
+        max-width: 100%;
     }
 
     .hero-stats {
         justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        width: 100%;
+        max-width: 100%;
+        gap: var(--spacing-lg);
     }
 
     .about-content {
         grid-template-columns: 1fr;
         text-align: center;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 var(--spacing-sm);
+        box-sizing: border-box;
     }
 
     .about-text .section-title {
         text-align: center;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .steps {
         grid-template-columns: 1fr;
+        width: 100%;
+        max-width: 100%;
+        gap: var(--spacing-lg);
     }
 
     .step::after {
@@ -963,10 +1093,16 @@ a:hover {
     .cta-buttons {
         flex-direction: column;
         align-items: center;
+        width: 100%;
+        max-width: 100%;
     }
 
     .footer-content {
         grid-template-columns: 1fr;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 var(--spacing-sm);
+        box-sizing: border-box;
         text-align: center;
     }
 }

@@ -11,6 +11,7 @@
     box-sizing: border-box;
 }
 
+
 body {
     font-family: var(--font-secondary);
     line-height: 1.6;
@@ -435,11 +436,10 @@ body {
 
 .profil-rapide {
     margin-bottom: 30px;
-}
-
     margin-bottom: 5px;
     font-size: 1.8rem;
 }
+
 
 .profil-info p {
     color: #666;
@@ -990,9 +990,9 @@ body {
         font-size: 0.7rem;
     }
 }
-    transform: scaleX(0);
+    /* transform: scaleX(0);
     transition: var(--transition);
-}
+} */
 
 /* Styles pour culture-card supprimés - remplacés par culture-field-3d */
 

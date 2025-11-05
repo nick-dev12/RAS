@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/marketplace.css' %}">
     <link rel="stylesheet" href="{% static 'css/mobile_navigation.css' %}">
     <link rel="stylesheet" href="{% static 'css/logo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pwa_install.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -36,6 +37,10 @@
                 <a href="{% url 'marketplace' %}" class="nav-link active">
                     <i class="fas fa-store"></i>
                     <span>Marché</span>
+                </a>
+                <a href="{% url 'musique_plantes' %}" class="nav-link">
+                    <i class="fas fa-music"></i>
+                    <span>Musique Plantes</span>
                 </a>
                 <a href="{% url 'agriculteur_dashboard' %}" class="nav-link">
                     <i class="fas fa-chart-line"></i>

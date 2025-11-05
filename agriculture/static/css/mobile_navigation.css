@@ -63,10 +63,17 @@
     padding: 20px;
     background: linear-gradient(135deg, var(--primary-green), #F2C94C);
     color: white;
-    display: flex;
+    display: none; /* Masqué par défaut sur mobile/tablette */
     justify-content: space-between;
     align-items: center;
     flex-shrink: 0;
+}
+
+/* Afficher uniquement sur les grands écrans (≥ 1200px) */
+@media (min-width: 1200px) {
+    .mobile-menu-header {
+        display: flex;
+    }
 }
 
 .user-profile-mobile {
@@ -214,12 +221,20 @@
     right: 0;
     background: var(--bg-primary);
     border-top: 1px solid var(--bg-tertiary);
-    padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
-    z-index: 997;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+    z-index: 9999;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    /* Toujours visible, même lors du scroll */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .mobile-nav-btn {
@@ -277,18 +292,36 @@
 @media (max-width: 768px) {
     .mobile-bottom-nav {
         display: flex;
+        /* Force la visibilité avec un z-index très élevé */
+        z-index: 9999 !important;
+        /* Utilise env() pour gérer les safe areas */
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
+        /* Empêche le blur/transparence */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.98);
+        /* Toujours visible, même lors du scroll */
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
     }
     
-    /* Ajouter du padding en bas du contenu pour éviter que la nav ne cache le contenu */
-    main {
-        padding-bottom: 70px !important;
+    /* Assurer que le body ne cache pas la barre */
+    body {
+        padding-bottom: 0 !important;
     }
     
+    /* Ajouter du padding en bas du contenu principal pour éviter le chevauchement */
+    main,
     .newsfeed-main,
     .communaute-main,
     .marketplace-main,
-    .terrain-main {
-        margin-bottom: 70px;
+    .terrain-main,
+    .formations-main,
+    .musique-main {
+        padding-bottom: calc(70px + max(8px, env(safe-area-inset-bottom))) !important;
+        margin-bottom: 0 !important;
     }
 }
 
@@ -355,6 +388,7 @@
         padding-bottom: max(8px, env(safe-area-inset-bottom));
     }
 }
+
 
 /* Animation pour l'ouverture du menu */
 @keyframes slideInFromLeft {
