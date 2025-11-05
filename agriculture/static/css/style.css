@@ -503,6 +503,18 @@ img {
     color: var(--white);
 }
 
+/* Bouton secondary dans la section hero - texte blanc */
+.hero .btn-secondary {
+    color: var(--white);
+    border-color: var(--white);
+}
+
+.hero .btn-secondary:hover {
+    background: var(--white);
+    color: var(--Vert-sénégalais);
+    border-color: var(--white);
+}
+
 .btn-large {
     padding: var(--spacing-lg) var(--spacing-2xl);
     font-size: var(--font-size-lg);
@@ -535,9 +547,21 @@ img {
     color: var(--Vert-sénégalais);
 }
 
+/* Nombres de statistiques dans la section hero - texte blanc */
+.hero .stat-number {
+    color: var(--white);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
 .stat-label {
     font-size: var(--font-size-sm);
     color: var(--text-light);
+}
+
+/* Labels de statistiques dans la section hero - texte blanc */
+.hero .stat-label {
+    color: var(--white);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .hero-visual {
