@@ -1,0 +1,109 @@
+{% load static %}
+{% comment %}
+Template partiel pour la navigation mobile (menu coulissant + barre inférieure)
+
+Paramètres disponibles :
+- active_page : nom de la page active pour mettre en évidence les liens (ex: 'newsfeed', 'communaute', 'marketplace', 'terrain', 'dashboard')
+- user : objet utilisateur Django (requis)
+{% endcomment %}
+
+<!-- Menu coulissant mobile -->
+<div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+<div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-header">
+        <div class="user-profile-mobile">
+            <div class="profile-picture">{{ user.first_name|first }}{{ user.last_name|first }}</div>
+            <div class="profile-info">
+                <h3>{{ user.get_full_name|default:user.username }}</h3>
+                <p>{{ user.user_type|title }}</p>
+                <p>Sénégal</p>
+            </div>
+        </div>
+        <button class="close-menu" id="close-menu">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <nav class="mobile-menu-nav">
+        {% if active_page == 'dashboard' %}
+        {% comment %} Navigation spécifique au dashboard {% endcomment %}
+        <div class="mobile-nav-section">
+            <h4 class="mobile-nav-section-title">Navigation Dashboard</h4>
+            <a href="#accueil" class="mobile-nav-item dashboard-section-link" data-section="accueil">
+                <i class="fas fa-home"></i>
+                <span>🏠 Accueil</span>
+            </a>
+            <a href="#parcelles" class="mobile-nav-item dashboard-section-link" data-section="parcelles">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>🌱 Parcelles</span>
+            </a>
+            <a href="#meteo" class="mobile-nav-item dashboard-section-link" data-section="meteo">
+                <i class="fas fa-cloud-sun"></i>
+                <span>🌦️ Météo</span>
+            </a>
+            <a href="#formations" class="mobile-nav-item dashboard-section-link" data-section="formations">
+                <i class="fas fa-graduation-cap"></i>
+                <span>🎓 Formations</span>
+            </a>
+            <a href="#assistance" class="mobile-nav-item dashboard-section-link" data-section="assistance">
+                <i class="fas fa-hands-helping"></i>
+                <span>🤝 Assistance</span>
+            </a>
+        </div>
+        <div class="mobile-nav-divider"></div>
+        {% endif %}
+        
+        <a href="{% url 'newsfeed' %}" class="mobile-nav-item {% if active_page == 'newsfeed' %}active{% endif %}">
+            <i class="fas fa-newspaper"></i>
+            <span>Fil d'actualité</span>
+        </a>
+        <a href="{% url 'agriculteur_dashboard' %}" class="mobile-nav-item {% if active_page == 'profile' or active_page == 'dashboard' %}active{% endif %}">
+            <i class="fas fa-user"></i>
+            <span>Mon profil</span>
+        </a>
+        <a href="{% url 'terrain_agricole' %}" class="mobile-nav-item {% if active_page == 'terrain' %}active{% endif %}">
+            <i class="fas fa-map-marked-alt"></i>
+            <span>Terrain agricole</span>
+        </a>
+        <a href="{% url 'communaute' %}" class="mobile-nav-item {% if active_page == 'communaute' %}active{% endif %}">
+            <i class="fas fa-users"></i>
+            <span>Communauté agricole</span>
+        </a>
+        <a href="{% url 'marketplace' %}" class="mobile-nav-item {% if active_page == 'marketplace' %}active{% endif %}">
+            <i class="fas fa-store"></i>
+            <span>Annonces / Marché</span>
+        </a>
+        <a href="{% url 'formations:formations' %}" class="mobile-nav-item {% if active_page == 'formations' %}active{% endif %}">
+            <i class="fas fa-graduation-cap"></i>
+            <span>Formations</span>
+        </a>
+        <a href="#" class="mobile-nav-item {% if active_page == 'articles' %}active{% endif %}">
+            <i class="fas fa-file-alt"></i>
+            <span>Articles / Actualités</span>
+        </a>
+    </nav>
+</div>
+
+<!-- Barre de navigation inférieure mobile -->
+<nav class="mobile-bottom-nav">
+    <a href="{% url 'newsfeed' %}" class="mobile-nav-btn {% if active_page == 'newsfeed' %}active{% endif %}">
+        <i class="fas fa-newspaper"></i>
+        <span>Fil d'actualité</span>
+    </a>
+    <a href="{% url 'communaute' %}" class="mobile-nav-btn {% if active_page == 'communaute' %}active{% endif %}">
+        <i class="fas fa-users"></i>
+        <span>Communauté</span>
+    </a>
+    <a href="{% url 'videos' %}" class="mobile-nav-btn {% if active_page == 'videos' %}active{% endif %}">
+        <i class="fas fa-play"></i>
+        <span>Vidéos</span>
+    </a>
+    <a href="#" class="mobile-nav-btn {% if active_page == 'notifications' %}active{% endif %}">
+        <i class="fas fa-bell"></i>
+        <span>Notifications</span>
+    </a>
+    <button class="mobile-nav-btn hamburger-trigger" id="mobile-hamburger" type="button">
+        <i class="fas fa-bars"></i>
+        <span>Menu</span>
+    </button>
+</nav>

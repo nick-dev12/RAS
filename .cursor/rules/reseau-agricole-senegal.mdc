@@ -1,0 +1,216 @@
+---
+alwaysApply: true
+---
+
+# ===============================================================
+# 🎯 Projet : Réseau Agricole du Sénégal
+# 🌾 Objectif : Plateforme numérique pour connecter, former et accompagner les acteurs agricoles.
+# 🧠 IDE : Cursor AI
+# ===============================================================
+
+meta:
+  project_name: "Réseau Agricole du Sénégal"
+  version: "1.0.0"
+# ===============================================================
+# 🧩 STRUCTURE GLOBALE DU PROJET
+# ===============================================================
+structure:
+      - controllers/
+      - models/
+      - middleware/
+      - config/
+      - utils/
+
+# ===============================================================
+# 💡 CONVENTIONS GÉNÉRALES
+# ===============================================================
+rules:
+  naming:
+    variables: camelCase
+    classes: PascalCase
+    components: PascalCase
+    files: kebab-case
+  style:
+    indent: 2 spaces
+    quotes: double
+
+
+# ===============================================================
+# 🎓 2. FORMATIONS
+# ===============================================================
+formations:
+  description: >
+    Plateforme e-learning agricole avec vidéos, PDF et quiz.
+  features:
+    - Catalogue de cours (CRUD)
+    - Suivi de progression utilisateur
+    - Génération de certificats PDF signés
+  tech:
+    - Lecteur vidéo HLS / MP4
+    - Certificats PDF : PDFKit ou Puppeteer
+
+# ===============================================================
+# 🗺️ 3. CARTE DES OPPORTUNITÉS AGRICOLES
+# ===============================================================
+carte:
+  description: >
+    Carte interactive des terres agricoles disponibles, avec analyse IA sol + climat.
+  features:
+    - Affichage des parcelles avec détails
+    - API météo (OpenWeather, ClimatSenegal)
+    - Recommandation de cultures via règles métier ou petit modèle ML
+  outputs:
+    - Rapport PDF exportable avec carte + analyses
+
+# ===============================================================
+# 💬 4. RÉSEAU SOCIAL AGRICOLE
+# ===============================================================
+reseau_social:
+  description: >
+    Espace communautaire pour échanger conseils et expériences.
+  features:
+    - Groupes de discussion (par région / culture)
+    - Fil d’actualité (texte, image, vidéo)
+    - Mentions, likes, commentaires, notifications
+  moderation:
+    - Signalement + validation admin
+  notes:
+    - Structure proche de Twitter ou Facebook Groups en version légère.
+
+# ===============================================================
+# 🤝 5. PROJETS COMMUNS
+# ===============================================================
+projets:
+  features:
+    - Création de projets collaboratifs
+    - Gestion d’étapes (statuts)
+    - Candidature + suivi collaboratif
+    - Notifications des échéances
+
+# ===============================================================
+# 🛒 6. MARKETPLACE
+# ===============================================================
+marketplace:
+  features:
+    - CRUD annonces (vente, achat)
+    - Filtres : région, prix, certification
+    - Messagerie privée entre acheteur et vendeur
+    - Évaluations
+  notes:
+    - Vérification des annonces par admin
+    - Paiement : Stripe ou solution locale (Wave, Orange Money)
+    - Option d’export (module douane/logistique à venir)
+
+# ===============================================================
+# ⚠️ 7. SYSTÈME D’ALERTE & ASSISTANCE
+# ===============================================================
+alertes:
+  integrations:
+    - OpenWeather API
+    - DGPA (marchés agricoles)
+    - Base phénologique sénégalaise
+  notifications:
+    - Push Firebase, Email, SMS
+  contenu:
+    - Alertes météo, marché, et conseils agricoles personnalisés
+
+# ===============================================================
+# 🧭 8. ACCOMPAGNEMENT PERSONNALISÉ
+# ===============================================================
+accompagnement:
+  description: >
+    Suivi technique des agriculteurs : étude de sol, installation, prospection.
+  workflow:
+    - Formulaire → affectation expert → suivi → rapport final
+  optional:
+    - Paiement en ligne (Stripe ou Wave)
+
+# ===============================================================
+# 💡 9. BOÎTE À IDÉES
+# ===============================================================
+boite_idees:
+  features:
+    - Soumission d’idées + vote
+    - Commentaires
+    - Statut d’idée
+    - Badge "Innovateur"
+
+# ===============================================================
+# 🧾 10. ADHÉSION & RÔLES
+# ===============================================================
+adhesion:
+  workflow:
+    - Formulaire selon rôle
+    - Vérification des documents (CV, diplôme, etc.)
+    - Validation admin
+  note:
+    - Conditionne l’accès à certaines fonctionnalités (formation, projet, etc.)
+
+# ===============================================================
+# 📅 11. RÉSERVATION & VISITES
+# ===============================================================
+visites:
+  features:
+    - Calendrier public (agenda)
+    - Demande de visite
+    - Confirmation et rappels automatiques
+
+# ===============================================================
+# 📆 12. ÉVÉNEMENTS
+# ===============================================================
+evenements:
+  features:
+    - Création, inscription, notifications
+    - Catégories : foires, webinaires, ateliers
+    - Partage sur réseaux sociaux
+
+# ===============================================================
+# 📊 13. TABLEAU DE BORD UTILISATEUR
+# ===============================================================
+tableau_bord:
+  features:
+    - Vue synthétique des activités (formations, projets, ventes)
+    - Statistiques personnelles
+    - Notifications centralisées
+
+# ===============================================================
+# 🧮 14. ADMINISTRATION
+# ===============================================================
+admin:
+  features:
+    - Gestion utilisateurs et rôles
+    - Modération des contenus
+    - Validation adhésions
+    - Analyse des données (Heatmap, tendances)
+    - Envoi de notifications globales
+
+# ===============================================================
+# ⚙️ DÉVELOPPEMENT & BONNES PRATIQUES
+# ===============================================================
+dev:
+  tests: >
+    Écrire des tests unitaires pour chaque endpoint et composant critique.
+  api:
+    format: REST ou GraphQL
+    doc: Swagger / Postman
+  security:
+    - Protéger les routes par rôle
+    - Vérifier les inputs (validation backend)
+    - Stocker les fichiers sur S3 avec liens temporaires
+  performance:
+    - Pagination sur toutes les listes
+    - Cache Redis pour les données météo et alertes
+  deployment:
+    - Docker + CI/CD (GitHub Actions)
+    - Hébergement : VPS ou AWS Lightsail
+
+# ===============================================================
+# ✅ PRIORITÉS MVP
+# ===============================================================
+mvp:
+  - Authentification + Profils
+  - Marketplace (base)
+  - Carte des opportunités + Alertes
+  - Formations (base)
+  - Réseau social (base)
+

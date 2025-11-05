@@ -1,0 +1,2806 @@
+/* ===============================================================
+   🎯 Dashboard Agriculteur - Styles CSS Premium
+   📱 Mobile-first, Design moderne et premium
+   =============================================================== */
+
+/* Import des polices Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* Reset et base */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-secondary);
+    line-height: 1.6;
+    color: var(--text-color);
+    background: var(--bg-gradient-light);
+    margin: 0;
+    padding: 0;
+}
+
+/* Variables CSS pour le dashboard - Design Premium */
+:root {
+    /* Palette de couleurs évoluée */
+    --Vert-sénégalais: #008753;
+    --Vert-menthe: #81C784;
+    --Vert-fonce: #2E7D32;
+    --Jaune-soleil: #FDEF4C;
+    --Jaune-dore: #FFD700;
+    --Rouge-drapeau: #D22831;
+    --Beige-terre: #F5E9D7;
+    --Beige-creme: #FFF8E1;
+    --Bleu-ciel: #E3F2FD;
+    --Orange-marche: #FF9800;
+    
+    /* Couleurs de texte */
+    --text-color: #2c3e50;
+    --text-light: #666;
+    --text-muted: #999;
+    
+    /* Arrière-plans */
+    --bg-light: #f8f9fa;
+    --bg-white: #ffffff;
+    --bg-gradient: linear-gradient(135deg, #2E7D32, #81C784);
+    --bg-gradient-light: linear-gradient(135deg, #E8F5E8, #F1F8E9);
+    
+    /* Bordures et ombres */
+    --border-color: #e9ecef;
+    --border-light: #f0f0f0;
+    --shadow: 0 4px 20px rgba(0,0,0,0.05);
+    --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+    --shadow-card: 0 2px 15px rgba(0,0,0,0.08);
+    --shadow-floating: 0 10px 40px rgba(0,0,0,0.15);
+    
+    /* Rayons et transitions */
+    --radius: 15px;
+    --radius-sm: 8px;
+    --radius-lg: 20px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s ease-in-out;
+    --transition-slow: all 0.5s ease;
+    
+    /* Typographie */
+    --font-primary: 'Poppins', sans-serif;
+    --font-secondary: 'Inter', sans-serif;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+}
+
+/* ===============================================================
+   🧭 NAVBAR AGRICULTEUR
+   =============================================================== */
+
+.navbar-agriculteur {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-floating);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    border-bottom: 3px solid var(--Vert-sénégalais);
+    transition: var(--transition);
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm, 0.5rem);
+    font-weight: 700;
+    font-size: var(--font-size-xl, 1.25rem);
+    color: var(--Vert-sénégalais);
+}
+
+.brand-icon {
+    font-size: 2rem;
+}
+
+.brand-text {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Menu Desktop */
+.desktop-menu {
+    display: flex;
+    gap: 5px;
+}
+
+.nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 18px;
+    text-decoration: none;
+    color: var(--text-color);
+    border-radius: var(--radius);
+    transition: var(--transition);
+    min-width: 80px;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-gradient);
+    transition: var(--transition);
+    z-index: -1;
+}
+
+.nav-link:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.nav-link:hover::before {
+    left: 0;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.nav-link.active::before {
+    left: 0;
+}
+
+.nav-icon {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.nav-text {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Menu Mobile Toggle */
+.mobile-menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* Menu Mobile */
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-white);
+    box-shadow: var(--shadow);
+    border-top: 1px solid var(--border-color);
+}
+
+.mobile-menu.active {
+    display: block;
+}
+
+.mobile-nav-link {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+    background: var(--Vert-sénégalais);
+    color: white;
+}
+
+.mobile-nav-link .nav-icon {
+    margin-right: 15px;
+    font-size: 1.2rem;
+}
+
+/* Menu Utilisateur */
+.user-menu {
+    position: relative;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--Vert-sénégalais);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.user-avatar:hover {
+    transform: scale(1.1);
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--bg-white);
+    box-shadow: var(--shadow);
+    border-radius: var(--radius-sm);
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition);
+}
+
+.user-menu:hover .user-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.dropdown-item:hover {
+    background: var(--bg-light);
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-icon {
+    margin-right: 10px;
+    font-size: 1rem;
+}
+
+/* ===============================================================
+   📊 ZONE DE RÉSUMÉ GLOBAL
+   =============================================================== */
+
+.summary-banner {
+    margin-top: 70px;
+    padding: 20px 0;
+    background: var(--bg-gradient-light);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.summary-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.summary-card {
+    background: var(--bg-white);
+    padding: 20px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.summary-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--bg-gradient);
+    transition: var(--transition);
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.summary-card:hover::before {
+    width: 8px;
+}
+
+.summary-icon {
+    font-size: 2.5rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-gradient-light);
+    transition: var(--transition);
+}
+
+.summary-card:hover .summary-icon {
+    transform: scale(1.1);
+}
+
+.summary-content {
+    flex: 1;
+}
+
+.summary-value {
+    font-family: var(--font-primary);
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--Vert-sénégalais);
+    line-height: 1.2;
+    margin-bottom: 5px;
+}
+
+.summary-label {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Couleurs spécifiques pour chaque carte */
+.weather-card .summary-icon { background: var(--Bleu-ciel); }
+.parcels-card .summary-icon { background: var(--bg-gradient-light); }
+.alerts-card .summary-icon { background: var(--Beige-creme); }
+.formations-card .summary-icon { background: var(--Beige-terre); }
+
+/* ===============================================================
+   📱 CONTENU PRINCIPAL
+   =============================================================== */
+
+.main-content {
+    margin-top: 70px;
+    padding: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dashboard-section {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.dashboard-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.section-header h1 {
+    color: var(--Vert-sénégalais);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-bold);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.section-header p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    font-weight: var(--font-weight-medium);
+}
+
+/* ===============================================================
+   🏠 SECTION ACCUEIL
+   =============================================================== */
+
+.profil-rapide {
+    margin-bottom: 30px;
+}
+
+    margin-bottom: 5px;
+    font-size: 1.8rem;
+}
+
+.profil-info p {
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.culture-type {
+    background: var(--Jaune-soleil);
+    color: var(--text-color);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: inline-block;
+}
+
+/* Statut des Cultures */
+/* ===============================================================
+   🌱 CULTURES STATUS - DESIGN 3D TERRAIN AGRICOLE
+   =============================================================== */
+
+.cultures-status {
+    margin-bottom: 40px;
+}
+
+.cultures-status .section-header {
+    margin-bottom: 25px;
+}
+
+.cultures-status h3 {
+    color: var(--Vert-sénégalais);
+    margin: 0 0 5px 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.cultures-status .section-header p {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.cultures-grid-3d {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.culture-field-3d {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(0, 135, 83, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.culture-field-3d::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        var(--Vert-sénégalais) 0%, 
+        var(--Vert-menthe) 50%, 
+        var(--Vert-sénégalais) 100%);
+    background-size: 200% 100%;
+    animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.culture-field-3d::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 135, 83, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.culture-field-3d:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 
+        0 12px 40px rgba(0, 135, 83, 0.15),
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    border-color: var(--Vert-sénégalais);
+}
+
+.culture-field-3d:hover::after {
+    opacity: 0.8;
+}
+
+.field-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--bg-light);
+}
+
+.field-header h4 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-color);
+    font-family: var(--font-primary);
+}
+
+.culture-status {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.culture-status::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+.culture-status:hover::before {
+    left: 100%;
+}
+
+.status-vert {
+    background: var(--Vert-menthe);
+    color: var(--Vert-fonce);
+}
+
+.status-orange {
+    background: var(--Orange-marche);
+    color: white;
+}
+
+.status-bleu {
+    background: var(--Bleu-ciel);
+    color: var(--text-color);
+}
+
+.field-container {
+    position: relative;
+    height: 280px;
+    margin-bottom: 20px;
+    perspective: 1000px;
+}
+
+.terrain-3d {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(60deg) rotateZ(-5deg);
+    border-radius: 12px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #8B7355 0%, #6B5D4F 50%, #5A4A3C 100%);
+    box-shadow: 
+        inset 0 -20px 50px rgba(0,0,0,0.3),
+        0 10px 30px rgba(0,0,0,0.2);
+}
+
+.terrain-sol {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            rgba(139, 115, 85, 0.3) 0px,
+            rgba(107, 93, 79, 0.3) 2px,
+            rgba(139, 115, 85, 0.3) 4px
+        ),
+        linear-gradient(135deg, #9d8565 0%, #7a6749 100%);
+    transform: translateZ(-10px);
+}
+
+.rangs-container {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 15px;
+    transform: translateZ(10px);
+}
+
+.rang-culture {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 35px;
+    position: relative;
+    animation: growPlants 1s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes growPlants {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.plantes-container {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+.plante {
+    width: 12px;
+    height: 12px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.plante-active {
+    background: linear-gradient(180deg, #4CAF50 0%, #2E7D32 100%);
+    box-shadow: 
+        0 -3px 0 #81C784,
+        0 -6px 0 #4CAF50,
+        0 0 8px rgba(76, 175, 80, 0.4);
+    animation: plantGrow 1.5s ease-out forwards;
+    transform: scale(1);
+}
+
+.plante-inactive {
+    background: #9E9E9E;
+    opacity: 0.3;
+    transform: scale(0.6);
+}
+
+@keyframes plantGrow {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Feuilles pour les plantes actives */
+.plante-active::before,
+.plante-active::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50% 0;
+    background: #66BB6A;
+}
+
+.plante-active::before {
+    top: -4px;
+    left: -2px;
+    transform: rotate(-45deg);
+}
+
+.plante-active::after {
+    top: -4px;
+    right: -2px;
+    transform: rotate(45deg);
+}
+
+/* Progression overlay */
+.progression-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(
+        to top,
+        rgba(76, 175, 80, 0.15) 0%,
+        rgba(46, 125, 50, 0.25) 50%,
+        transparent 100%
+    );
+    border-radius: 0 0 12px 12px;
+    transition: width 0.8s ease;
+    pointer-events: none;
+}
+
+.field-info {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 135, 83, 0.1);
+}
+
+.field-stats-artistic {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.stat-badge-artistic {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, rgba(0, 135, 83, 0.08) 0%, rgba(129, 199, 132, 0.08) 100%);
+    padding: 12px 18px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 135, 83, 0.15);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.stat-badge-artistic:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 135, 83, 0.2);
+    border-color: var(--Vert-sénégalais);
+    background: linear-gradient(135deg, rgba(0, 135, 83, 0.12) 0%, rgba(129, 199, 132, 0.12) 100%);
+}
+
+.stat-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--Vert-sénégalais), var(--Vert-menthe));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 135, 83, 0.2);
+    transition: all 0.3s ease;
+}
+
+.stat-badge-artistic:hover .stat-icon-wrapper {
+    transform: rotate(5deg) scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 135, 83, 0.3);
+}
+
+.stat-icon-wrapper i {
+    color: white;
+    font-size: 1.1rem;
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.stat-value-artistic {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--Vert-sénégalais);
+    line-height: 1;
+    font-family: var(--font-primary);
+}
+
+.stat-label-artistic {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+/* Légende des éléments visuels */
+.field-legend {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 2px dashed rgba(0, 135, 83, 0.2);
+    animation: fadeInUp 0.6s ease 0.3s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.legend-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--Vert-sénégalais);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.legend-title i {
+    font-size: 0.9rem;
+}
+
+.legend-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+    color: var(--text-light);
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.plante-legend {
+    background: linear-gradient(180deg, #4CAF50 0%, #2E7D32 100%);
+    box-shadow: 
+        0 -2px 0 #81C784,
+        0 0 6px rgba(76, 175, 80, 0.4);
+}
+
+.terrain-legend {
+    background: linear-gradient(135deg, #9d8565 0%, #7a6749 100%);
+}
+
+.progression-legend {
+    background: linear-gradient(180deg, rgba(76, 175, 80, 0.3) 0%, rgba(46, 125, 50, 0.5) 100%);
+}
+
+/* Responsive pour le design 3D */
+@media (max-width: 768px) {
+    .cultures-grid-3d {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .field-container {
+        height: 240px;
+    }
+    
+    .terrain-3d {
+        transform: rotateX(55deg) rotateZ(-3deg);
+    }
+    
+    .rang-culture {
+        height: 30px;
+    }
+    
+    .plante {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .field-container {
+        height: 200px;
+    }
+    
+    .terrain-3d {
+        transform: rotateX(50deg) rotateZ(-2deg);
+    }
+    
+    .rang-culture {
+        height: 25px;
+        gap: 6px;
+    }
+    
+    .plantes-container {
+        gap: 6px;
+    }
+    
+    .plante {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .field-stats-artistic {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .stat-badge-artistic {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .legend-items {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .field-header h4 {
+        font-size: 1.2rem;
+    }
+    
+    .stat-value-artistic {
+        font-size: 1.2rem;
+    }
+    
+    .legend-item {
+        font-size: 0.7rem;
+    }
+}
+    transform: scaleX(0);
+    transition: var(--transition);
+}
+
+/* Styles pour culture-card supprimés - remplacés par culture-field-3d */
+
+.progress-bar {
+    background: var(--bg-light);
+    border-radius: 15px;
+    height: 12px;
+    margin: 15px 0;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.progress-fill {
+    background: var(--bg-gradient);
+    height: 100%;
+    border-radius: 15px;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.progress-text {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* Alertes Rapides */
+.alertes-rapides {
+    margin-bottom: 30px;
+}
+
+.alertes-rapides h3 {
+    color: var(--Vert-sénégalais);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.alerte-item {
+    background: var(--bg-white);
+    padding: 15px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-left: 4px solid var(--Vert-sénégalais);
+}
+
+.alerte-item.alerte-haute {
+    border-left-color: var(--Rouge-drapeau);
+}
+
+.alerte-item.alerte-moyenne {
+    border-left-color: var(--Jaune-soleil);
+}
+
+.alerte-icon {
+    font-size: 1.5rem;
+}
+
+/* Formations Rapides */
+.formations-rapides {
+    margin-bottom: 30px;
+}
+
+.formations-rapides h3 {
+    color: var(--Vert-sénégalais);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.formation-item {
+    background: var(--bg-white);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 15px;
+}
+
+.formation-item h4 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+/* Statistiques Principales */
+.stats-principales h3 {
+    color: var(--Vert-sénégalais);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: var(--bg-gradient);
+    color: white;
+    padding: 30px;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    transform: scale(0);
+    transition: var(--transition-slow);
+}
+
+.stat-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-floating);
+}
+
+.stat-card:hover::before {
+    transform: scale(1);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* ===============================================================
+   🌦️ SECTION MÉTÉO
+   =============================================================== */
+
+.meteo-actuelle {
+    margin-bottom: 30px;
+}
+
+.meteo-card {
+    background: var(--bg-white);
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.meteo-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.meteo-icon {
+    font-size: 4rem;
+}
+
+.temperature {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--Vert-sénégalais);
+}
+
+.condition {
+    display: block;
+    color: #666;
+    font-size: 1.2rem;
+}
+
+.meteo-details {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.meteo-detail {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+}
+
+.detail-icon {
+    font-size: 1.2rem;
+}
+
+/* Prévisions 5 jours */
+.previsions-5j {
+    margin-bottom: 30px;
+}
+
+.previsions-5j h3 {
+    color: var(--Vert-sénégalais);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.previsions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+}
+
+.prev-card {
+    background: var(--bg-white);
+    padding: 15px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.prev-card:hover {
+    transform: translateY(-3px);
+}
+
+.prev-card h4 {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.prev-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.prev-temps {
+    margin-bottom: 10px;
+}
+
+.temp-max {
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.temp-min {
+    color: #666;
+    margin-left: 5px;
+}
+
+.pluie-prob {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: #666;
+    font-size: 0.8rem;
+}
+
+/* Alertes Météo */
+.alertes-meteo {
+    margin-bottom: 30px;
+}
+
+.alertes-meteo h3 {
+    color: var(--Vert-sénégalais);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.alerte-meteo {
+    background: var(--bg-white);
+    padding: 15px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-left: 4px solid var(--Jaune-soleil);
+}
+
+.alerte-meteo.alerte-haute {
+    border-left-color: var(--Rouge-drapeau);
+}
+
+/* Conseils de Saison */
+.conseils-saison h3 {
+    color: var(--Vert-sénégalais);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.conseils-list {
+    background: var(--bg-white);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    list-style: none;
+}
+
+.conseils-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    padding-left: 25px;
+}
+
+.conseils-list li:last-child {
+    border-bottom: none;
+}
+
+.conseils-list li::before {
+    content: "💡";
+    position: absolute;
+    left: 0;
+    top: 10px;
+}
+
+/* ===============================================================
+   🧑‍🌾 SECTION PARCELLES - DESIGN MODERNE
+   =============================================================== */
+
+.section-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.btn-add-parcelle,
+.btn-add-parcelle-empty {
+    background: linear-gradient(135deg, var(--Vert-sénégalais), var(--Vert-menthe));
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(0, 135, 83, 0.3);
+}
+
+.btn-add-parcelle:hover,
+.btn-add-parcelle-empty:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 135, 83, 0.4);
+    background: linear-gradient(135deg, #006b42, var(--Vert-sénégalais));
+}
+
+.btn-add-parcelle i,
+.btn-add-parcelle-empty i {
+    font-size: 1.2rem;
+}
+
+/* Statistiques rapides */
+.parcelles-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-box {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid rgba(0, 135, 83, 0.1);
+    transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 135, 83, 0.15);
+    border-color: var(--Vert-sénégalais);
+}
+
+.stat-icon-box {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--Vert-sénégalais), var(--Vert-menthe));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 135, 83, 0.2);
+}
+
+.stat-icon-box i {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.stat-info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stat-value-box {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+    font-family: var(--font-primary);
+}
+
+.stat-label-box {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Carte parcelles */
+.carte-parcelles {
+    margin-bottom: 30px;
+    background: var(--bg-white);
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.carte-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--bg-tertiary);
+    background: linear-gradient(135deg, rgba(0, 135, 83, 0.05) 0%, rgba(129, 199, 132, 0.05) 100%);
+}
+
+.carte-header h3 {
+    margin: 0;
+    color: var(--Vert-sénégalais);
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-icon-only {
+    background: none;
+    border: 1px solid var(--border-color);
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.btn-icon-only:hover {
+    background: var(--Vert-sénégalais);
+    color: white;
+    border-color: var(--Vert-sénégalais);
+}
+
+.map-container {
+    height: 350px;
+    overflow: hidden;
+}
+
+.map-placeholder {
+    height: 100%;
+    background: linear-gradient(135deg, #f0f2f5 0%, #e8ecef 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    text-align: center;
+    gap: 15px;
+}
+
+.map-placeholder i {
+    font-size: 3rem;
+    color: var(--Vert-sénégalais);
+    opacity: 0.6;
+}
+
+.map-placeholder p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.map-placeholder span {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* Liste des parcelles */
+.parcelles-list {
+    background: transparent;
+}
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.list-header h3 {
+    margin: 0;
+    color: var(--Vert-sénégalais);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.list-filters {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border: 2px solid var(--border-color);
+    background: var(--bg-white);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-secondary);
+}
+
+.filter-btn:hover {
+    border-color: var(--Vert-sénégalais);
+    color: var(--Vert-sénégalais);
+}
+
+.filter-btn.active {
+    background: var(--Vert-sénégalais);
+    color: white;
+    border-color: var(--Vert-sénégalais);
+}
+
+.parcelles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.parcelle-card-modern {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 135, 83, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.parcelle-card-modern:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(0, 135, 83, 0.15);
+    border-color: var(--Vert-sénégalais);
+}
+
+.parcelle-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.parcelle-icon-wrapper {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--Vert-sénégalais), var(--Vert-menthe));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 8px rgba(0, 135, 83, 0.2);
+}
+
+.parcelle-icon-wrapper i {
+    color: white;
+    font-size: 1.3rem;
+}
+
+.parcelle-title-section {
+    flex: 1;
+}
+
+.parcelle-title-section h4 {
+    margin: 0 0 8px 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-color);
+    font-family: var(--font-primary);
+}
+
+.parcelle-location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.parcelle-location i {
+    color: var(--Vert-sénégalais);
+    font-size: 0.9rem;
+}
+
+.parcelle-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.parcelle-info-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.info-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(0, 135, 83, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.info-icon i {
+    color: var(--Vert-sénégalais);
+    font-size: 1rem;
+}
+
+.info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.info-label {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.info-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.parcelle-status-badge-modern {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: fit-content;
+    margin-top: 5px;
+}
+
+.parcelle-status-badge-modern i {
+    font-size: 0.6rem;
+}
+
+.status-en-culture {
+    background: rgba(76, 175, 80, 0.15);
+    color: #2E7D32;
+}
+
+.status-en-preparation {
+    background: rgba(255, 193, 7, 0.15);
+    color: #F57C00;
+}
+
+.status-en-recolte {
+    background: rgba(33, 150, 243, 0.15);
+    color: #1976D2;
+}
+
+.status-jachere {
+    background: rgba(158, 158, 158, 0.15);
+    color: #616161;
+}
+
+.status-abandonne {
+    background: rgba(244, 67, 54, 0.15);
+    color: #C62828;
+}
+
+.parcelle-card-footer {
+    display: flex;
+    gap: 10px;
+    padding-top: 15px;
+    border-top: 1px solid var(--bg-tertiary);
+}
+
+.btn-action-modern {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-action-modern.btn-edit-parcelle {
+    background: var(--Vert-sénégalais);
+    color: white;
+}
+
+.btn-action-modern.btn-edit-parcelle:hover {
+    background: #006b42;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 135, 83, 0.3);
+}
+
+.btn-secondary-modern {
+    background: var(--bg-secondary);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary-modern:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--Vert-sénégalais);
+    color: var(--Vert-sénégalais);
+}
+
+.no-parcelles {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--bg-white);
+    border-radius: 16px;
+    border: 2px dashed var(--border-color);
+}
+
+.no-parcelles-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 135, 83, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.no-parcelles-icon i {
+    font-size: 2.5rem;
+    color: var(--Vert-sénégalais);
+}
+
+.no-parcelles h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+.no-parcelles p {
+    margin: 0 0 25px 0;
+    color: var(--text-light);
+}
+
+/* ===============================================================
+   📝 MODAL FORMULAIRE PARCELLE
+   =============================================================== */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-container {
+    background: var(--bg-white);
+    border-radius: 20px;
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    border-bottom: 1px solid var(--bg-tertiary);
+    background: linear-gradient(135deg, rgba(0, 135, 83, 0.05) 0%, rgba(129, 199, 132, 0.05) 100%);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--Vert-sénégalais);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.modal-close {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-secondary);
+}
+
+.modal-close:hover {
+    background: var(--Rouge-drapeau);
+    color: white;
+}
+
+.form-parcelle {
+    padding: 30px;
+}
+
+.form-section {
+    margin-bottom: 30px;
+}
+
+.form-section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--Vert-sénégalais);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid rgba(0, 135, 83, 0.1);
+}
+
+.form-section-title i {
+    font-size: 1.1rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.form-group label i {
+    color: var(--Vert-sénégalais);
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: var(--bg-white);
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--Vert-sénégalais);
+    box-shadow: 0 0 0 3px rgba(0, 135, 83, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-hint {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-top: 4px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    padding-top: 25px;
+    border-top: 1px solid var(--bg-tertiary);
+    margin-top: 30px;
+}
+
+.btn-cancel,
+.btn-submit-parcelle {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-cancel {
+    background: var(--bg-secondary);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.btn-cancel:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--text-secondary);
+}
+
+.btn-submit-parcelle {
+    background: linear-gradient(135deg, var(--Vert-sénégalais), var(--Vert-menthe));
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 135, 83, 0.3);
+}
+
+.btn-submit-parcelle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 135, 83, 0.4);
+}
+
+/* Responsive Modal */
+@media (max-width: 768px) {
+    .modal-container {
+        max-width: 100%;
+        margin: 10px;
+        max-height: 95vh;
+    }
+    
+    .modal-header,
+    .form-parcelle {
+        padding: 20px;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+    
+    .btn-cancel,
+    .btn-submit-parcelle {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .parcelles-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .parcelles-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .btn-add-parcelle {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ===============================================================
+   🎓 SECTION FORMATIONS
+   =============================================================== */
+
+.formations-disponibles h3,
+.certificats-obtenus h3,
+.formations-recommandees h3 {
+    color: var(--Vert-sénégalais);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.formation-card {
+    background: var(--bg-white);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.formation-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.formation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.formation-header h4 {
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
+
+.formation-niveau {
+    background: var(--Jaune-soleil);
+    color: var(--text-color);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.formation-details {
+    margin-bottom: 15px;
+}
+
+.formation-details p {
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.certificats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.certificat-card {
+    background: var(--bg-white);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.certificat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.certificat-badge {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.certificat-card h4 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.certificat-card p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.reco-card {
+    background: var(--bg-white);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 15px;
+    transition: var(--transition);
+}
+
+.reco-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.reco-card h4 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.reco-card p {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* ===============================================================
+   💬 SECTION COMMUNAUTÉ
+   =============================================================== */
+
+.fil-actualite h3,
+.groupes-region h3 {
+    color: var(--Vert-sénégalais);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.publication-rapide {
+    background: var(--bg-white);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+}
+
+.publication-rapide textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    resize: vertical;
+    font-family: inherit;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.publication-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.post-card {
+    background: var(--bg-white);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.post-auteur strong {
+    color: var(--Vert-sénégalais);
+}
+
+.post-region {
+    color: #666;
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+.post-type {
+    background: var(--Jaune-soleil);
+    color: var(--text-color);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.post-message {
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.post-image {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.post-stats {
+    display: flex;
+    gap: 20px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.groupe-card {
+    background: var(--bg-white);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 15px;
+    transition: var(--transition);
+}
+
+.groupe-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.groupe-card h4 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.groupe-card p {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* ===============================================================
+   💰 SECTION MARKETPLACE
+   =============================================================== */
+
+.mes-annonces h3,
+.annonces-region h3 {
+    color: var(--Vert-sénégalais);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.annonce-card,
+.annonce-region-card {
+    background: var(--bg-white);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.annonce-card:hover,
+.annonce-region-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.annonce-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.annonce-header h4 {
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
+
+.annonce-statut {
+    background: #d4edda;
+    color: #155724;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.annonce-details p {
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.annonce-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* ===============================================================
+   🧭 SECTION ASSISTANCE
+   =============================================================== */
+
+.types-aide h3,
+.demandes-en-cours h3 {
+    color: var(--Vert-sénégalais);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.aide-card,
+.demande-card {
+    background: var(--bg-white);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.aide-card:hover,
+.demande-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.aide-card h4,
+.demande-card h4 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.aide-card p,
+.demande-card p {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.demande-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.demande-statut {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-en-cours { background: #cce5ff; color: #004085; }
+.status-terminé { background: #d4edda; color: #155724; }
+
+/* ===============================================================
+   📅 SECTION CALENDRIER
+   =============================================================== */
+
+.evenements-calendrier h3,
+.rappels-importants h3 {
+    color: var(--Vert-sénégalais);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.event-card {
+    background: var(--bg-white);
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: var(--transition);
+    border-left: 4px solid var(--Vert-sénégalais);
+}
+
+.event-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.event-card.event-haute {
+    border-left-color: var(--Rouge-drapeau);
+}
+
+.event-card.event-moyenne {
+    border-left-color: var(--Jaune-soleil);
+}
+
+.event-date {
+    text-align: center;
+    min-width: 60px;
+}
+
+.event-day {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--Vert-sénégalais);
+}
+
+.event-month {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.event-details h4 {
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+.event-details p {
+    color: #666;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.rappel-item {
+    background: var(--bg-white);
+    padding: 15px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: var(--transition);
+}
+
+.rappel-item:hover {
+    transform: translateX(5px);
+}
+
+.rappel-icon {
+    font-size: 1.5rem;
+}
+
+/* ===============================================================
+   🎨 BOUTONS
+   =============================================================== */
+
+.btn-primary,
+.btn-action,
+.btn-secondary {
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.btn-primary,
+.btn-action {
+    background: var(--Vert-sénégalais);
+    color: white;
+}
+
+.btn-primary:hover,
+.btn-action:hover {
+    background: #006b42;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+/* ===============================================================
+   📱 RESPONSIVE DESIGN
+   =============================================================== */
+
+@media (max-width: 768px) {
+    .desktop-menu {
+        display: none;
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .main-content {
+        padding: 15px;
+    }
+    
+    .section-header h1 {
+        font-size: 2rem;
+    }
+    
+    .navbar-container {
+        padding: 0 15px;
+    }
+    
+    .cultures-grid-3d,
+    .stats-grid,
+    .previsions-grid,
+    .certificats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .parcelle-details {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .event-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .event-date {
+        min-width: auto;
+    }
+    
+    .post-stats {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .publication-actions {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: 10px;
+    }
+    
+    .section-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .culture-field-3d {
+        padding: 20px;
+    }
+    
+    .formation-card,
+    .post-card,
+    .annonce-card {
+        padding: 15px;
+    }
+    
+    .btn-primary,
+    .btn-action,
+    .btn-secondary {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ===============================================================
+   🎯 ANIMATIONS ET TRANSITIONS MODERNES
+   =============================================================== */
+
+.dashboard-section {
+    animation: slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+/* Animation des barres de progression */
+.progress-fill {
+    animation: fillProgress 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fillProgress {
+    from { width: 0%; }
+}
+
+/* Animation des cartes au scroll */
+.card-animate {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-animate.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Animations modernes */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bounceIn {
+    0% { 
+        transform: scale(0.3) rotate(-10deg);
+        opacity: 0;
+    }
+    50% { 
+        transform: scale(1.1) rotate(5deg);
+        opacity: 0.8;
+    }
+    100% { 
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 5px rgba(129, 199, 132, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(129, 199, 132, 0.8); }
+}
+
+/* Effet de brillance sur les boutons */
+@keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Animation des alertes */
+@keyframes alertPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* Appliquer les animations */
+.summary-card:hover {
+    animation: float 2s ease-in-out infinite;
+}
+
+.stat-card:hover {
+    animation: glow 1.5s ease-in-out infinite;
+}
+
+.btn-primary:hover,
+.btn-action:hover {
+    animation: shine 0.6s ease-in-out;
+}
+
+.alerte-item.alerte-haute {
+    animation: alertPulse 2s ease-in-out infinite;
+}
+
+/* ===============================================================
+   🎨 UTILITAIRES
+   =============================================================== */
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 10px; }
+.mb-2 { margin-bottom: 20px; }
+.mb-3 { margin-bottom: 30px; }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 10px; }
+.mt-2 { margin-top: 20px; }
+.mt-3 { margin-top: 30px; }
+
+.hidden { display: none; }
+.visible { display: block; }
+
+/* Sections articles-publies et profil-card supprimées */
+
+.btn-primary {
+    background: var(--primary-green);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background: #006b42;
+    transform: translateY(-1px);
+}
+
+/* ===============================================================
+   🎯 FIN DU FICHIER
+   =============================================================== */

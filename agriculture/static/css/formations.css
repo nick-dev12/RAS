@@ -1,0 +1,709 @@
+/* ===============================================================
+   🎓 Formations Agricoles - Design Moderne
+   🌾 Page de formations avec filtres et cartes
+   =============================================================== */
+
+/* Import des polices */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* Variables CSS */
+:root {
+    --primary-green: #0F9D58;
+    --secondary-green: #C7E8CA;
+    --accent-gold: #F2C94C;
+    --warning-orange: #FF9800;
+    --info-blue: #2196F3;
+    --danger-red: #D22831;
+    
+    --bg-primary: #ffffff;
+    --bg-secondary: #F9FAFB;
+    --bg-tertiary: #f0f2f5;
+    --bg-sidebar: #ffffff;
+    
+    --text-primary: #1c1e21;
+    --text-secondary: #6B7280;
+    --text-muted: #9CA3AF;
+    
+    --shadow-light: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-medium: 0 4px 20px rgba(0,0,0,0.05);
+    --shadow-heavy: 0 8px 24px rgba(0,0,0,0.15);
+    --border-radius: 12px;
+    --border-radius-lg: 16px;
+    
+    --transition: all 0.2s ease-in-out;
+}
+
+/* ===============================================================
+   📊 MAIN LAYOUT
+   =============================================================== */
+
+.formations-main {
+    max-width: 1400px;
+    margin: 70px auto 15px;
+    padding: 0 15px;
+    margin-bottom: 80px;
+}
+
+/* ===============================================================
+   🔍 BARRE DE FILTRES
+   =============================================================== */
+
+.filters-bar-formations {
+    background: var(--bg-primary);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    padding: 20px;
+    margin-bottom: 30px;
+    position: sticky;
+    top: 70px;
+    z-index: 50;
+}
+
+.filters-container-formations {
+    max-width: 100%;
+}
+
+.filters-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.search-section {
+    width: 100%;
+}
+
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input-wrapper i {
+    position: absolute;
+    left: 15px;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.search-input-wrapper input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 2px solid var(--bg-tertiary);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.search-input-wrapper input:focus {
+    outline: none;
+    border-color: var(--primary-green);
+}
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    align-items: end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.filter-group select,
+.filter-group input[type="number"] {
+    padding: 10px 12px;
+    border: 2px solid var(--bg-tertiary);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    background: var(--bg-primary);
+}
+
+.filter-group select:focus,
+.filter-group input[type="number"]:focus {
+    outline: none;
+    border-color: var(--primary-green);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--primary-green);
+}
+
+.filter-actions {
+    display: flex;
+    gap: 10px;
+    align-items: end;
+}
+
+.btn-filter,
+.btn-reset {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.btn-filter {
+    background: var(--primary-green);
+    color: white;
+}
+
+.btn-filter:hover {
+    background: #0d8a4d;
+    transform: translateY(-2px);
+}
+
+.btn-reset {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.btn-reset:hover {
+    background: var(--bg-tertiary);
+}
+
+/* ===============================================================
+   📋 CONTENU PRINCIPAL
+   =============================================================== */
+
+.formations-content {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
+}
+
+.formations-header {
+    margin-bottom: 25px;
+}
+
+.formations-header h1 {
+    margin: 0 0 5px 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: 'Poppins', sans-serif;
+}
+
+.formations-header .subtitle {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* ===============================================================
+   📚 SIDEBAR GAUCHE - MES FORMATIONS
+   =============================================================== */
+
+.formations-sidebar-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mes-formations-card {
+    background: var(--bg-primary);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--shadow-light);
+    position: sticky;
+    top: 200px;
+}
+
+.mes-formations-card h3 {
+    margin: 0 0 20px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mes-formations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.formation-en-cours-item {
+    padding: 15px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.formation-en-cours-item:hover {
+    background: var(--bg-tertiary);
+    transform: translateY(-2px);
+}
+
+.formation-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.formation-progress-header h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    flex: 1;
+}
+
+.progress-percentage {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary-green);
+}
+
+.progress-bar-wrapper {
+    width: 100%;
+    height: 6px;
+    background: var(--bg-tertiary);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-green), #0d8a4d);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.formation-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.statut-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--accent-gold);
+    color: var(--text-primary);
+}
+
+.statut-badge.en-cours {
+    background: var(--info-blue);
+    color: white;
+}
+
+.btn-continuer {
+    padding: 6px 12px;
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.btn-continuer:hover {
+    background: #0d8a4d;
+    transform: translateY(-1px);
+}
+
+.no-formations {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 20px 0;
+}
+
+.voir-toutes-btn {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    background: var(--bg-secondary);
+    color: var(--primary-green);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.voir-toutes-btn:hover {
+    background: var(--bg-tertiary);
+    transform: translateY(-2px);
+}
+
+/* ===============================================================
+   🎓 GRID DES FORMATIONS
+   =============================================================== */
+
+.formations-center {
+    width: 100%;
+}
+
+.formations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.formation-card {
+    background: var(--bg-primary);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.formation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.formation-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.formation-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.formation-card:hover .formation-image img {
+    transform: scale(1.05);
+}
+
+.badge-gratuit {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--accent-gold);
+    color: var(--text-primary);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    box-shadow: var(--shadow-medium);
+}
+
+.badge-certificat {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.formation-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 12px;
+}
+
+.formation-category {
+    font-size: 0.8rem;
+    color: var(--primary-green);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.formation-title {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.4;
+}
+
+.formation-description {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.formation-meta-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.meta-item i {
+    color: var(--primary-green);
+    font-size: 0.9rem;
+}
+
+.formation-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid var(--bg-tertiary);
+}
+
+.formation-prix {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.prix-gratuit {
+    color: var(--primary-green);
+}
+
+.prix {
+    color: var(--text-primary);
+}
+
+.formation-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-details,
+.btn-inscrire {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-details {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.btn-details:hover {
+    background: var(--bg-tertiary);
+}
+
+.btn-inscrire {
+    background: var(--primary-green);
+    color: white;
+}
+
+.btn-inscrire:hover {
+    background: #0d8a4d;
+    transform: translateY(-2px);
+}
+
+/* ===============================================================
+   🔍 NO RESULTS
+   =============================================================== */
+
+.no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+}
+
+.no-results i {
+    font-size: 3rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.no-results h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+.no-results p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* ===============================================================
+   📱 RESPONSIVE DESIGN
+   =============================================================== */
+
+@media (max-width: 1024px) {
+    .formations-content {
+        grid-template-columns: 250px 1fr;
+        gap: 15px;
+    }
+    
+    .formations-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .formations-main {
+        margin-top: 70px;
+        padding: 0 10px;
+        margin-bottom: 70px;
+    }
+    
+    .filters-bar-formations {
+        position: relative;
+        top: 0;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .filters-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .filter-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-filter,
+    .btn-reset {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .formations-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .formations-sidebar-left {
+        order: 2;
+    }
+    
+    .formations-center {
+        order: 1;
+    }
+    
+    .mes-formations-card {
+        position: relative;
+        top: 0;
+    }
+    
+    .formations-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .formations-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .formation-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    
+    .formation-actions {
+        width: 100%;
+    }
+    
+    .btn-details,
+    .btn-inscrire {
+        flex: 1;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .filters-bar-formations {
+        padding: 12px;
+    }
+    
+    .formation-card {
+        border-radius: var(--border-radius);
+    }
+    
+    .formation-image {
+        height: 180px;
+    }
+    
+    .formation-content {
+        padding: 15px;
+    }
+    
+    .formation-title {
+        font-size: 1.1rem;
+    }
+    
+    .formation-meta-info {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .meta-item {
+        font-size: 0.8rem;
+    }
+}
+

@@ -1,0 +1,380 @@
+/* ===============================================================
+   📱 Navigation Mobile - Styles Communs
+   🌾 Pour menu coulissant et barre de navigation inférieure
+   =============================================================== */
+
+/* Variables si elles n'existent pas déjà */
+:root {
+    --primary-green: #0F9D58;
+    --bg-primary: #ffffff;
+    --bg-secondary: #F9FAFB;
+    --bg-tertiary: #f0f2f5;
+    --text-primary: #1c1e21;
+    --text-secondary: #6B7280;
+    --text-muted: #9CA3AF;
+    --shadow-light: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-medium: 0 4px 20px rgba(0,0,0,0.05);
+    --transition: all 0.2s ease-in-out;
+}
+
+/* ===============================================================
+   🎯 MENU MOBILE COULISSANT
+   =============================================================== */
+
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 280px;
+    max-width: 85vw;
+    height: 100vh;
+    background: var(--bg-primary);
+    z-index: 999;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-menu.active {
+    left: 0;
+}
+
+.mobile-menu-header {
+    padding: 20px;
+    background: linear-gradient(135deg, var(--primary-green), #F2C94C);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.user-profile-mobile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.user-profile-mobile .profile-picture {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    font-size: 1.1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.user-profile-mobile .profile-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.user-profile-mobile .profile-info h3 {
+    margin: 0 0 4px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-profile-mobile .profile-info p {
+    margin: 2px 0;
+    font-size: 0.85rem;
+    opacity: 0.9;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.close-menu {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.close-menu:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.close-menu i {
+    font-size: 1.1rem;
+}
+
+.mobile-menu-nav {
+    padding: 10px 0;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.mobile-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition);
+    border-left: 3px solid transparent;
+    font-size: 0.95rem;
+}
+
+.mobile-nav-item:hover {
+    background: var(--bg-secondary);
+    border-left-color: var(--primary-green);
+    color: var(--primary-green);
+}
+
+.mobile-nav-item.active {
+    background: rgba(15, 157, 88, 0.1);
+    border-left-color: var(--primary-green);
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+.mobile-nav-item i {
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.mobile-nav-item span {
+    white-space: nowrap;
+}
+
+/* Styles pour les sections du dashboard dans le menu mobile */
+.mobile-nav-section {
+    padding: 15px 20px 10px 20px;
+}
+
+.mobile-nav-section-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    margin: 0 0 10px 0;
+    padding-left: 20px;
+}
+
+.mobile-nav-divider {
+    height: 1px;
+    background: var(--bg-tertiary);
+    margin: 10px 20px;
+    border: none;
+}
+
+/* ===============================================================
+   📊 BARRE DE NAVIGATION INFÉRIEURE MOBILE
+   =============================================================== */
+
+.mobile-bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--bg-tertiary);
+    padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+    z-index: 997;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mobile-nav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 8px 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.7rem;
+    font-weight: 500;
+    min-width: 50px;
+    flex: 1;
+    max-width: 80px;
+}
+
+.mobile-nav-btn:hover {
+    color: var(--primary-green);
+    transform: translateY(-2px);
+}
+
+.mobile-nav-btn.active {
+    color: var(--primary-green);
+}
+
+.mobile-nav-btn.active i {
+    transform: scale(1.1);
+}
+
+.mobile-nav-btn i {
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.mobile-nav-btn span {
+    font-size: 0.7rem;
+    white-space: nowrap;
+}
+
+.mobile-nav-btn.hamburger-trigger {
+    cursor: pointer;
+}
+
+/* ===============================================================
+   📱 RESPONSIVE DESIGN
+   =============================================================== */
+
+/* Mobile et Tablette */
+@media (max-width: 768px) {
+    .mobile-bottom-nav {
+        display: flex;
+    }
+    
+    /* Ajouter du padding en bas du contenu pour éviter que la nav ne cache le contenu */
+    main {
+        padding-bottom: 70px !important;
+    }
+    
+    .newsfeed-main,
+    .communaute-main,
+    .marketplace-main,
+    .terrain-main {
+        margin-bottom: 70px;
+    }
+}
+
+/* Petits écrans mobiles */
+@media (max-width: 480px) {
+    .mobile-menu {
+        width: 260px;
+        max-width: 80vw;
+    }
+    
+    .mobile-nav-btn {
+        padding: 6px 8px;
+        font-size: 0.65rem;
+    }
+    
+    .mobile-nav-btn i {
+        font-size: 1rem;
+    }
+    
+    .mobile-nav-btn span {
+        font-size: 0.65rem;
+    }
+    
+    .mobile-nav-item {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .user-profile-mobile .profile-picture {
+        width: 45px;
+        height: 45px;
+        min-width: 45px;
+        font-size: 1rem;
+    }
+    
+    .user-profile-mobile .profile-info h3 {
+        font-size: 0.95rem;
+    }
+    
+    .user-profile-mobile .profile-info p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Très petits écrans */
+@media (max-width: 360px) {
+    .mobile-nav-btn {
+        padding: 6px 6px;
+        min-width: 45px;
+    }
+    
+    .mobile-nav-btn span {
+        font-size: 0.6rem;
+    }
+    
+    .mobile-nav-btn i {
+        font-size: 0.95rem;
+    }
+}
+
+/* Support pour safe area (iPhone X et +) */
+@supports (padding: max(0px)) {
+    .mobile-bottom-nav {
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
+    }
+}
+
+/* Animation pour l'ouverture du menu */
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.mobile-menu.active {
+    animation: slideInFromLeft 0.3s ease;
+}
+
+/* Empêcher le scroll du body quand le menu est ouvert */
+body.menu-open {
+    overflow: hidden;
+}
+
+body.menu-open .mobile-menu-overlay {
+    display: block;
+}

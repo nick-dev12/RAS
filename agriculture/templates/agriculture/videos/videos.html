@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Réseau Agricole du Sénégal</title>
+    {% include 'agriculture/partials/pwa_meta.html' %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/videos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mobile_navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/logo.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="videos-page">
+    <!-- Navbar Supérieure -->
+    <nav class="videos-navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <a href="{% url 'newsfeed' %}" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                {% include 'agriculture/partials/logo.html' %}
+                <h1 class="page-title">
+                    <i class="fas fa-play-circle"></i>
+                    Vidéos Agricoles
+                </h1>
+            </div>
+            <div class="navbar-right">
+                <button class="search-btn" id="search-videos-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="user-avatar" id="user-menu-trigger">
+                    <span>{{ user.first_name|first }}{{ user.last_name|first }}</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Conteneur Principal - Format Vertical -->
+    <main class="videos-container">
+        <div class="videos-list" id="videos-list">
+            {% for video in videos %}
+            <div class="video-item" data-video-id="{{ video.id }}">
+                <!-- Vidéo -->
+                <div class="video-wrapper">
+                    <video 
+                        class="video-player" 
+                        poster="{{ video.thumbnail }}" 
+                        preload="metadata"
+                        loop
+                        playsinline
+                    >
+                        <source src="{{ video.video_url }}" type="video/mp4">
+                        Votre navigateur ne supporte pas la lecture de vidéos.
+                    </video>
+                    <div class="video-overlay">
+                        <button class="play-pause-btn" data-video-id="{{ video.id }}">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Infos Vidéo (côté droit sur desktop, en bas sur mobile) -->
+                <div class="video-info">
+                    <!-- Informations Auteur -->
+                    <div class="author-section">
+                        <div class="author-avatar">
+                            <span>{{ video.auteur.avatar }}</span>
+                        </div>
+                        <div class="author-details">
+                            <h3 class="author-name">{{ video.auteur.nom }}</h3>
+                            <p class="author-specialite">{{ video.auteur.specialite }}</p>
+                        </div>
+                        <button class="follow-btn">
+                            <i class="fas fa-plus"></i>
+                            <span>Suivre</span>
+                        </button>
+                    </div>
+
+                    <!-- Titre et Description -->
+                    <div class="video-text">
+                        <h2 class="video-title">{{ video.titre }}</h2>
+                        <p class="video-description">{{ video.description }}</p>
+                    </div>
+
+                    <!-- Actions Sociales (côté droit) -->
+                    <div class="video-actions">
+                        <button class="action-btn like-btn {% if video.is_liked %}liked{% endif %}" data-video-id="{{ video.id }}">
+                            <div class="action-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <span class="action-count">{{ video.likes|default:"0" }}</span>
+                        </button>
+                        
+                        <button class="action-btn comment-btn" data-video-id="{{ video.id }}">
+                            <div class="action-icon">
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <span class="action-count">{{ video.commentaires|default:"0" }}</span>
+                        </button>
+                        
+                        <button class="action-btn share-btn" data-video-id="{{ video.id }}">
+                            <div class="action-icon">
+                                <i class="fas fa-share"></i>
+                            </div>
+                            <span class="action-count">{{ video.partages|default:"0" }}</span>
+                        </button>
+                        
+                        <button class="action-btn save-btn" data-video-id="{{ video.id }}">
+                            <div class="action-icon">
+                                <i class="fas fa-bookmark"></i>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Statistiques -->
+                    <div class="video-stats">
+                        <span class="views-count">
+                            <i class="fas fa-eye"></i>
+                            {{ video.vue|default:"0" }} vues
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <!-- Navigation Mobile -->
+    {% include 'agriculture/partials/mobile_navigation.html' with active_page='videos' %}
+
+    <!-- Scripts -->
+    <script src="{% static 'js/videos.js' %}"></script>
+    <script src="{% static 'js/mobile_navigation.js' %}"></script>
+    <script src="{% static 'js/pwa.js' %}"></script>
+</body>
+</html>
+

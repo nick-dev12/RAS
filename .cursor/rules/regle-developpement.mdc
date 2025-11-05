@@ -1,0 +1,91 @@
+---
+alwaysApply: true
+---
+# 📜 Règles & Contexte du Projet – Réseau Agricole du Sénégal
+
+## 🎯 Objectif global
+Créer une plateforme numérique intégrée pour connecter, former, accompagner et outiller les acteurs de l’agriculture au Sénégal : agriculteurs, experts, formateurs, investisseurs, institutions.
+
+## 🌍 Valeurs clés
+- **Ancrage local** : Respect des réalités sénégalaises (langues, sols, cultures, institutions).
+- **Inclusion** : Accessible aux non-alphabétisés (audio/vidéo, hors ligne).
+- **Durabilité** : Recommandations agricoles écologiques et climato-résilientes.
+- **Collaboration** : Favoriser les projets collectifs et le partage de savoirs.
+
+## 🧩 Modules fonctionnels (priorisés par MVP)
+
+### MVP Phase 1 (à développer en premier)
+1. **Authentification & Profils utilisateurs**  
+   - Rôles : Agriculteur, Formateur, Expert, Investisseur, Admin   
+   - Profil public + localisation + préférences
+
+2. **Marketplace**  
+   - Annonces : produits bruts, transformés, intrants  
+   - Filtres (région, type, prix)  
+   - Messagerie acheteur/vendeur  
+   - Modération
+
+3. **Carte des opportunités agricoles**  
+   - Parcelles à vendre/louer (géolocalisées)  
+   - Recommandations IA : culture adaptée selon sol + climat  
+   - Intégration API météo (OpenWeather ou équivalent)
+
+4. **Formations (base)**  
+   - Catalogue de cours (vidéo, PDF)  
+   - Certificats téléchargeables  
+   - Suivi de progression
+
+5. **Réseau social (base)**  
+   - Fil d’actualité localisé  
+   - Groupes par région/thème  
+   - Modération
+
+### Modules secondaires (à venir)
+- Projets communs
+- Système d’alerte & assistance
+- Accompagnement personnalisé
+- Boîte à idées
+- Adhésion certifiée
+- Réservation de visites
+- Événements
+- Tableau de bord utilisateur
+- Backoffice admin
+
+## 🛠️ Stack technique
+- **Backend** : Python + Django
+- **Base de données** : PostgreSQL
+- **Frontend** : template django integrer 
+- **Authentification** : Django native + extensions (pas Firebase/Auth0 côté backend)
+- **Cartographie** : Données GeoJSON, intégration Leaflet/Mapbox en frontend
+
+## 📦 Architecture Django recommandée
+- Tous les modèles doivent inclure :
+  - `created_at`, `updated_at`
+  - `is_active` si pertinent
+  - Localisation via `PointField` (PostGIS) quand applicable
+- API REST claire pour chaque module (DRF ou Django natif)
+
+## 🎨 Identité visuelle (à refléter dans les assets)
+- Couleurs : 
+  - Vert sénégalais : `#008753` (primaire)
+  - Jaune soleil : `#FDEF4C` (accent)
+  - Rouge drapeau : `#D22831` (alertes)
+  - Beige terre : `#F5E9D7` (fond)
+- Thème : agricole, chaleureux, professionnel
+
+## 🚫 Ce que l’IA ne doit PAS faire
+- Proposer des fonctionnalités hors du cahier des charges ci-dessus.
+- Utiliser des bibliothèques non compatibles avec PostgreSQL/PostGIS.
+- Générer du frontend React dans le code Django (sauf si explicitement demandé).
+- Ignorer la gestion des rôles utilisateurs.
+- Oublier la localisation géographique (GPS, région) dans les modèles pertinents.
+- ne lance pas le serveur il est déjà lancé
+- utiliser le module form de django
+
+## ✅ Lorsque je demande du code :
+- Respecter les conventions Django (noms de modèles au singulier, apps en minuscule).
+- Inclure les imports, migrations, et validations.
+- Préférer la clarté à la concision.
+- Documenter les choix si nécessaire.
+
+> Ce fichier guide le développement. Toute génération de code doit s’aligner sur ces règles.

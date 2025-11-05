@@ -1,0 +1,177 @@
+---
+alwaysApply: true
+---
+
+# ===============================================================
+# 🎯 Projet : Réseau Agricole du Sénégal
+# 📄 Règles pour la création des templates Django
+# 🧠 IDE : Cursor AI
+# ===============================================================
+
+meta:
+  project_name: "Réseau Agricole du Sénégal"
+  environment: "Django (frontend HTML/CSS/JS personnalisé)"
+  version: "1.0.0"
+  author: "Advantech Group"
+
+# ===============================================================
+# 🧩 DIRECTIVES GÉNÉRALES POUR LES TEMPLATES DJANGO
+# ===============================================================
+templates:
+  base_rules:
+    - Chaque fichier HTML doit être complet, autonome et prêt à être affiché directement.
+    - Ne jamais utiliser `{% extends 'base.html' %}` ni `{% block content %}`.
+    - Inclure les balises `<html>`, `<head>`, `<body>` dans chaque template.
+    - Ajouter systématiquement un `<meta charset="UTF-8">` et `<meta name="viewport" content="width=device-width, initial-scale=1.0">`.
+    - Lier le fichier CSS principal avec `{% load static %}` et `<link rel="stylesheet" href="{% static 'css/style.css' %}">`.
+  
+
+- Couleurs : 
+  - Vert sénégalais : `#008753` (primaire)
+  - Jaune soleil : `#FDEF4C` (accent)
+  - Rouge drapeau : `#D22831` (alertes)
+  - Beige terre : `#F5E9D7` (fond)
+- Thème : agricole, chaleureux, professionnel
+
+  css_rules:
+    - Utiliser systématiquement des variables CSS pour toutes les couleurs, tailles et espacements.
+    - Les variables CSS doivent être définies dans le fichier `:root` du style principal (`style.css`).
+    - Exemple :
+      ```css
+      :root {
+        --Vert-sénégalais: #008753;
+        --Jaune-soleil: #FDEF4C;
+        --Rouge-drapeau: #D22831;
+        --text-color:rgb(22, 22, 22);
+        --Beige-terre: #F5E9D7;
+      }
+      ```
+    - Toujours appeler les variables CSS avec `var(--nom-de-variable)`.
+
+  layout_rules:
+    - Organiser les templates de manière modulaire :
+      - `templates/pages/` pour les pages complètes.
+      - `templates/components/` pour les sections réutilisables (header, footer, cartes, formulaires…)
+    - Même sans `extends`, il est autorisé d’utiliser `{% include 'components/header.html' %}` et `{% include 'components/footer.html' %}`.
+
+# ===============================================================
+# 🧾 VALIDATION DES FORMULAIRES
+# ===============================================================
+forms:
+  rules:
+    - Toutes les validations doivent être faites côté **Django** uniquement.
+    - Ne pas utiliser JavaScript pour vérifier les champs.
+    - Utiliser `forms.py` pour définir les contraintes (`required=True`, `validators`, `clean_fieldname()`).
+    - Gérer les messages d’erreur via le template Django :
+      ```html
+      {% if form.errors %}
+        <div class="alert alert-danger">
+          {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+              <p>{{ field }} : {{ error }}</p>
+            {% endfor %}
+          {% endfor %}
+        </div>
+      {% endif %}
+      ```
+    - Ajouter toujours le token CSRF :
+      ```html
+      <form method="post">
+        {% csrf_token %}
+        ...
+      </form>
+      ```
+
+# ===============================================================
+# 🧠 UTILISATION DE JAVASCRIPT
+# ===============================================================
+javascript:
+  usage:
+    - JavaScript doit être exclusivement réservé aux interactions utilisateur et aux effets visuels.
+    - Ne jamais l’utiliser pour :
+      - Validation de formulaire
+      - Authentification
+      - Vérification de données
+    - Il peut être utilisé pour :
+      - Animation d’éléments
+      - Apparition / disparition d’un bloc
+      - Menus déroulants
+      - Boutons dynamiques
+      - Transitions visuelles
+    - Exemple :
+      ```js
+      const btn = document.querySelector(".toggle");
+      const panel = document.querySelector(".menu");
+
+      btn.addEventListener("click", () => {
+        panel.classList.toggle("visible");
+      });
+      ```
+
+# ===============================================================
+# 🎨 BONNES PRATIQUES DE DESIGN
+# ===============================================================
+design:
+  principles:
+    - Toujours utiliser un design clair, sobre et responsive.
+    - Utiliser `flexbox`
+    - Respecter les espacements cohérents avec les variables CSS.
+    - Prévoir un thème sombre en option (basé sur les variables CSS).
+  accessibility:
+    - Ajouter `alt` pour toutes les images.
+    - Utiliser des contrastes suffisants entre texte et fond.
+    - Respecter les balises sémantiques HTML (`<header>`, `<main>`, `<footer>`).
+
+# ===============================================================
+# ⚙️ STRUCTURE DU DOSSIER FRONTEND
+# ===============================================================
+structure:
+  templates:
+    - templates/
+      - partials/
+        - header.html
+        - footer.html
+  static:
+    - static/
+      - css/
+        - style.css
+      - js/
+        - main.js
+      - images/
+
+# ===============================================================
+# 🧩 EXEMPLE DE TEMPLATE TYPE
+# ===============================================================
+example_template: |
+  {% load static %}
+  <!DOCTYPE html>
+  <html lang="fr">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Accueil – Réseau Agricole du Sénégal</title>
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+      {% include 'partials/header.html' %}
+
+      <main class="content">
+          <h1>Bienvenue sur le Réseau Agricole du Sénégal</h1>
+          <p>Connectons les acteurs du monde agricole pour un Sénégal plus vert 🌾</p>
+      </main>
+
+      {% include 'partials/footer.html' %}
+      <script src="{% static 'js/main.js' %}"></script>
+  </body>
+  </html>
+
+# ===============================================================
+# ✅ RÉSUMÉ DES RÈGLES À IMPOSER À CURSOR
+# ===============================================================
+summary:
+  - Ne jamais utiliser `{% extends %}` ni `{% block %}`.
+  - Toujours inclure le HTML complet (head + body).
+  - Utiliser des variables CSS pour toutes les couleurs.
+  - Validation des formulaires uniquement côté Django.
+  - JavaScript = uniquement pour les interactions visuelles.
+  - Tous les fichiers doivent être responsive et accessibles.

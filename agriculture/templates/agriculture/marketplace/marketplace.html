@@ -1,0 +1,273 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    {% include 'agriculture/partials/pwa_meta.html' %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/marketplace.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mobile_navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/logo.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar Supérieure -->
+    <nav class="marketplace-navbar">
+       
+        
+        <div class="navbar-container">
+            <!-- Logo et Recherche -->
+            <div class="navbar-left">
+                {% include 'agriculture/partials/logo.html' %}
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Rechercher des produits..." id="search-input">
+                </div>
+            </div>
+            
+            <!-- Navigation Centrale -->
+            <div class="navbar-center">
+                <a href="{% url 'newsfeed' %}" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Accueil</span>
+                </a>
+                <a href="{% url 'marketplace' %}" class="nav-link active">
+                    <i class="fas fa-store"></i>
+                    <span>Marché</span>
+                </a>
+                <a href="{% url 'agriculteur_dashboard' %}" class="nav-link">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+            
+            <!-- Profil Utilisateur -->
+            <div class="navbar-right">
+                <div class="user-profile">
+                    <img src="https://st2.depositphotos.com/1000128/6009/i/450/depositphotos_60099901-stock-photo-default-avatar.jpg" alt="Profil" class="profile-img">
+                    <span class="profile-name">{{ user.get_full_name|default:user.username }}</span>
+                    <div class="profile-dropdown">
+                        <a href="{% url 'agriculteur_dashboard' %}">Mon Profil</a>
+                        <a href="{% url 'logout' %}">Déconnexion</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu mobile (partial) -->
+    {% include 'agriculture/partials/mobile_navigation.html' with active_page='marketplace' %}
+
+    <!-- Contenu Principal -->
+    <main class="marketplace-main">
+        <!-- Section Recherche et Filtres -->
+        <section class="search-filters-section">
+            <div class="search-filters-container">
+                <!-- Barre de recherche principale -->
+                <div class="main-search-bar">
+                    <div class="search-input-container">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="main-search-input" placeholder="Rechercher des produits agricoles..." 
+                               value="{{ filtres_actifs.recherche }}">
+                        <button type="button" id="search-btn" class="btn-search">
+                            <i class="fas fa-search"></i>
+                            Rechercher
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Filtres compacts -->
+                <div class="compact-filters">
+                    <form class="filters-form" method="GET" id="filters-form">
+                        <div class="filter-group compact">
+                            <label for="categorie">Catégorie</label>
+                            <select name="categorie" id="categorie" class="filter-select compact">
+                                {% for cat in categories %}
+                                    <option value="{{ cat }}" {% if filtres_actifs.categorie == cat %}selected{% endif %}>{{ cat }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group compact">
+                            <label for="region">Région</label>
+                            <select name="region" id="region" class="filter-select compact">
+                                {% for reg in regions %}
+                                    <option value="{{ reg }}" {% if filtres_actifs.region == reg %}selected{% endif %}>{{ reg }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group compact">
+                            <label for="prix_min">Prix min</label>
+                            <input type="number" name="prix_min" id="prix_min" class="filter-input compact" 
+                                   placeholder="0" value="{{ filtres_actifs.prix_min }}">
+                        </div>
+                        
+                        <div class="filter-group compact">
+                            <label for="prix_max">Prix max</label>
+                            <input type="number" name="prix_max" id="prix_max" class="filter-input compact" 
+                                   placeholder="1000000" value="{{ filtres_actifs.prix_max }}">
+                        </div>
+                        
+                        <div class="filter-actions compact">
+                            <button type="submit" class="btn-filter compact">
+                                <i class="fas fa-filter"></i>
+                                Filtrer
+                            </button>
+                            <a href="{% url 'marketplace' %}" class="btn-reset compact">
+                                <i class="fas fa-undo"></i>
+                                Reset
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Résultats -->
+        <section class="results-section">
+            <div class="results-header">
+                <h2>{{ nombre_annonces }} annonce{{ nombre_annonces|pluralize }} trouvée{{ nombre_annonces|pluralize }}</h2>
+                <div class="sort-options">
+                    <select id="sort-select" class="sort-select">
+                        <option value="date-desc">Plus récentes</option>
+                        <option value="date-asc">Plus anciennes</option>
+                        <option value="prix-asc">Prix croissant</option>
+                        <option value="prix-desc">Prix décroissant</option>
+                        <option value="rating-desc">Mieux notées</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Grille des Annonces -->
+            <div class="annonces-grid" id="annonces-grid">
+                {% for annonce in annonces %}
+                <div class="annonce-card" data-categorie="{{ annonce.categorie }}" data-prix="{{ annonce.prix }}" data-rating="{{ annonce.vendeur.rating }}">
+                    <!-- Image principale -->
+                    <div class="annonce-image">
+                        <img src="{{ annonce.images.0 }}" alt="{{ annonce.titre }}" class="product-img" onerror="this.src='https://st2.depositphotos.com/1000128/6009/i/450/depositphotos_60099901-stock-photo-default-product.jpg'">
+                        
+                        <!-- Badges -->
+                        <div class="badges">
+                            <span class="badge-categorie">{{ annonce.categorie }}</span>
+                            {% if annonce.certification_bio %}
+                                <span class="badge-bio">🌱 Bio</span>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Bouton favori -->
+                        <button class="btn-favorite" data-annonce-id="{{ annonce.id }}">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Contenu de la carte -->
+                    <div class="annonce-content">
+                        <h3 class="annonce-titre">{{ annonce.titre }}</h3>
+                        <p class="annonce-description">{{ annonce.description|truncatewords:15 }}</p>
+                        
+                        <div class="annonce-prix">
+                            <span class="prix">{{ annonce.prix|floatformat:0 }} {{ annonce.prix_unite }}</span>
+                            <span class="quantite">{{ annonce.quantite_disponible }}</span>
+                        </div>
+                        
+                        <div class="annonce-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>{{ annonce.localisation }}, {{ annonce.region }}</span>
+                        </div>
+                        
+                        <div class="annonce-vendeur">
+                            <img src="{{ annonce.vendeur.photo }}" alt="{{ annonce.vendeur.nom }}" class="vendeur-photo" onerror="this.src='https://st2.depositphotos.com/1000128/6009/i/450/depositphotos_60099901-stock-photo-default-avatar.jpg'">
+                            <div class="vendeur-info">
+                                <span class="vendeur-nom">{{ annonce.vendeur.nom }}</span>
+                                <div class="vendeur-rating">
+                                    <i class="fas fa-star"></i>
+                                    <span>{{ annonce.vendeur.rating }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="annonce-date">
+                            <i class="far fa-clock"></i>
+                            <span>{{ annonce.date_publication|date:"d/m/Y" }}</span>
+                        </div>
+                        
+                        <!-- Actions -->
+                        <div class="annonce-actions">
+                            <button class="btn-contact" data-annonce-id="{{ annonce.id }}" data-vendeur="{{ annonce.vendeur.nom }}">
+                                <i class="fas fa-envelope"></i>
+                                Contacter
+                            </button>
+                            <button class="btn-phone" data-telephone="{{ annonce.vendeur.telephone }}">
+                                <i class="fas fa-phone"></i>
+                                <span class="phone-text">Voir téléphone</span>
+                                <span class="phone-number" style="display: none;">{{ annonce.vendeur.telephone }}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="no-results">
+                    <i class="fas fa-search"></i>
+                    <h3>Aucune annonce trouvée</h3>
+                    <p>Essayez de modifier vos critères de recherche</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal de Contact -->
+    <div class="modal-overlay" id="contact-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Contacter le vendeur</h3>
+                <button class="modal-close" id="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="contact-nom">Votre nom *</label>
+                        <input type="text" id="contact-nom" name="nom" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-email">Votre email *</label>
+                        <input type="email" id="contact-email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-telephone">Votre téléphone</label>
+                        <input type="tel" id="contact-telephone" name="telephone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-message">Message *</label>
+                        <textarea id="contact-message" name="message" rows="4" required 
+                                  placeholder="Décrivez votre demande..."></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" id="btn-cancel">Annuler</button>
+                        <button type="submit" class="btn-send">
+                            <i class="fas fa-paper-plane"></i>
+                            Envoyer le message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/mobile_navigation.js' %}"></script>
+    <script src="{% static 'js/marketplace.js' %}"></script>
+    <script src="{% static 'js/pwa.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,499 @@
+/* ===============================================================
+   📹 PAGE VIDÉOS - FORMAT VERTICAL TYPE TIKTOK
+   🌾 Design moderne pour vidéos agricoles en format portrait
+   =============================================================== */
+
+:root {
+    --Vert-sénégalais: #008753;
+    --Jaune-soleil: #FDEF4C;
+    --Rouge-drapeau: #D22831;
+    --Beige-terre: #F5E9D7;
+    --text-color: rgb(22, 22, 22);
+    --bg-dark: #000000;
+    --bg-light: #f5f5f5;
+}
+
+/* ===============================================================
+   🎯 STRUCTURE PRINCIPALE
+   =============================================================== */
+
+body.videos-page {
+    background: var(--bg-dark);
+    color: white;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.videos-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar-container {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.back-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.page-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.page-title i {
+    color: var(--Vert-sénégalais);
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--Vert-sénégalais), var(--Jaune-soleil));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.user-avatar:hover {
+    transform: scale(1.1);
+}
+
+/* ===============================================================
+   📱 CONTENEUR VIDÉOS - FORMAT VERTICAL
+   =============================================================== */
+
+.videos-container {
+    margin-top: 60px;
+    width: 100%;
+    height: calc(100vh - 60px);
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.videos-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.video-item {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-dark);
+}
+
+/* ===============================================================
+   🎥 LECTEUR VIDÉO
+   =============================================================== */
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    overflow: hidden;
+}
+
+.video-player {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+.video-item.playing .video-overlay {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.play-pause-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 20;
+}
+
+.play-pause-btn:hover {
+    transform: scale(1.1);
+    background: white;
+}
+
+.play-pause-btn i {
+    font-size: 2rem;
+    color: var(--Vert-sénégalais);
+    margin-left: 5px;
+}
+
+.video-item.playing .play-pause-btn i.fa-play {
+    display: none;
+}
+
+.video-item:not(.playing) .play-pause-btn i.fa-pause {
+    display: none;
+}
+
+/* ===============================================================
+   ℹ️ INFORMATIONS VIDÉO
+   =============================================================== */
+
+.video-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    padding: 20px;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.author-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--Vert-sénégalais), var(--Jaune-soleil));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.author-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.author-name {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.author-specialite {
+    margin: 2px 0 0 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.follow-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+}
+
+.follow-btn:hover {
+    background: white;
+    color: var(--Vert-sénégalais);
+}
+
+.follow-btn.following {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.video-text {
+    padding: 0 5px;
+}
+
+.video-title {
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    line-height: 1.4;
+}
+
+.video-description {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ===============================================================
+   ⚡ ACTIONS SOCIALES (côté droit)
+   =============================================================== */
+
+.video-actions {
+    position: absolute;
+    right: 15px;
+    bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 30;
+}
+
+.action-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+    padding: 5px;
+}
+
+.action-btn:hover {
+    transform: scale(1.1);
+}
+
+.action-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover .action-icon {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.action-btn.liked .action-icon {
+    background: rgba(255, 59, 92, 0.3);
+    color: #ff3b5c;
+}
+
+.action-btn.liked .action-icon i {
+    color: #ff3b5c;
+}
+
+.action-count {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Statistiques */
+.video-stats {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0 5px;
+}
+
+.views-count {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* ===============================================================
+   📱 RESPONSIVE DESIGN
+   =============================================================== */
+
+@media (min-width: 768px) {
+    .videos-container {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .videos-list {
+        max-width: 450px;
+    }
+    
+    .video-info {
+        padding: 25px;
+    }
+    
+    .video-actions {
+        right: 20px;
+        bottom: 150px;
+    }
+}
+
+@media (max-width: 767px) {
+    .video-info {
+        padding-bottom: calc(20px + env(safe-area-inset-bottom));
+    }
+    
+    .video-actions {
+        bottom: calc(120px + env(safe-area-inset-bottom));
+    }
+    
+    .videos-container {
+        padding-bottom: calc(70px + env(safe-area-inset-bottom));
+    }
+}
+
+/* Animation pour le scroll */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.video-item {
+    animation: fadeIn 0.5s ease;
+}
+
+/* Styles pour le bouton de recherche et autres éléments */
+.search-btn {
+    transition: all 0.3s ease;
+}
+
+/* Masquer la barre de scroll mais garder le scroll fonctionnel */
+.videos-container::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+.videos-container {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+

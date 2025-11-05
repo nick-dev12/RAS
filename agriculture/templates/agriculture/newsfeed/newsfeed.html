@@ -1,0 +1,346 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    {% include 'agriculture/partials/pwa_meta.html' %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/newsfeed.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mobile_navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/logo.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar Supérieure -->
+    <nav class="newsfeed-navbar">
+        <!-- Bouton hamburger pour mobile -->
+        <button class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <div class="navbar-container">
+            <!-- Logo et Recherche -->
+            <div class="navbar-left">
+                {% include 'agriculture/partials/logo.html' %}
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Rechercher une personne, annonce, culture...">
+                </div>
+            </div>
+            
+            <!-- Navigation Centrale -->
+            <div class="navbar-center">
+                <a href="{% url 'home' %}" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Accueil</span>
+                </a>
+                <a href="#" class="nav-item active">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Actualités</span>
+                </a>
+                <a href="{% url 'agriculteur_dashboard' %}" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Messages</span>
+                </a>
+            </div>
+            
+            <!-- Profil et Notifications -->
+            <div class="navbar-right">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-menu">
+                    <div class="user-avatar">
+                        <span>{{ user.first_name|first }}{{ user.last_name|first }}</span>
+                    </div>
+                    <div class="user-dropdown">
+                        <a href="{% url 'agriculteur_dashboard' %}" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            Mon Profil
+                        </a>
+                        <a href="{% url 'logout' %}" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Déconnexion
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu mobile (partial) -->
+    {% include 'agriculture/partials/mobile_navigation.html' with active_page='newsfeed' %}
+
+    <!-- Contenu Principal -->
+    <main class="newsfeed-main">
+        <!-- Menu Latéral Gauche -->
+        <aside class="sidebar-left">
+            <div class="sidebar-content">
+                <div class="user-profile-card">
+                    <div class="profile-avatar">
+                        <span>{{ user.first_name|first }}{{ user.last_name|first }}</span>
+                    </div>
+                    <div class="profile-info">
+                        <h3>{{ user.get_full_name }}</h3>
+                        <p>{{ user.user_type|title }}</p>
+                        <span class="profile-location">{{ user.region|default:"Sénégal" }}</span>
+                    </div>
+                </div>
+                
+                <nav class="sidebar-menu">
+                    <a href="#" class="menu-item active">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Fil d'actualité</span>
+                    </a>
+                    <a href="{% url 'agriculteur_dashboard' %}" class="menu-item">
+                        <i class="fas fa-user"></i>
+                        <span>Mon profil</span>
+                    </a>
+            <a href="{% url 'terrain_agricole' %}" class="menu-item">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Terrain agricole</span>
+            </a>
+                    <a href="{% url 'communaute' %}" class="menu-item">
+                        <i class="fas fa-users"></i>
+                        <span>Communauté agricole</span>
+                    </a>
+                    <a href="{% url 'marketplace' %}" class="menu-item">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Annonces / Marché</span>
+                    </a>
+                    <a href="{% url 'formations:formations' %}" class="menu-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Formations</span>
+                    </a>
+                    <a href="#" class="menu-item">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Articles / Actualités</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Fil Central -->
+        <section class="newsfeed-center">
+            <!-- Bloc de Publication -->
+            <div class="create-post-card">
+                <div class="post-header">
+                    <div class="user-avatar">
+                        <span>{{ user.first_name|first }}{{ user.last_name|first }}</span>
+                    </div>
+                    <div class="post-input">
+                        <textarea placeholder="Que voulez-vous partager aujourd'hui ?" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="post-actions">
+                    <button class="action-btn photo-btn">
+                        <i class="fas fa-image"></i>
+                        <span>Photo</span>
+                    </button>
+                    <button class="action-btn video-btn">
+                        <i class="fas fa-video"></i>
+                        <span>Vidéo</span>
+                    </button>
+                    <button class="action-btn announce-btn">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>Annonce</span>
+                    </button>
+                    <button class="action-btn article-btn">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Article</span>
+                    </button>
+                    <button class="action-btn advice-btn">
+                        <i class="fas fa-lightbulb"></i>
+                        <span>Conseil</span>
+                    </button>
+                    <button class="publish-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Publier</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Liste des Publications -->
+            <div class="publications-list">
+                {% for publication in publications %}
+                <article class="publication-card" data-id="{{ publication.id }}" data-type="{{ publication.type }}">
+                    <!-- En-tête de la publication -->
+                    <div class="publication-header">
+                        <div class="author-info">
+                            <div class="author-avatar">
+                                <span>{{ publication.auteur.photo }}</span>
+                            </div>
+                            <div class="author-details">
+                                <div class="author-name">
+                                    <h4>{{ publication.auteur.nom }}</h4>
+                                    {% if publication.auteur.verifie %}
+                                    <i class="fas fa-check-circle verified"></i>
+                                    {% endif %}
+                                </div>
+                                <div class="author-meta">
+                                    <span class="author-role">{{ publication.auteur.role }}</span>
+                                    <span class="author-location">{{ publication.auteur.region }}</span>
+                                    <span class="publication-date">{{ publication.date }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="publication-type">
+                            {% if publication.type == 'conseil' %}
+                                <span class="type-badge advice">🌱 Conseil</span>
+                            {% elif publication.type == 'annonce' %}
+                                <span class="type-badge announce">📢 Annonce</span>
+                            {% elif publication.type == 'photo' %}
+                                <span class="type-badge photo">📸 Photo</span>
+                            {% elif publication.type == 'article' %}
+                                <span class="type-badge article">📄 Article</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Contenu de la publication -->
+                    <div class="publication-content">
+                        <h3 class="publication-title">{{ publication.titre }}</h3>
+                        <p class="publication-text">{{ publication.contenu }}</p>
+                        {% if publication.image %}
+                        <div class="publication-image">
+                            <img src="{{ publication.image }}" alt="Image de la publication">
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Actions de la publication -->
+                    <div class="publication-actions">
+                        <button class="action-btn like-btn {% if publication.liked %}liked{% endif %}" data-likes="{{ publication.likes }}">
+                            <i class="fas fa-heart"></i>
+                            <span>{{ publication.likes }}</span>
+                        </button>
+                        <button class="action-btn comment-btn">
+                            <i class="fas fa-comment"></i>
+                            <span>{{ publication.commentaires }}</span>
+                        </button>
+                        <button class="action-btn share-btn">
+                            <i class="fas fa-share"></i>
+                            <span>{{ publication.partages }}</span>
+                        </button>
+                        <button class="action-btn more-btn">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                    </div>
+
+                    <!-- Statistiques -->
+                    <div class="publication-stats">
+                        <span class="views-count">{{ publication.vues }} vues</span>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Barre Latérale Droite -->
+        <aside class="sidebar-right">
+            <!-- Météo -->
+            <div class="widget-card weather-widget">
+                <h3>🌦️ Météo du jour</h3>
+                <div class="weather-content">
+                    <div class="weather-main">
+                        <span class="weather-icon">{{ meteo_actuelle.icon }}</span>
+                        <div class="weather-temp">
+                            <span class="temperature">{{ meteo_actuelle.temperature }}°C</span>
+                            <span class="condition">{{ meteo_actuelle.condition }}</span>
+                        </div>
+                    </div>
+                    <div class="weather-details">
+                        <span>💧 {{ meteo_actuelle.humidite }}%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prix du Marché -->
+            <div class="widget-card market-widget">
+                <h3>📈 Prix du marché</h3>
+                <div class="market-list">
+                    {% for produit in prix_marche %}
+                    <div class="market-item">
+                        <span class="product-name">{{ produit.produit }}</span>
+                        <div class="product-price">
+                            <span class="price">{{ produit.prix }}</span>
+                            <span class="variation {% if produit.variation|slice:'0:1' == '+' %}positive{% else %}negative{% endif %}">
+                                {{ produit.variation }}
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Suggestions d'Utilisateurs -->
+            <div class="widget-card suggestions-widget">
+                <h3>👥 Suggestions</h3>
+                <div class="suggestions-list">
+                    {% for suggestion in suggestions_utilisateurs %}
+                    <div class="suggestion-item">
+                        <div class="suggestion-avatar">
+                            <span>{{ suggestion.nom|slice:":2" }}</span>
+                        </div>
+                        <div class="suggestion-info">
+                            <h4>{{ suggestion.nom }}</h4>
+                            <p>{{ suggestion.role }} • {{ suggestion.region }}</p>
+                            <span class="mutual-connections">{{ suggestion.mutual }} amis en commun</span>
+                        </div>
+                        <button class="follow-btn">Suivre</button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Actualités Officielles -->
+            <div class="widget-card news-widget">
+                <h3>📰 Actualités officielles</h3>
+                <div class="news-list">
+                    {% for actualite in actualites_officielles %}
+                    <div class="news-item">
+                        <h4>{{ actualite.titre }}</h4>
+                        <div class="news-meta">
+                            <span class="news-source">{{ actualite.source }}</span>
+                            <span class="news-date">{{ actualite.date }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Formations Recommandées -->
+            <div class="widget-card formations-widget">
+                <h3>🎓 Formations recommandées</h3>
+                <div class="formations-list">
+                    {% for formation in formations_recommandees %}
+                    <div class="formation-item">
+                        <h4>{{ formation.titre }}</h4>
+                        <div class="formation-meta">
+                            <span class="formation-duration">{{ formation.duree }}</span>
+                            <span class="formation-level">{{ formation.niveau }}</span>
+                        </div>
+                        <button class="enroll-btn">S'inscrire</button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </aside>
+    </main>
+
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/mobile_navigation.js' %}"></script>
+    <script src="{% static 'js/newsfeed.js' %}"></script>
+    <script src="{% static 'js/pwa.js' %}"></script>
+</body>
+</html>

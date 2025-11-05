@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hors ligne - Réseau Agricole du Sénégal</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .offline-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--Beige-terre, #F5E9D7);
+            padding: 20px;
+        }
+        .offline-content {
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .offline-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        .offline-content h1 {
+            color: var(--Vert-sénégalais, #008753);
+            margin-bottom: 16px;
+            font-size: 28px;
+        }
+        .offline-content p {
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .offline-actions {
+            margin-top: 30px;
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-retry {
+            background: var(--Vert-sénégalais, #008753);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-retry:hover {
+            background: #006d42;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 135, 83, 0.3);
+        }
+        .btn-home {
+            background: white;
+            color: var(--Vert-sénégalais, #008753);
+            border: 2px solid var(--Vert-sénégalais, #008753);
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-home:hover {
+            background: var(--Vert-sénégalais, #008753);
+            color: white;
+        }
+        .offline-tips {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+            text-align: left;
+        }
+        .offline-tips h3 {
+            color: var(--Vert-sénégalais, #008753);
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+        .offline-tips ul {
+            list-style: none;
+            padding: 0;
+        }
+        .offline-tips li {
+            color: #666;
+            margin-bottom: 8px;
+            padding-left: 24px;
+            position: relative;
+        }
+        .offline-tips li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--Vert-sénégalais, #008753);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-content">
+            <div class="offline-icon">📡</div>
+            <h1>Vous êtes hors ligne</h1>
+            <p>Il semble que vous n'ayez pas de connexion internet.</p>
+            <p>Vérifiez votre connexion et réessayez.</p>
+            
+            <div class="offline-actions">
+                <button class="btn-retry" onclick="window.location.reload()">
+                    🔄 Réessayer
+                </button>
+                <a href="/" class="btn-home">
+                    🏠 Retour à l'accueil
+                </a>
+            </div>
+            
+            <div class="offline-tips">
+                <h3>En attendant, vous pouvez :</h3>
+                <ul>
+                    <li>Consulter les pages déjà visitées</li>
+                    <li>Accéder aux contenus mis en cache</li>
+                    <li>Vérifier votre connexion internet</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Vérifier la connexion et recharger automatiquement si elle revient
+        let isOnline = navigator.onLine;
+        
+        window.addEventListener('online', () => {
+            if (!isOnline) {
+                isOnline = true;
+                // Afficher une notification
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #008753;
+                    color: white;
+                    padding: 16px 24px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                    z-index: 10000;
+                    animation: slideIn 0.3s ease;
+                `;
+                notification.textContent = '✅ Connexion rétablie !';
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+                
+                // Recharger après 2 secondes
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+            }
+        });
+        
+        window.addEventListener('offline', () => {
+            isOnline = false;
+        });
+    </script>
+</body>
+</html>

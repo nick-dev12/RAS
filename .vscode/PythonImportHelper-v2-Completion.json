@@ -1,0 +1,1633 @@
+[
+    {
+        "label": "django.contrib.auth.models",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "AbstractUser",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "django.contrib.auth.validators",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.contrib.auth.validators",
+        "description": "django.contrib.auth.validators",
+        "detail": "django.contrib.auth.validators",
+        "documentation": {}
+    },
+    {
+        "label": "django.contrib.gis.db.models.fields",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.contrib.gis.db.models.fields",
+        "description": "django.contrib.gis.db.models.fields",
+        "detail": "django.contrib.gis.db.models.fields",
+        "documentation": {}
+    },
+    {
+        "label": "django.core.validators",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.core.validators",
+        "description": "django.core.validators",
+        "detail": "django.core.validators",
+        "documentation": {}
+    },
+    {
+        "label": "RegexValidator",
+        "importPath": "django.core.validators",
+        "description": "django.core.validators",
+        "isExtraImport": true,
+        "detail": "django.core.validators",
+        "documentation": {}
+    },
+    {
+        "label": "django.utils.timezone",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.utils.timezone",
+        "description": "django.utils.timezone",
+        "detail": "django.utils.timezone",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "django.db.models.deletion",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.db.models.deletion",
+        "description": "django.db.models.deletion",
+        "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.contrib.gis.db",
+        "description": "django.contrib.gis.db",
+        "isExtraImport": true,
+        "detail": "django.contrib.gis.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.contrib.gis.db",
+        "description": "django.contrib.gis.db",
+        "isExtraImport": true,
+        "detail": "django.contrib.gis.db",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "register_view",
+        "importPath": "agriculture.personal_views.auth_views",
+        "description": "agriculture.personal_views.auth_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.auth_views",
+        "documentation": {}
+    },
+    {
+        "label": "login_view",
+        "importPath": "agriculture.personal_views.auth_views",
+        "description": "agriculture.personal_views.auth_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.auth_views",
+        "documentation": {}
+    },
+    {
+        "label": "logout_view",
+        "importPath": "agriculture.personal_views.auth_views",
+        "description": "agriculture.personal_views.auth_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.auth_views",
+        "documentation": {}
+    },
+    {
+        "label": "profile_view",
+        "importPath": "agriculture.personal_views.auth_views",
+        "description": "agriculture.personal_views.auth_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.auth_views",
+        "documentation": {}
+    },
+    {
+        "label": "check_username",
+        "importPath": "agriculture.personal_views.auth_views",
+        "description": "agriculture.personal_views.auth_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.auth_views",
+        "documentation": {}
+    },
+    {
+        "label": "check_email",
+        "importPath": "agriculture.personal_views.auth_views",
+        "description": "agriculture.personal_views.auth_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.auth_views",
+        "documentation": {}
+    },
+    {
+        "label": "check_phone",
+        "importPath": "agriculture.personal_views.auth_views",
+        "description": "agriculture.personal_views.auth_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.auth_views",
+        "documentation": {}
+    },
+    {
+        "label": "agriculteur_dashboard",
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "formateur_dashboard",
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "expert_dashboard",
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "investisseur_dashboard",
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "dashboard_router",
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "newsfeed_view",
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "marketplace_view",
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "terrain_agricole_view",
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "communaute_view",
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "videos_view",
+        "importPath": "agriculture.personal_views.videos_views",
+        "description": "agriculture.personal_views.videos_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.videos_views",
+        "documentation": {}
+    },
+    {
+        "label": "home_views",
+        "importPath": "agriculture.personal_views",
+        "description": "agriculture.personal_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views",
+        "documentation": {}
+    },
+    {
+        "label": "manifest_view",
+        "importPath": "agriculture.personal_views.pwa_views",
+        "description": "agriculture.personal_views.pwa_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.pwa_views",
+        "documentation": {}
+    },
+    {
+        "label": "service_worker_view",
+        "importPath": "agriculture.personal_views.pwa_views",
+        "description": "agriculture.personal_views.pwa_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.pwa_views",
+        "documentation": {}
+    },
+    {
+        "label": "offline_view",
+        "importPath": "agriculture.personal_views.offline_views",
+        "description": "agriculture.personal_views.offline_views",
+        "isExtraImport": true,
+        "detail": "agriculture.personal_views.offline_views",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "get_object_or_404",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "messages",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "messages",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "messages",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "JsonResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "JsonResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "csrf_exempt",
+        "importPath": "django.views.decorators.csrf",
+        "description": "django.views.decorators.csrf",
+        "isExtraImport": true,
+        "detail": "django.views.decorators.csrf",
+        "documentation": {}
+    },
+    {
+        "label": "require_http_methods",
+        "importPath": "django.views.decorators.http",
+        "description": "django.views.decorators.http",
+        "isExtraImport": true,
+        "detail": "django.views.decorators.http",
+        "documentation": {}
+    },
+    {
+        "label": "require_GET",
+        "importPath": "django.views.decorators.http",
+        "description": "django.views.decorators.http",
+        "isExtraImport": true,
+        "detail": "django.views.decorators.http",
+        "documentation": {}
+    },
+    {
+        "label": "make_password",
+        "importPath": "django.contrib.auth.hashers",
+        "description": "django.contrib.auth.hashers",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.hashers",
+        "documentation": {}
+    },
+    {
+        "label": "check_password",
+        "importPath": "django.contrib.auth.hashers",
+        "description": "django.contrib.auth.hashers",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.hashers",
+        "documentation": {}
+    },
+    {
+        "label": "Count",
+        "importPath": "django.db.models",
+        "description": "django.db.models",
+        "isExtraImport": true,
+        "detail": "django.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "Sum",
+        "importPath": "django.db.models",
+        "description": "django.db.models",
+        "isExtraImport": true,
+        "detail": "django.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "Q",
+        "importPath": "django.db.models",
+        "description": "django.db.models",
+        "isExtraImport": true,
+        "detail": "django.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "cache_control",
+        "importPath": "django.views.decorators.cache",
+        "description": "django.views.decorators.cache",
+        "isExtraImport": true,
+        "detail": "django.views.decorators.cache",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "get_asgi_application",
+        "importPath": "django.core.asgi",
+        "description": "django.core.asgi",
+        "isExtraImport": true,
+        "detail": "django.core.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "importPath": "decouple",
+        "description": "decouple",
+        "isExtraImport": true,
+        "detail": "decouple",
+        "documentation": {}
+    },
+    {
+        "label": "static",
+        "importPath": "django.conf.urls.static",
+        "description": "django.conf.urls.static",
+        "isExtraImport": true,
+        "detail": "django.conf.urls.static",
+        "documentation": {}
+    },
+    {
+        "label": "get_wsgi_application",
+        "importPath": "django.core.wsgi",
+        "description": "django.core.wsgi",
+        "isExtraImport": true,
+        "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "ImageDraw",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "ImageFont",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "agriculture.migrations.0001_initial",
+        "description": "agriculture.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='User',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "agriculture.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "agriculture.migrations.0002_alter_user_department_alter_user_phone_number_and_more",
+        "description": "agriculture.migrations.0002_alter_user_department_alter_user_phone_number_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('agriculture', '0001_initial'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='user',\n            name='department',\n            field=models.CharField(blank=True, max_length=100, null=True, verbose_name='Département'),\n        ),",
+        "detail": "agriculture.migrations.0002_alter_user_department_alter_user_phone_number_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "agriculture.migrations.0003_alerte_annonce_demandeachat_formation_and_more",
+        "description": "agriculture.migrations.0003_alerte_annonce_demandeachat_formation_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('agriculture', '0002_alter_user_department_alter_user_phone_number_and_more'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Alerte',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('type_alerte', models.CharField(choices=[('meteo', 'Météo'), ('marche', 'Marché'), ('calendrier', 'Calendrier cultural'), ('formation', 'Formation'), ('projet', 'Projet'), ('visite', 'Visite'), ('echeance', 'Échéance'), ('systeme', 'Système')], max_length=20, verbose_name=\"Type d'alerte\")),",
+        "detail": "agriculture.migrations.0003_alerte_annonce_demandeachat_formation_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Alerte",
+        "kind": 6,
+        "importPath": "agriculture.models.alerte_models",
+        "description": "agriculture.models.alerte_models",
+        "peekOfCode": "class Alerte(models.Model):\n    TYPE_ALERTE_CHOICES = [\n        ('meteo', 'Météo'),\n        ('marche', 'Marché'),\n        ('calendrier', 'Calendrier cultural'),\n        ('formation', 'Formation'),\n        ('projet', 'Projet'),\n        ('visite', 'Visite'),\n        ('echeance', 'Échéance'),\n        ('systeme', 'Système'),",
+        "detail": "agriculture.models.alerte_models",
+        "documentation": {}
+    },
+    {
+        "label": "AlerteUtilisateur",
+        "kind": 6,
+        "importPath": "agriculture.models.alerte_models",
+        "description": "agriculture.models.alerte_models",
+        "peekOfCode": "class AlerteUtilisateur(models.Model):\n    \"\"\"Modèle pour lier les alertes aux utilisateurs spécifiques\"\"\"\n    alerte = models.ForeignKey(Alerte, on_delete=models.CASCADE, related_name='utilisateurs_cibles')\n    utilisateur = models.ForeignKey(\n        'agriculture.User', \n        on_delete=models.CASCADE, \n        related_name='alertes_recues'\n    )\n    is_read = models.BooleanField(default=False, verbose_name=\"Alerte lue par l'utilisateur\")\n    date_lecture = models.DateTimeField(null=True, blank=True, verbose_name=\"Date de lecture\")",
+        "detail": "agriculture.models.alerte_models",
+        "documentation": {}
+    },
+    {
+        "label": "NotificationPreference",
+        "kind": 6,
+        "importPath": "agriculture.models.alerte_models",
+        "description": "agriculture.models.alerte_models",
+        "peekOfCode": "class NotificationPreference(models.Model):\n    \"\"\"Préférences de notification des utilisateurs\"\"\"\n    utilisateur = models.OneToOneField(\n        'agriculture.User', \n        on_delete=models.CASCADE, \n        related_name='preferences_notification'\n    )\n    alertes_meteo = models.BooleanField(default=True, verbose_name=\"Alertes météo\")\n    alertes_marche = models.BooleanField(default=True, verbose_name=\"Alertes marché\")\n    alertes_calendrier = models.BooleanField(default=True, verbose_name=\"Alertes calendrier\")",
+        "detail": "agriculture.models.alerte_models",
+        "documentation": {}
+    },
+    {
+        "label": "Formation",
+        "kind": 6,
+        "importPath": "agriculture.models.formation_models",
+        "description": "agriculture.models.formation_models",
+        "peekOfCode": "class Formation(models.Model):\n    NIVEAU_CHOICES = [\n        ('debutant', 'Débutant'),\n        ('intermediaire', 'Intermédiaire'),\n        ('avance', 'Avancé'),\n        ('expert', 'Expert'),\n    ]\n    CATEGORIE_CHOICES = [\n        ('technique', 'Technique agricole'),\n        ('gestion', 'Gestion d\\'exploitation'),",
+        "detail": "agriculture.models.formation_models",
+        "documentation": {}
+    },
+    {
+        "label": "InscriptionFormation",
+        "kind": 6,
+        "importPath": "agriculture.models.formation_models",
+        "description": "agriculture.models.formation_models",
+        "peekOfCode": "class InscriptionFormation(models.Model):\n    STATUT_CHOICES = [\n        ('inscrit', 'Inscrit'),\n        ('en_cours', 'En cours'),\n        ('terminee', 'Terminée'),\n        ('abandonnee', 'Abandonnée'),\n    ]\n    utilisateur = models.ForeignKey(User, on_delete=models.CASCADE, related_name='inscriptions_formation')\n    formation = models.ForeignKey(Formation, on_delete=models.CASCADE, related_name='inscriptions')\n    progression = models.IntegerField(",
+        "detail": "agriculture.models.formation_models",
+        "documentation": {}
+    },
+    {
+        "label": "Certificat",
+        "kind": 6,
+        "importPath": "agriculture.models.formation_models",
+        "description": "agriculture.models.formation_models",
+        "peekOfCode": "class Certificat(models.Model):\n    inscription = models.OneToOneField(\n        InscriptionFormation, \n        on_delete=models.CASCADE, \n        related_name='certificat'\n    )\n    numero_certificat = models.CharField(\n        max_length=50, \n        unique=True, \n        verbose_name=\"Numéro de certificat\"",
+        "detail": "agriculture.models.formation_models",
+        "documentation": {}
+    },
+    {
+        "label": "Annonce",
+        "kind": 6,
+        "importPath": "agriculture.models.marketplace_models",
+        "description": "agriculture.models.marketplace_models",
+        "peekOfCode": "class Annonce(models.Model):\n    STATUT_CHOICES = [\n        ('active', 'Active'),\n        ('en_attente', 'En attente de validation'),\n        ('vendue', 'Vendue'),\n        ('expiree', 'Expirée'),\n        ('annulee', 'Annulée'),\n    ]\n    TYPE_PRODUIT_CHOICES = [\n        ('produit_brut', 'Produit brut'),",
+        "detail": "agriculture.models.marketplace_models",
+        "documentation": {}
+    },
+    {
+        "label": "DemandeAchat",
+        "kind": 6,
+        "importPath": "agriculture.models.marketplace_models",
+        "description": "agriculture.models.marketplace_models",
+        "peekOfCode": "class DemandeAchat(models.Model):\n    STATUT_CHOICES = [\n        ('en_attente', 'En attente'),\n        ('acceptee', 'Acceptée'),\n        ('refusee', 'Refusée'),\n        ('annulee', 'Annulée'),\n    ]\n    annonce = models.ForeignKey(Annonce, on_delete=models.CASCADE, related_name='demandes')\n    acheteur = models.ForeignKey(User, on_delete=models.CASCADE, related_name='demandes_achat')\n    quantite_demandee = models.DecimalField(",
+        "detail": "agriculture.models.marketplace_models",
+        "documentation": {}
+    },
+    {
+        "label": "Vente",
+        "kind": 6,
+        "importPath": "agriculture.models.marketplace_models",
+        "description": "agriculture.models.marketplace_models",
+        "peekOfCode": "class Vente(models.Model):\n    STATUT_CHOICES = [\n        ('en_cours', 'En cours'),\n        ('terminee', 'Terminée'),\n        ('annulee', 'Annulée'),\n    ]\n    annonce = models.ForeignKey(Annonce, on_delete=models.CASCADE, related_name='ventes')\n    vendeur = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ventes_vendeur')\n    acheteur = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ventes_acheteur')\n    quantite_vendue = models.DecimalField(",
+        "detail": "agriculture.models.marketplace_models",
+        "documentation": {}
+    },
+    {
+        "label": "Parcelle",
+        "kind": 6,
+        "importPath": "agriculture.models.parcelle_models",
+        "description": "agriculture.models.parcelle_models",
+        "peekOfCode": "class Parcelle(models.Model):\n    STATUT_CHOICES = [\n        ('en_culture', 'En culture'),\n        ('en_jachere', 'En jachère'),\n        ('a_vendre', 'À vendre'),\n        ('a_louer', 'À louer'),\n        ('en_preparation', 'En préparation'),\n    ]\n    agriculteur = models.ForeignKey(User, on_delete=models.CASCADE, related_name='parcelles')\n    nom = models.CharField(max_length=200, verbose_name=\"Nom de la parcelle\")",
+        "detail": "agriculture.models.parcelle_models",
+        "documentation": {}
+    },
+    {
+        "label": "Culture",
+        "kind": 6,
+        "importPath": "agriculture.models.parcelle_models",
+        "description": "agriculture.models.parcelle_models",
+        "peekOfCode": "class Culture(models.Model):\n    ETAT_CHOICES = [\n        ('semis', 'Semis'),\n        ('levee', 'Levée'),\n        ('croissance', 'Croissance'),\n        ('floraison', 'Floraison'),\n        ('fructification', 'Fructification'),\n        ('maturation', 'Maturation'),\n        ('recolte', 'Récolte'),\n        ('terminee', 'Terminée'),",
+        "detail": "agriculture.models.parcelle_models",
+        "documentation": {}
+    },
+    {
+        "label": "Projet",
+        "kind": 6,
+        "importPath": "agriculture.models.projet_models",
+        "description": "agriculture.models.projet_models",
+        "peekOfCode": "class Projet(models.Model):\n    STATUT_CHOICES = [\n        ('en_preparation', 'En préparation'),\n        ('en_cours', 'En cours'),\n        ('termine', 'Terminé'),\n        ('suspendu', 'Suspendu'),\n        ('annule', 'Annulé'),\n    ]\n    TYPE_CHOICES = [\n        ('cooperatif', 'Coopératif'),",
+        "detail": "agriculture.models.projet_models",
+        "documentation": {}
+    },
+    {
+        "label": "ParticipationProjet",
+        "kind": 6,
+        "importPath": "agriculture.models.projet_models",
+        "description": "agriculture.models.projet_models",
+        "peekOfCode": "class ParticipationProjet(models.Model):\n    ROLE_CHOICES = [\n        ('participant', 'Participant'),\n        ('coordinateur', 'Coordinateur'),\n        ('expert', 'Expert'),\n        ('observateur', 'Observateur'),\n        ('financeur', 'Financeur'),\n    ]\n    STATUT_CHOICES = [\n        ('en_attente', 'En attente'),",
+        "detail": "agriculture.models.projet_models",
+        "documentation": {}
+    },
+    {
+        "label": "EtapeProjet",
+        "kind": 6,
+        "importPath": "agriculture.models.projet_models",
+        "description": "agriculture.models.projet_models",
+        "peekOfCode": "class EtapeProjet(models.Model):\n    projet = models.ForeignKey(Projet, on_delete=models.CASCADE, related_name='etapes')\n    numero = models.IntegerField(verbose_name=\"Numéro d'étape\")\n    titre = models.CharField(max_length=200, verbose_name=\"Titre de l'étape\")\n    description = models.TextField(verbose_name=\"Description\")\n    date_debut_prevue = models.DateField(verbose_name=\"Date de début prévue\")\n    date_fin_prevue = models.DateField(verbose_name=\"Date de fin prévue\")\n    date_debut_reelle = models.DateField(null=True, blank=True, verbose_name=\"Date de début réelle\")\n    date_fin_reelle = models.DateField(null=True, blank=True, verbose_name=\"Date de fin réelle\")\n    is_terminee = models.BooleanField(default=False, verbose_name=\"Étape terminée\")",
+        "detail": "agriculture.models.projet_models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "agriculture.models.user_models",
+        "description": "agriculture.models.user_models",
+        "peekOfCode": "class User(AbstractUser):\n    \"\"\"\n    Modèle utilisateur personnalisé pour le Réseau Agricole du Sénégal\n    \"\"\"\n    # Types d'utilisateurs\n    USER_TYPE_CHOICES = [\n        ('agriculteur', 'Agriculteur'),\n        ('formateur', 'Formateur'),\n        ('expert', 'Expert'),\n        ('investisseur', 'Investisseur'),",
+        "detail": "agriculture.models.user_models",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "agriculture.personal_urls.auth_urls",
+        "description": "agriculture.personal_urls.auth_urls",
+        "peekOfCode": "urlpatterns = [\n    # Pages d'authentification\n    path('register/', register_view, name='register'),\n    path('login/', login_view, name='login'),\n    path('logout/', logout_view, name='logout'),\n    path('profile/', profile_view, name='profile'),\n    # Vérifications AJAX\n    path('api/check-username/', check_username, name='check_username'),\n    path('api/check-email/', check_email, name='check_email'),\n    path('api/check-phone/', check_phone, name='check_phone'),",
+        "detail": "agriculture.personal_urls.auth_urls",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "agriculture.personal_urls.dashboard_urls",
+        "description": "agriculture.personal_urls.dashboard_urls",
+        "peekOfCode": "urlpatterns = [\n    # Routeur principal pour rediriger vers le bon tableau de bord\n    path('dashboard/', dashboard_router, name='dashboard'),\n    # Tableaux de bord spécifiques par type d'utilisateur\n    path('dashboard/agriculteur/', agriculteur_dashboard, name='agriculteur_dashboard'),\n    path('dashboard/formateur/', formateur_dashboard, name='formateur_dashboard'),\n    path('dashboard/expert/', expert_dashboard, name='expert_dashboard'),\n    path('dashboard/investisseur/', investisseur_dashboard, name='investisseur_dashboard'),\n    # Fil d'actualités agricole\n    path('newsfeed/', newsfeed_view, name='newsfeed'),",
+        "detail": "agriculture.personal_urls.dashboard_urls",
+        "documentation": {}
+    },
+    {
+        "label": "app_name",
+        "kind": 5,
+        "importPath": "agriculture.personal_urls.formation_urls",
+        "description": "agriculture.personal_urls.formation_urls",
+        "peekOfCode": "app_name = 'formations'\nurlpatterns = [\n    path('', formations_view, name='formations'),\n]",
+        "detail": "agriculture.personal_urls.formation_urls",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "agriculture.personal_urls.formation_urls",
+        "description": "agriculture.personal_urls.formation_urls",
+        "peekOfCode": "urlpatterns = [\n    path('', formations_view, name='formations'),\n]",
+        "detail": "agriculture.personal_urls.formation_urls",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "agriculture.personal_urls.home_urls",
+        "description": "agriculture.personal_urls.home_urls",
+        "peekOfCode": "urlpatterns = [\n    path('', home_views.home_view, name='home'),\n]",
+        "detail": "agriculture.personal_urls.home_urls",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "agriculture.personal_urls.pwa_urls",
+        "description": "agriculture.personal_urls.pwa_urls",
+        "peekOfCode": "urlpatterns = [\n    path('manifest.json', manifest_view, name='manifest'),\n    path('service-worker.js', service_worker_view, name='service_worker'),\n    path('offline.html', offline_view, name='offline'),\n]",
+        "detail": "agriculture.personal_urls.pwa_urls",
+        "documentation": {}
+    },
+    {
+        "label": "register_view",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.auth_views",
+        "description": "agriculture.personal_views.auth_views",
+        "peekOfCode": "def register_view(request):\n    \"\"\"\n    Vue pour l'inscription des utilisateurs\n    \"\"\"\n    if request.user.is_authenticated:\n        return redirect('newsfeed')\n    if request.method == 'POST':\n        # Récupérer les données du formulaire\n        first_name = request.POST.get('first_name', '').strip()\n        last_name = request.POST.get('last_name', '').strip()",
+        "detail": "agriculture.personal_views.auth_views",
+        "documentation": {}
+    },
+    {
+        "label": "login_view",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.auth_views",
+        "description": "agriculture.personal_views.auth_views",
+        "peekOfCode": "def login_view(request):\n    \"\"\"\n    Vue pour la connexion des utilisateurs\n    \"\"\"\n    if request.user.is_authenticated:\n        return redirect('newsfeed')\n    if request.method == 'POST':\n        username = request.POST.get('username', '').strip()\n        password = request.POST.get('password', '')\n        if not username or not password:",
+        "detail": "agriculture.personal_views.auth_views",
+        "documentation": {}
+    },
+    {
+        "label": "logout_view",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.auth_views",
+        "description": "agriculture.personal_views.auth_views",
+        "peekOfCode": "def logout_view(request):\n    \"\"\"\n    Vue pour la déconnexion des utilisateurs\n    \"\"\"\n    logout(request)\n    messages.success(request, 'Vous avez été déconnecté avec succès.')\n    return redirect('home')\n@login_required\ndef profile_view(request):\n    \"\"\"",
+        "detail": "agriculture.personal_views.auth_views",
+        "documentation": {}
+    },
+    {
+        "label": "profile_view",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.auth_views",
+        "description": "agriculture.personal_views.auth_views",
+        "peekOfCode": "def profile_view(request):\n    \"\"\"\n    Vue pour afficher et modifier le profil utilisateur\n    \"\"\"\n    if request.method == 'POST':\n        # Récupérer les données du formulaire\n        first_name = request.POST.get('first_name', '').strip()\n        last_name = request.POST.get('last_name', '').strip()\n        email = request.POST.get('email', '').strip()\n        phone_number = request.POST.get('phone_number', '').strip()",
+        "detail": "agriculture.personal_views.auth_views",
+        "documentation": {}
+    },
+    {
+        "label": "check_username",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.auth_views",
+        "description": "agriculture.personal_views.auth_views",
+        "peekOfCode": "def check_username(request):\n    \"\"\"\n    Vérification AJAX de la disponibilité du nom d'utilisateur\n    \"\"\"\n    if request.method == 'GET':\n        username = request.GET.get('username')\n        if username:\n            exists = User.objects.filter(username=username).exists()\n            return JsonResponse({'available': not exists})\n    return JsonResponse({'available': False})",
+        "detail": "agriculture.personal_views.auth_views",
+        "documentation": {}
+    },
+    {
+        "label": "check_email",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.auth_views",
+        "description": "agriculture.personal_views.auth_views",
+        "peekOfCode": "def check_email(request):\n    \"\"\"\n    Vérification AJAX de la disponibilité de l'email\n    \"\"\"\n    if request.method == 'GET':\n        email = request.GET.get('email')\n        if email:\n            exists = User.objects.filter(email=email).exists()\n            return JsonResponse({'available': not exists})\n    return JsonResponse({'available': False})",
+        "detail": "agriculture.personal_views.auth_views",
+        "documentation": {}
+    },
+    {
+        "label": "check_phone",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.auth_views",
+        "description": "agriculture.personal_views.auth_views",
+        "peekOfCode": "def check_phone(request):\n    \"\"\"\n    Vérification AJAX de la disponibilité du numéro de téléphone\n    \"\"\"\n    if request.method == 'GET':\n        phone = request.GET.get('phone')\n        if phone:\n            exists = User.objects.filter(phone_number=phone).exists()\n            return JsonResponse({'available': not exists})\n    return JsonResponse({'available': False})",
+        "detail": "agriculture.personal_views.auth_views",
+        "documentation": {}
+    },
+    {
+        "label": "agriculteur_dashboard",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "peekOfCode": "def agriculteur_dashboard(request):\n    \"\"\"\n    Tableau de bord agriculteur - 9 sections principales selon les spécifications\n    \"\"\"\n    if request.user.user_type != 'agriculteur':\n        messages.error(request, 'Accès non autorisé. Cette page est réservée aux agriculteurs.')\n        return redirect('home')\n    user = request.user\n    # 🏠 ACCUEIL / RÉSUMÉ\n    profil_rapide = {",
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "newsfeed_view",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "peekOfCode": "def newsfeed_view(request):\n    \"\"\"\n    Fil d'actualités agricole - Mur social pour tous les acteurs\n    \"\"\"\n    user = request.user\n    # Données simulées pour le fil d'actualités\n    publications = [\n        {\n            'id': 1,\n            'auteur': {",
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "formateur_dashboard",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "peekOfCode": "def formateur_dashboard(request):\n    \"\"\"\n    Tableau de bord pour les formateurs\n    \"\"\"\n    if request.user.user_type != 'formateur':\n        messages.error(request, 'Accès non autorisé. Cette page est réservée aux formateurs.')\n        return redirect('home')\n    context = {\n        'title': 'Tableau de Bord - Formateur',\n        'user': request.user",
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "expert_dashboard",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "peekOfCode": "def expert_dashboard(request):\n    \"\"\"\n    Tableau de bord pour les experts\n    \"\"\"\n    if request.user.user_type != 'expert':\n        messages.error(request, 'Accès non autorisé. Cette page est réservée aux experts.')\n        return redirect('home')\n    context = {\n        'title': 'Tableau de Bord - Expert',\n        'user': request.user",
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "investisseur_dashboard",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "peekOfCode": "def investisseur_dashboard(request):\n    \"\"\"\n    Tableau de bord pour les investisseurs\n    \"\"\"\n    if request.user.user_type != 'investisseur':\n        messages.error(request, 'Accès non autorisé. Cette page est réservée aux investisseurs.')\n        return redirect('home')\n    context = {\n        'title': 'Tableau de Bord - Investisseur',\n        'user': request.user",
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "dashboard_router",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "peekOfCode": "def dashboard_router(request):\n    \"\"\"\n    Routeur pour rediriger vers le bon tableau de bord selon le type d'utilisateur\n    \"\"\"\n    user_type = request.user.user_type\n    if user_type == 'agriculteur':\n        return redirect('agriculteur_dashboard')\n    elif user_type == 'formateur':\n        return redirect('formateur_dashboard')\n    elif user_type == 'expert':",
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "marketplace_view",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "peekOfCode": "def marketplace_view(request):\n    \"\"\"\n    Page Annonces / Marché - Marketplace agricole avec filtres et recherche\n    \"\"\"\n    # Données simulées pour les annonces (15-20 annonces variées)\n    annonces = [\n        {\n            'id': 1,\n            'titre': 'Arachide de qualité supérieure',\n            'description': 'Arachide fraîche récoltée cette semaine, parfaite pour la consommation ou la transformation. Variété 55-437, rendement excellent.',",
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "terrain_agricole_view",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "peekOfCode": "def terrain_agricole_view(request):\n    \"\"\"\n    Page Terrain Agricole - Carte interactive des terrains agricoles avec Leaflet.js\n    \"\"\"\n    # Données simulées pour les terrains agricoles (15-20 terrains avec coordonnées GPS réelles)\n    terrains = [\n        {\n            'id': 1,\n            'titre': 'Parcelle d\\'arachide - Keur Moussa',\n            'description': 'Terrain de 5 hectares spécialisé dans la culture d\\'arachide. Sol fertile, accès à l\\'eau par forage. Parfait pour l\\'agriculture intensive.',",
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "communaute_view",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.dashboard_views",
+        "description": "agriculture.personal_views.dashboard_views",
+        "peekOfCode": "def communaute_view(request):\n    \"\"\"\n    Page Communauté Agricole - Espace pour connecter les acteurs agricoles\n    \"\"\"\n    user = request.user\n    # Statistiques de la communauté\n    stats = {\n        'total_membres': 1247,\n        'total_groupes': 45,\n        'posts_jour': 89,",
+        "detail": "agriculture.personal_views.dashboard_views",
+        "documentation": {}
+    },
+    {
+        "label": "formations_view",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.formation_views",
+        "description": "agriculture.personal_views.formation_views",
+        "peekOfCode": "def formations_view(request):\n    \"\"\"\n    Vue principale pour afficher toutes les formations disponibles\n    \"\"\"\n    user = request.user\n    # Récupérer les filtres depuis la requête\n    recherche = request.GET.get('recherche', '')\n    categorie = request.GET.get('categorie', '')\n    niveau = request.GET.get('niveau', '')\n    prix_min = request.GET.get('prix_min', '')",
+        "detail": "agriculture.personal_views.formation_views",
+        "documentation": {}
+    },
+    {
+        "label": "home_view",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.home_views",
+        "description": "agriculture.personal_views.home_views",
+        "peekOfCode": "def home_view(request):\n    \"\"\"Vue pour la page d'accueil / landing page\"\"\"\n    context = {\n        'page_title': 'Réseau Agricole du Sénégal',\n        'meta_description': 'Plateforme numérique pour connecter, former et accompagner les acteurs agricoles au Sénégal'\n    }\n    return render(request, 'agriculture/home.html', context)",
+        "detail": "agriculture.personal_views.home_views",
+        "documentation": {}
+    },
+    {
+        "label": "offline_view",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.offline_views",
+        "description": "agriculture.personal_views.offline_views",
+        "peekOfCode": "def offline_view(request):\n    \"\"\"\n    Vue pour afficher la page offline\n    \"\"\"\n    return render(request, 'agriculture/offline.html')",
+        "detail": "agriculture.personal_views.offline_views",
+        "documentation": {}
+    },
+    {
+        "label": "manifest_view",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.pwa_views",
+        "description": "agriculture.personal_views.pwa_views",
+        "peekOfCode": "def manifest_view(request):\n    \"\"\"\n    Vue pour servir le manifest.json de la PWA\n    \"\"\"\n    manifest_path = os.path.join(settings.BASE_DIR, 'agriculture', 'static', 'manifest.json')\n    try:\n        with open(manifest_path, 'r', encoding='utf-8') as f:\n            manifest_data = json.load(f)\n        # Ajouter des informations dynamiques si nécessaire\n        manifest_data['start_url'] = '/'",
+        "detail": "agriculture.personal_views.pwa_views",
+        "documentation": {}
+    },
+    {
+        "label": "service_worker_view",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.pwa_views",
+        "description": "agriculture.personal_views.pwa_views",
+        "peekOfCode": "def service_worker_view(request):\n    \"\"\"\n    Vue pour servir le service worker JavaScript\n    \"\"\"\n    sw_path = os.path.join(settings.BASE_DIR, 'agriculture', 'static', 'js', 'service-worker.js')\n    try:\n        with open(sw_path, 'r', encoding='utf-8') as f:\n            sw_content = f.read()\n        response = HttpResponse(sw_content, content_type='application/javascript')\n        response['Service-Worker-Allowed'] = '/'",
+        "detail": "agriculture.personal_views.pwa_views",
+        "documentation": {}
+    },
+    {
+        "label": "videos_view",
+        "kind": 2,
+        "importPath": "agriculture.personal_views.videos_views",
+        "description": "agriculture.personal_views.videos_views",
+        "peekOfCode": "def videos_view(request):\n    \"\"\"\n    Page Vidéos - Format vertical type TikTok\n    Affichage de vidéos agricoles en format portrait\n    \"\"\"\n    user = request.user\n    # Données simulées de vidéos agricoles\n    videos = [\n        {\n            'id': 1,",
+        "detail": "agriculture.personal_views.videos_views",
+        "documentation": {}
+    },
+    {
+        "label": "AgricultureConfig",
+        "kind": 6,
+        "importPath": "agriculture.apps",
+        "description": "agriculture.apps",
+        "peekOfCode": "class AgricultureConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'agriculture'",
+        "detail": "agriculture.apps",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "agriculture.urls",
+        "description": "agriculture.urls",
+        "peekOfCode": "urlpatterns = [\n    path('', include('agriculture.personal_urls.home_urls')),\n    path('', include('agriculture.personal_urls.auth_urls')),\n    path('', include('agriculture.personal_urls.dashboard_urls')),\n    path('formations/', include('agriculture.personal_urls.formation_urls')),\n    path('', include('agriculture.personal_urls.pwa_urls')),  # URLs PWA\n]",
+        "detail": "agriculture.urls",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.asgi",
+        "description": "reseau_agricole_senegal.asgi",
+        "peekOfCode": "application = get_asgi_application()",
+        "detail": "reseau_agricole_senegal.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = config('SECRET_KEY', default='django-insecure-afnlwx1zksy9kjvoxok)u$ff2po#_^-xu&jr(7o6c)sguv4(5$')\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = config('DEBUG', default=True, cast=bool)\nALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])\n# Application definition\nINSTALLED_APPS = [",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SECRET_KEY",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "SECRET_KEY = config('SECRET_KEY', default='django-insecure-afnlwx1zksy9kjvoxok)u$ff2po#_^-xu&jr(7o6c)sguv4(5$')\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = config('DEBUG', default=True, cast=bool)\nALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEBUG",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "DEBUG = config('DEBUG', default=True, cast=bool)\nALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ALLOWED_HOSTS",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lambda v: [s.strip() for s in v.split(',')])\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'django.contrib.gis',  # Pour PostGIS",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "INSTALLED_APPS",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'django.contrib.gis',  # Pour PostGIS\n    'corsheaders',\n    'django_extensions',",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MIDDLEWARE",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "MIDDLEWARE = [\n    'corsheaders.middleware.CorsMiddleware',\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n]",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ROOT_URLCONF",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "ROOT_URLCONF = 'reseau_agricole_senegal.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TEMPLATES",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',\n                'django.contrib.auth.context_processors.auth',",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "WSGI_APPLICATION",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "WSGI_APPLICATION = 'reseau_agricole_senegal.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/5.2/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.contrib.gis.db.backends.postgis',\n        'NAME': config('DB_NAME', default='gestion_agricole'),\n        'USER': config('DB_USER', default='postgres'),\n        'PASSWORD': config('DB_PASSWORD', default='Ludvanne'),\n        'HOST': config('DB_HOST', default='localhost'),",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASES",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'django.contrib.gis.db.backends.postgis',\n        'NAME': config('DB_NAME', default='gestion_agricole'),\n        'USER': config('DB_USER', default='postgres'),\n        'PASSWORD': config('DB_PASSWORD', default='Ludvanne'),\n        'HOST': config('DB_HOST', default='localhost'),\n        'PORT': config('DB_PORT', default='5432'),\n    }\n}",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_PASSWORD_VALIDATORS",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "AUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\n    },",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LANGUAGE_CODE",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "LANGUAGE_CODE = 'fr-fr'\nTIME_ZONE = 'Africa/Dakar'\nUSE_I18N = True\nUSE_TZ = True\n# Modèle utilisateur personnalisé\nAUTH_USER_MODEL = 'agriculture.User'\n# URLs de redirection pour l'authentification\nLOGIN_URL = '/login/'\nLOGIN_REDIRECT_URL = '/newsfeed/'\nLOGOUT_REDIRECT_URL = '/'",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TIME_ZONE",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "TIME_ZONE = 'Africa/Dakar'\nUSE_I18N = True\nUSE_TZ = True\n# Modèle utilisateur personnalisé\nAUTH_USER_MODEL = 'agriculture.User'\n# URLs de redirection pour l'authentification\nLOGIN_URL = '/login/'\nLOGIN_REDIRECT_URL = '/newsfeed/'\nLOGOUT_REDIRECT_URL = '/'\n# Static files (CSS, JavaScript, Images)",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_I18N",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Modèle utilisateur personnalisé\nAUTH_USER_MODEL = 'agriculture.User'\n# URLs de redirection pour l'authentification\nLOGIN_URL = '/login/'\nLOGIN_REDIRECT_URL = '/newsfeed/'\nLOGOUT_REDIRECT_URL = '/'\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.2/howto/static-files/",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_TZ",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "USE_TZ = True\n# Modèle utilisateur personnalisé\nAUTH_USER_MODEL = 'agriculture.User'\n# URLs de redirection pour l'authentification\nLOGIN_URL = '/login/'\nLOGIN_REDIRECT_URL = '/newsfeed/'\nLOGOUT_REDIRECT_URL = '/'\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.2/howto/static-files/\nSTATIC_URL = 'static/'",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_USER_MODEL",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "AUTH_USER_MODEL = 'agriculture.User'\n# URLs de redirection pour l'authentification\nLOGIN_URL = '/login/'\nLOGIN_REDIRECT_URL = '/newsfeed/'\nLOGOUT_REDIRECT_URL = '/'\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.2/howto/static-files/\nSTATIC_URL = 'static/'\nSTATIC_ROOT = BASE_DIR / 'staticfiles'\n# Media files",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LOGIN_URL",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "LOGIN_URL = '/login/'\nLOGIN_REDIRECT_URL = '/newsfeed/'\nLOGOUT_REDIRECT_URL = '/'\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.2/howto/static-files/\nSTATIC_URL = 'static/'\nSTATIC_ROOT = BASE_DIR / 'staticfiles'\n# Media files\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LOGIN_REDIRECT_URL",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "LOGIN_REDIRECT_URL = '/newsfeed/'\nLOGOUT_REDIRECT_URL = '/'\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.2/howto/static-files/\nSTATIC_URL = 'static/'\nSTATIC_ROOT = BASE_DIR / 'staticfiles'\n# Media files\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\n# CORS settings",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LOGOUT_REDIRECT_URL",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "LOGOUT_REDIRECT_URL = '/'\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/5.2/howto/static-files/\nSTATIC_URL = 'static/'\nSTATIC_ROOT = BASE_DIR / 'staticfiles'\n# Media files\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\n# CORS settings\nCORS_ALLOWED_ORIGINS = [",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_URL",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "STATIC_URL = 'static/'\nSTATIC_ROOT = BASE_DIR / 'staticfiles'\n# Media files\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\n# CORS settings\nCORS_ALLOWED_ORIGINS = [\n    \"http://localhost:3000\",\n    \"http://127.0.0.1:3000\",\n]",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_ROOT",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "STATIC_ROOT = BASE_DIR / 'staticfiles'\n# Media files\nMEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\n# CORS settings\nCORS_ALLOWED_ORIGINS = [\n    \"http://localhost:3000\",\n    \"http://127.0.0.1:3000\",\n]\n# Default primary key field type",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_URL",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "MEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'\n# CORS settings\nCORS_ALLOWED_ORIGINS = [\n    \"http://localhost:3000\",\n    \"http://127.0.0.1:3000\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_ROOT",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "MEDIA_ROOT = BASE_DIR / 'media'\n# CORS settings\nCORS_ALLOWED_ORIGINS = [\n    \"http://localhost:3000\",\n    \"http://127.0.0.1:3000\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n# Configuration pour le projet Réseau Agricole du Sénégal",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CORS_ALLOWED_ORIGINS",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "CORS_ALLOWED_ORIGINS = [\n    \"http://localhost:3000\",\n    \"http://127.0.0.1:3000\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n# Configuration pour le projet Réseau Agricole du Sénégal\nPROJECT_NAME = \"Réseau Agricole du Sénégal\"\nPROJECT_VERSION = \"1.0.0\"",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_AUTO_FIELD",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n# Configuration pour le projet Réseau Agricole du Sénégal\nPROJECT_NAME = \"Réseau Agricole du Sénégal\"\nPROJECT_VERSION = \"1.0.0\"",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PROJECT_NAME",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "PROJECT_NAME = \"Réseau Agricole du Sénégal\"\nPROJECT_VERSION = \"1.0.0\"",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PROJECT_VERSION",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.settings",
+        "description": "reseau_agricole_senegal.settings",
+        "peekOfCode": "PROJECT_VERSION = \"1.0.0\"",
+        "detail": "reseau_agricole_senegal.settings",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.urls",
+        "description": "reseau_agricole_senegal.urls",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('', include('agriculture.urls')),\n]\nif settings.DEBUG:\n    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)",
+        "detail": "reseau_agricole_senegal.urls",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "reseau_agricole_senegal.wsgi",
+        "description": "reseau_agricole_senegal.wsgi",
+        "peekOfCode": "application = get_wsgi_application()",
+        "detail": "reseau_agricole_senegal.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "create_icon",
+        "kind": 2,
+        "importPath": "scripts.generate_pwa_icons",
+        "description": "scripts.generate_pwa_icons",
+        "peekOfCode": "def create_icon(size):\n    \"\"\"\n    Crée une icône de la taille spécifiée avec le logo RAS\n    \"\"\"\n    # Créer une image avec fond vert\n    img = Image.new('RGB', (size, size), VERT_SENEGALAIS)\n    draw = ImageDraw.Draw(img)\n    # Ajouter un cercle blanc pour le logo\n    margin = size // 8\n    draw.ellipse(",
+        "detail": "scripts.generate_pwa_icons",
+        "documentation": {}
+    },
+    {
+        "label": "generate_all_icons",
+        "kind": 2,
+        "importPath": "scripts.generate_pwa_icons",
+        "description": "scripts.generate_pwa_icons",
+        "peekOfCode": "def generate_all_icons():\n    \"\"\"\n    Génère toutes les icônes nécessaires pour la PWA\n    \"\"\"\n    # Créer le dossier de destination s'il n'existe pas\n    icons_dir = BASE_DIR / 'agriculture' / 'static' / 'images'\n    icons_dir.mkdir(parents=True, exist_ok=True)\n    print(f\"Génération des icônes PWA dans {icons_dir}...\")\n    for size in ICON_SIZES:\n        icon = create_icon(size)",
+        "detail": "scripts.generate_pwa_icons",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "scripts.generate_pwa_icons",
+        "description": "scripts.generate_pwa_icons",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\nsys.path.insert(0, str(BASE_DIR))\n# Tailles d'icônes requises pour la PWA\nICON_SIZES = [16, 32, 72, 96, 128, 144, 152, 192, 384, 512]\n# Couleurs du projet\nVERT_SENEGALAIS = (0, 135, 83)  # #008753\nJAUNE_SOLEIL = (253, 239, 76)   # #FDEF4C\nBEIGE_TERRE = (245, 233, 215)   # #F5E9D7\ndef create_icon(size):\n    \"\"\"",
+        "detail": "scripts.generate_pwa_icons",
+        "documentation": {}
+    },
+    {
+        "label": "ICON_SIZES",
+        "kind": 5,
+        "importPath": "scripts.generate_pwa_icons",
+        "description": "scripts.generate_pwa_icons",
+        "peekOfCode": "ICON_SIZES = [16, 32, 72, 96, 128, 144, 152, 192, 384, 512]\n# Couleurs du projet\nVERT_SENEGALAIS = (0, 135, 83)  # #008753\nJAUNE_SOLEIL = (253, 239, 76)   # #FDEF4C\nBEIGE_TERRE = (245, 233, 215)   # #F5E9D7\ndef create_icon(size):\n    \"\"\"\n    Crée une icône de la taille spécifiée avec le logo RAS\n    \"\"\"\n    # Créer une image avec fond vert",
+        "detail": "scripts.generate_pwa_icons",
+        "documentation": {}
+    },
+    {
+        "label": "VERT_SENEGALAIS",
+        "kind": 5,
+        "importPath": "scripts.generate_pwa_icons",
+        "description": "scripts.generate_pwa_icons",
+        "peekOfCode": "VERT_SENEGALAIS = (0, 135, 83)  # #008753\nJAUNE_SOLEIL = (253, 239, 76)   # #FDEF4C\nBEIGE_TERRE = (245, 233, 215)   # #F5E9D7\ndef create_icon(size):\n    \"\"\"\n    Crée une icône de la taille spécifiée avec le logo RAS\n    \"\"\"\n    # Créer une image avec fond vert\n    img = Image.new('RGB', (size, size), VERT_SENEGALAIS)\n    draw = ImageDraw.Draw(img)",
+        "detail": "scripts.generate_pwa_icons",
+        "documentation": {}
+    },
+    {
+        "label": "JAUNE_SOLEIL",
+        "kind": 5,
+        "importPath": "scripts.generate_pwa_icons",
+        "description": "scripts.generate_pwa_icons",
+        "peekOfCode": "JAUNE_SOLEIL = (253, 239, 76)   # #FDEF4C\nBEIGE_TERRE = (245, 233, 215)   # #F5E9D7\ndef create_icon(size):\n    \"\"\"\n    Crée une icône de la taille spécifiée avec le logo RAS\n    \"\"\"\n    # Créer une image avec fond vert\n    img = Image.new('RGB', (size, size), VERT_SENEGALAIS)\n    draw = ImageDraw.Draw(img)\n    # Ajouter un cercle blanc pour le logo",
+        "detail": "scripts.generate_pwa_icons",
+        "documentation": {}
+    },
+    {
+        "label": "BEIGE_TERRE",
+        "kind": 5,
+        "importPath": "scripts.generate_pwa_icons",
+        "description": "scripts.generate_pwa_icons",
+        "peekOfCode": "BEIGE_TERRE = (245, 233, 215)   # #F5E9D7\ndef create_icon(size):\n    \"\"\"\n    Crée une icône de la taille spécifiée avec le logo RAS\n    \"\"\"\n    # Créer une image avec fond vert\n    img = Image.new('RGB', (size, size), VERT_SENEGALAIS)\n    draw = ImageDraw.Draw(img)\n    # Ajouter un cercle blanc pour le logo\n    margin = size // 8",
+        "detail": "scripts.generate_pwa_icons",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "manage",
+        "description": "manage",
+        "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'reseau_agricole_senegal.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"\n            \"forget to activate a virtual environment?\"",
+        "detail": "manage",
+        "documentation": {}
+    }
+]

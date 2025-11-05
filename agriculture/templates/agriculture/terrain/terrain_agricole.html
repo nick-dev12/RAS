@@ -1,0 +1,257 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    {% include 'agriculture/partials/pwa_meta.html' %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/terrain.css' %}">
+    <link rel="stylesheet" href="{% static 'css/newsfeed.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mobile_navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/logo.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <!-- Navbar Supérieure (identique au newsfeed) -->
+    <nav class="newsfeed-navbar">
+        <!-- Bouton hamburger pour mobile -->
+        <button class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <div class="navbar-container">
+            <!-- Logo et Recherche -->
+            <div class="navbar-left">
+                {% include 'agriculture/partials/logo.html' %}
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Rechercher une personne, annonce, culture...">
+                </div>
+            </div>
+            
+            <!-- Navigation Centrale -->
+            <div class="navbar-center">
+                <a href="{% url 'newsfeed' %}" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Accueil</span>
+                </a>
+                <a href="{% url 'newsfeed' %}" class="nav-item">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Actualités</span>
+                </a>
+                <a href="{% url 'terrain_agricole' %}" class="nav-item active">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>Terrains</span>
+                </a>
+                <a href="{% url 'agriculteur_dashboard' %}" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Messages</span>
+                </a>
+            </div>
+            
+            <!-- Profil et Notifications -->
+            <div class="navbar-right">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-menu">
+                    <div class="user-avatar">
+                        <span>{{ user.first_name|first }}{{ user.last_name|first }}</span>
+                    </div>
+                    <div class="user-dropdown">
+                        <a href="{% url 'agriculteur_dashboard' %}" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            Mon Profil
+                        </a>
+                        <a href="{% url 'logout' %}" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Déconnexion
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu mobile (partial) -->
+    {% include 'agriculture/partials/mobile_navigation.html' with active_page='terrain' %}
+
+    <!-- Barre de filtres fixe sous la navbar -->
+    <div class="filters-bar">
+        <div class="filters-container">
+            <!-- Bouton toggle pour mobile -->
+            <button class="filters-toggle-btn" id="filters-toggle">
+                <i class="fas fa-filter"></i>
+                <span>Filtres</span>
+            </button>
+            
+            <!-- Conteneur des filtres -->
+            <div class="filters-content" id="filters-content">
+                <select name="region" id="region-filter">
+                    <option value="">Toutes les régions</option>
+                    {% for reg in regions %}
+                        <option value="{{ reg }}" {% if filtres_actifs.region == reg %}selected{% endif %}>{{ reg }}</option>
+                    {% endfor %}
+                </select>
+                <select name="type_culture" id="culture-filter">
+                    <option value="">Tous les types</option>
+                    {% for type in types_culture %}
+                        <option value="{{ type }}" {% if filtres_actifs.type_culture == type %}selected{% endif %}>{{ type }}</option>
+                    {% endfor %}
+                </select>
+                <input type="number" id="surface-min" placeholder="Min (ha)" value="{{ filtres_actifs.surface_min }}">
+                <input type="number" id="surface-max" placeholder="Max (ha)" value="{{ filtres_actifs.surface_max }}">
+                <select name="statut" id="statut-filter">
+                    <option value="">Tous les statuts</option>
+                    <option value="vente">À vendre</option>
+                    <option value="location">À louer</option>
+                    <option value="visite">Visite possible</option>
+                </select>
+                <button class="btn-filter" id="apply-filters">
+                    <i class="fas fa-search"></i> Rechercher
+                </button>
+                <button class="btn-reset" id="reset-filters">Réinitialiser</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenu Principal -->
+    <main class="terrain-page">
+        <div class="split-container">
+            <!-- Carte gauche (50%) -->
+            <div class="map-section">
+                <div id="map" class="terrain-map"></div>
+                <!-- Légende en overlay -->
+                <div class="map-legend">
+                    <h4>Légende</h4>
+                    <div class="legend-item">
+                        <span class="marker-icon green"></span> À vendre
+                    </div>
+                    <div class="legend-item">
+                        <span class="marker-icon purple"></span> Loué
+                    </div>
+                    <div class="legend-item">
+                        <span class="marker-icon orange"></span> En visite
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Liste droite (50%) -->
+            <div class="list-section">
+                <div class="list-header">
+                    <h2><span id="terrain-count">{{ nombre_terrains }}</span> terrains disponibles</h2>
+                    <button class="btn-map-fullscreen" id="toggle-fullscreen">
+                        <i class="fas fa-expand"></i> Plein écran
+                    </button>
+                </div>
+                <div class="terrains-list" id="terrains-list">
+                    {% for terrain in terrains %}
+                    <div class="terrain-card-compact" 
+                         data-id="{{ terrain.id }}"
+                         data-lat="{{ terrain.latitude }}"
+                         data-lng="{{ terrain.longitude }}"
+                         data-region="{{ terrain.region }}"
+                         data-culture="{{ terrain.type_culture }}"
+                         data-surface="{{ terrain.surface }}">
+                        <div class="card-image">
+                            <img src="{{ terrain.photos.0 }}" alt="{{ terrain.titre }}" onerror="this.src='https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop'">
+                            <span class="badge-new">Nouveau</span>
+                            <span class="badge-status {{ terrain.disponibilite }}">
+                                {{ terrain.disponibilite }}
+                            </span>
+                        </div>
+                        <div class="card-content">
+                            <h3>{{ terrain.titre }}</h3>
+                            <p class="location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                {{ terrain.village }}, {{ terrain.region }}
+                            </p>
+                            <div class="card-details">
+                                <span><i class="fas fa-seedling"></i> {{ terrain.type_culture }}</span>
+                                <span><i class="fas fa-ruler-combined"></i> {{ terrain.surface }} ha</span>
+                            </div>
+                            <div class="card-tags">
+                                {% if terrain.acces_eau %}
+                                <span class="tag">💧 {{ terrain.acces_eau }}</span>
+                                {% endif %}
+                                {% if terrain.qualite_sol %}
+                                <span class="tag">🌱 Sol {{ terrain.qualite_sol|lower }}</span>
+                                {% endif %}
+                            </div>
+                            <div class="card-footer">
+                                <span class="price">{{ terrain.prix|default:"Prix sur demande" }}</span>
+                                <div class="card-actions">
+                                    <button class="btn-view-map" onclick="zoomToTerrain({{ terrain.id }})">
+                                        <i class="fas fa-map"></i>
+                                    </button>
+                                    <button class="btn-contact-quick" onclick="openContactModal({{ terrain.id }})">
+                                        <i class="fas fa-envelope"></i> Contacter
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="no-results">Aucun terrain trouvé pour vos critères de recherche.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de contact rapide -->
+    <div id="contact-modal" class="modal-quick">
+        <div class="modal-content-quick">
+            <div class="modal-header">
+                <h3>Contacter le propriétaire</h3>
+                <button class="close-btn" onclick="closeContactModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="terrain-info-mini">
+                    <img id="modal-terrain-img" src="" alt="">
+                    <div>
+                        <h4 id="modal-terrain-title"></h4>
+                        <p id="modal-terrain-location"></p>
+                    </div>
+                </div>
+                <form id="contact-form">
+                    <input type="text" placeholder="Votre nom" required>
+                    <input type="email" placeholder="Votre email" required>
+                    <input type="tel" placeholder="Votre téléphone">
+                    <textarea placeholder="Votre message..." rows="4" required></textarea>
+                    <button type="submit" class="btn-send">
+                        <i class="fas fa-paper-plane"></i> Envoyer
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast-notification" class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message"></span>
+        <button class="close-toast"><i class="fas fa-times"></i></button>
+    </div>
+
+    <!-- Barre de navigation inférieure mobile (comme Facebook) -->
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/mobile_navigation.js' %}"></script>
+    <script src="{% static 'js/terrain.js' %}"></script>
+    <script src="{% static 'js/pwa.js' %}"></script>
+</body>
+</html>

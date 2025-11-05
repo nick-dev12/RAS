@@ -1,0 +1,280 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    {% include 'agriculture/partials/pwa_meta.html' %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/newsfeed.css' %}"> {# Pour la navbar #}
+    <link rel="stylesheet" href="{% static 'css/communaute.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mobile_navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/logo.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar Supérieure -->
+    <nav class="newsfeed-navbar">
+        <!-- Bouton hamburger pour mobile -->
+        <button class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <div class="navbar-container">
+            <!-- Logo et Recherche -->
+            <div class="navbar-left">
+                {% include 'agriculture/partials/logo.html' %}
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="global-search" placeholder="Rechercher un membre, groupe, coopérative...">
+                </div>
+            </div>
+            
+            <!-- Navigation Centrale -->
+            <div class="navbar-center">
+                <a href="{% url 'home' %}" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Accueil</span>
+                </a>
+                <a href="{% url 'newsfeed' %}" class="nav-item">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Actualités</span>
+                </a>
+                <a href="{% url 'communaute' %}" class="nav-item active">
+                    <i class="fas fa-users"></i>
+                    <span>Communauté</span>
+                </a>
+                <a href="{% url 'agriculteur_dashboard' %}" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Messages</span>
+                </a>
+            </div>
+            
+            <!-- Profil et Notifications -->
+            <div class="navbar-right">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-menu">
+                    <div class="user-avatar">
+                        <span>{{ user.first_name|first }}{{ user.last_name|first }}</span>
+                    </div>
+                    <div class="user-dropdown">
+                        <a href="{% url 'agriculteur_dashboard' %}" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            Mon Profil
+                        </a>
+                        <a href="{% url 'logout' %}" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Déconnexion
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu mobile (partial) -->
+    {% include 'agriculture/partials/mobile_navigation.html' with active_page='communaute' %}
+
+    <!-- Contenu Principal -->
+    <main class="communaute-main">
+        <!-- Onglets pour Mobile/Tablette -->
+        <div class="mobile-tabs-container">
+            <div class="mobile-tabs">
+                <button class="mobile-tab active" data-tab="communaute">
+                    <i class="fas fa-users"></i>
+                    <span>Communauté</span>
+                </button>
+                <button class="mobile-tab" data-tab="groupes-region">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>Groupes</span>
+                </button>
+                <button class="mobile-tab" data-tab="recommandations">
+                    <i class="fas fa-star"></i>
+                    <span>Recommandations</span>
+                </button>
+                <button class="mobile-tab" data-tab="experts">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>Experts</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Colonne Gauche - Navigation et Groupes -->
+        <aside class="communaute-sidebar-left">
+            <!-- Groupes par Région -->
+            <div class="groupes-card mobile-tab-content" data-content="groupes-region">
+                <h3><i class="fas fa-map-marked-alt"></i> Groupes par Région</h3>
+                <div class="groupes-list">
+                    {% for groupe in groupes_region %}
+                    <div class="groupe-item {% if groupe.actif %}actif{% endif %}">
+                        <i class="{{ groupe.icone }}"></i>
+                        <div class="groupe-info">
+                            <span class="groupe-nom">{{ groupe.nom }}</span>
+                            <span class="groupe-details">{{ groupe.membres }} membres • {{ groupe.posts }} posts</span>
+                        </div>
+                        {% if groupe.actif %}
+                        <span class="badge-active">Actif</span>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Groupes Recommandés -->
+            <div class="groupes-recommandes-card mobile-tab-content" data-content="recommandations">
+                <h3><i class="fas fa-star"></i> Recommandations</h3>
+                <div class="groupes-list">
+                    {% for groupe in groupes_recommandes %}
+                    <div class="groupe-item">
+                        <i class="fas fa-users"></i>
+                        <div class="groupe-info">
+                            <span class="groupe-nom">{{ groupe.nom }}</span>
+                            <span class="groupe-details">{{ groupe.raison }}</span>
+                        </div>
+                        <button class="btn-join">Rejoindre</button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </aside>
+
+        <!-- Colonne Centrale - Contenu Principal -->
+        <div class="communaute-content">
+            <!-- Section Communauté (Membres Actifs) - Visible par défaut -->
+            <div class="communaute-section mobile-tab-content active" data-content="communaute">
+                <!-- Barre de Filtres -->
+                <div class="filters-section">
+                    <div class="search-membres">
+                        <input type="text" id="search-membres" placeholder="Rechercher un membre..." value="{{ filtres_actifs.recherche }}">
+                        <button class="btn-search"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="filters-row">
+                        <select id="filter-region">
+                            <option value="">Toutes les régions</option>
+                            {% for region in regions %}
+                            <option value="{{ region }}" {% if filtres_actifs.region == region %}selected{% endif %}>{{ region }}</option>
+                            {% endfor %}
+                        </select>
+                        <select id="filter-role">
+                            <option value="">Tous les rôles</option>
+                            {% for role in roles %}
+                            <option value="{{ role }}" {% if filtres_actifs.role == role %}selected{% endif %}>{{ role }}</option>
+                            {% endfor %}
+                        </select>
+                        <select id="filter-specialite">
+                            <option value="">Toutes les spécialités</option>
+                            {% for specialite in specialites %}
+                            <option value="{{ specialite }}" {% if filtres_actifs.specialite == specialite %}selected{% endif %}>{{ specialite }}</option>
+                            {% endfor %}
+                        </select>
+                        <button class="btn-reset-filters">Réinitialiser</button>
+                    </div>
+                </div>
+
+                <!-- Membres Actifs - Style Groupes -->
+                <div class="membres-section">
+                    <div class="section-header">
+                        <div class="section-title-wrapper">
+                            <h2>Membres Actifs</h2>
+                            <p class="section-subtitle">Agriculteurs et experts de la communauté</p>
+                        </div>
+                        <a href="#" class="voir-tout-link">Voir tout</a>
+                    </div>
+                    <div class="membres-carousel-container">
+                        <div class="membres-carousel" id="membresCarousel">
+                            {% for membre in membres_actifs %}
+                            <div class="membre-card-group">
+                                <button class="close-card-btn" data-member-id="{{ membre.id }}">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <div class="membre-card-image">
+                                    <img src="{{ membre.image|default:'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&h=300&fit=crop' }}" alt="{{ membre.nom }}">
+                                </div>
+                                <div class="membre-card-content">
+                                    <h3 class="membre-card-title">{{ membre.nom }}</h3>
+                                    <p class="membre-card-info">
+                                        {{ membre.membres_groupe }} membres • {{ membre.posts }} posts
+                                    </p>
+                                    {% if membre.region %}
+                                    <p class="membre-card-location">
+                                        <i class="fas fa-map-marker-alt"></i> {{ membre.region }} • {{ membre.specialite }}
+                                    </p>
+                                    {% endif %}
+                                    <button class="btn-join-group">Rejoindre</button>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <button class="carousel-nav-btn carousel-next" id="nextMembres">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Colonne Droite - Informations Supplémentaires -->
+        <aside class="communaute-sidebar-right">
+            <!-- Experts Disponibles -->
+            <div class="experts-card mobile-tab-content" data-content="experts">
+                <h3><i class="fas fa-user-graduate"></i> Experts Disponibles</h3>
+                <div class="experts-list">
+                    {% for expert in experts %}
+                    <div class="expert-item {% if expert.disponibilite == 'Disponible' %}disponible{% endif %}">
+                        <div class="expert-info">
+                            <h4>{{ expert.nom }}</h4>
+                            <p>{{ expert.specialite }}</p>
+                            <span class="expert-region"><i class="fas fa-map-marker-alt"></i> {{ expert.region }}</span>
+                        </div>
+                        <div class="expert-stats">
+                            <span class="expert-note"><i class="fas fa-star"></i> {{ expert.note }}</span>
+                            <span class="expert-consults">{{ expert.consults }} consultations</span>
+                            <span class="expert-status {% if expert.disponibilite == 'Disponible' %}status-available{% else %}status-busy{% endif %}">
+                                {{ expert.disponibilite }}
+                            </span>
+                        </div>
+                        <button class="btn-consulter">Consulter</button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Événements (Masqué sur mobile) -->
+            <div class="evenements-card desktop-only">
+                <h3><i class="fas fa-calendar-alt"></i> Événements à Venir</h3>
+                <div class="evenements-list">
+                    {% for event in evenements %}
+                    <div class="event-item">
+                        <div class="event-type {{ event.type|lower }}">{{ event.type }}</div>
+                        <h4>{{ event.titre }}</h4>
+                        <p><i class="fas fa-calendar"></i> {{ event.date }}</p>
+                        <p><i class="fas fa-map-marker-alt"></i> {{ event.lieu }}</p>
+                        <div class="event-participants">
+                            <i class="fas fa-users"></i> {{ event.participants }} participants
+                        </div>
+                        <button class="btn-inscrire">S'inscrire</button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </aside>
+    </main>
+
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/mobile_navigation.js' %}"></script>
+    <script src="{% static 'js/communaute.js' %}"></script>
+    <script src="{% static 'js/pwa.js' %}"></script>
+</body>
+</html>
+

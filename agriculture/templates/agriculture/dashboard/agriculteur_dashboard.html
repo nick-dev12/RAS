@@ -1,0 +1,791 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    {% include 'agriculture/partials/pwa_meta.html' %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mobile_navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/logo.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar Agriculteur -->
+    <nav class="navbar-agriculteur">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                {% include 'agriculture/partials/logo.html' %}
+            </div>
+            
+            <!-- Menu Desktop -->
+            <div class="navbar-menu desktop-menu">
+                <a href="#accueil" class="nav-link active" data-section="accueil">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Accueil</span>
+                </a>
+                <a href="{% url 'newsfeed' %}" class="nav-link">
+                    <span class="nav-icon">📰</span>
+                    <span class="nav-text">Fil d'actualité</span>
+                </a>
+                <a href="#parcelles" class="nav-link" data-section="parcelles">
+                    <span class="nav-icon">🌱</span>
+                    <span class="nav-text">Parcelles</span>
+                </a>
+                <a href="#meteo" class="nav-link" data-section="meteo">
+                    <span class="nav-icon">🌦️</span>
+                    <span class="nav-text">Météo</span>
+                </a>
+                <a href="#formations" class="nav-link" data-section="formations">
+                    <span class="nav-icon">🎓</span>
+                    <span class="nav-text">Formations</span>
+                </a>
+                <a href="#assistance" class="nav-link" data-section="assistance">
+                    <span class="nav-icon">🤝</span>
+                    <span class="nav-text">Assistance</span>
+                </a>
+            </div>
+            
+            <!-- Menu Mobile Burger -->
+            <button class="mobile-menu-toggle" id="hamburger-menu" type="button">
+                <span class="hamburger">☰</span>
+            </button>
+            
+            <!-- Menu Utilisateur -->
+            <div class="user-menu">
+                <div class="user-avatar">
+                    <span>👤</span>
+                </div>
+                <div class="user-dropdown">
+                    <a href="{% url 'agriculteur_dashboard' %}" class="dropdown-item">
+                        <span class="dropdown-icon">👤</span>
+                        Mon Profil
+                    </a>
+                    <a href="{% url 'logout' %}" class="dropdown-item">
+                        <span class="dropdown-icon">🚪</span>
+                        Déconnexion
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </nav>
+
+    <!-- Zone de Résumé Global -->
+    <div class="summary-banner">
+        <div class="summary-container">
+            <div class="summary-card weather-card">
+                <div class="summary-icon">🌦️</div>
+                <div class="summary-content">
+                    <div class="summary-value">{{ meteo_actuelle.temperature }}°C</div>
+                    <div class="summary-label">{{ meteo_actuelle.condition }}</div>
+                </div>
+            </div>
+            
+            <div class="summary-card parcels-card">
+                <div class="summary-icon">🌱</div>
+                <div class="summary-content">
+                    <div class="summary-value">{{ parcelles|length }} Parcelles</div>
+                    <div class="summary-label">En culture</div>
+                </div>
+            </div>
+            
+            <div class="summary-card alerts-card">
+                <div class="summary-icon">⚠️</div>
+                <div class="summary-content">
+                    <div class="summary-value">{{ dernieres_alertes|length }} Alertes</div>
+                    <div class="summary-label">Actives</div>
+                </div>
+            </div>
+            
+            <div class="summary-card formations-card">
+                <div class="summary-icon">🎓</div>
+                <div class="summary-content">
+                    <div class="summary-value">{{ formations_en_cours|length }} Formation</div>
+                    <div class="summary-label">En cours</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenu Principal -->
+    <main class="main-content">
+        <!-- Section 1: 🏠 ACCUEIL / RÉSUMÉ -->
+        <section id="accueil" class="dashboard-section active">
+            
+            <!-- Statut des Cultures - Design 3D -->
+            <div class="cultures-status">
+                <div class="section-header">
+                    <h3>🌱 Statut de vos cultures</h3>
+                    <p>Visualisez vos parcelles agricoles</p>
+                </div>
+                <div class="cultures-grid-3d">
+                    {% for culture in statut_cultures %}
+                    <div class="culture-field-3d" data-progression="{{ culture.pourcentage }}" data-statut="{{ culture.statut }}">
+                        <div class="field-header">
+                            <h4>{{ culture.culture }}</h4>
+                            <span class="culture-status status-{{ culture.couleur }}">{{ culture.statut }}</span>
+                        </div>
+                        <div class="field-container">
+                            <div class="terrain-3d">
+                                <!-- Sol -->
+                                <div class="terrain-sol"></div>
+                                <!-- Rangs de culture avec progression -->
+                                <div class="rangs-container">
+                                    {% with seuil1=16.66 seuil2=33.33 seuil3=50.0 seuil4=66.66 seuil5=83.33 %}
+                                    {% with delay1=0 delay2=0.1 delay3=0.2 delay4=0.3 delay5=0.4 delay6=0.5 %}
+                                    <div class="rang-culture" style="animation-delay: {{ delay1 }}s;">
+                                        <div class="plantes-container">
+                                            {% if culture.pourcentage >= seuil1 %}
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            {% else %}
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="rang-culture" style="animation-delay: {{ delay2 }}s;">
+                                        <div class="plantes-container">
+                                            {% if culture.pourcentage >= seuil2 %}
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            {% else %}
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="rang-culture" style="animation-delay: {{ delay3 }}s;">
+                                        <div class="plantes-container">
+                                            {% if culture.pourcentage >= seuil3 %}
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            {% else %}
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="rang-culture" style="animation-delay: {{ delay4 }}s;">
+                                        <div class="plantes-container">
+                                            {% if culture.pourcentage >= seuil4 %}
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            {% else %}
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="rang-culture" style="animation-delay: {{ delay5 }}s;">
+                                        <div class="plantes-container">
+                                            {% if culture.pourcentage >= seuil5 %}
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            {% else %}
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="rang-culture" style="animation-delay: {{ delay6 }}s;">
+                                        <div class="plantes-container">
+                                            {% if culture.pourcentage >= 100 %}
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            <div class="plante plante-active"></div>
+                                            {% else %}
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            <div class="plante plante-inactive"></div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    {% endwith %}
+                                    {% endwith %}
+                                </div>
+                                <!-- Progression visuelle du terrain -->
+                                <div class="progression-overlay" style="width: {{ culture.pourcentage }}%"></div>
+                            </div>
+                        </div>
+                        <div class="field-info">
+                           
+                        </div>
+                        
+                        <!-- Légende des éléments visuels -->
+                        <div class="field-legend">
+                            <div class="legend-title">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Légende</span>
+                            </div>
+                            <div class="legend-items">
+                                <div class="legend-item">
+                                    <div class="legend-color plante-legend"></div>
+                                    <span>Plantes actives (cultivées)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color plante-inactive"></div>
+                                    <span>Zones non cultivées</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color terrain-legend"></div>
+                                    <span>Sol agricole</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-color progression-legend"></div>
+                                    <span>Zone de progression</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: 🌦️ MÉTÉO & ALERTE -->
+        <section id="meteo" class="dashboard-section">
+            <div class="section-header">
+                <h1>🌦️ Météo & Alertes</h1>
+                <p>Informations météorologiques et conseils agricoles</p>
+            </div>
+            
+            <!-- Météo Actuelle -->
+            <div class="meteo-actuelle">
+                <div class="meteo-card">
+                    <div class="meteo-main">
+                        <span class="meteo-icon">{{ meteo_actuelle.icon }}</span>
+                        <div class="meteo-temp">
+                            <span class="temperature">{{ meteo_actuelle.temperature }}°C</span>
+                            <span class="condition">{{ meteo_actuelle.condition }}</span>
+                        </div>
+                    </div>
+                    <div class="meteo-details">
+                        <div class="meteo-detail">
+                            <span class="detail-icon">💧</span>
+                            <span>{{ meteo_actuelle.humidite }}%</span>
+                        </div>
+                        <div class="meteo-detail">
+                            <span class="detail-icon">💨</span>
+                            <span>{{ meteo_actuelle.vent }} km/h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Prévisions 5 jours -->
+            <div class="previsions-5j">
+                <h3>📅 Prévisions 5 jours</h3>
+                <div class="previsions-grid">
+                    {% for prev in previsions_5j %}
+                    <div class="prev-card">
+                        <h4>{{ prev.jour }}</h4>
+                        <span class="prev-icon">{{ prev.condition }}</span>
+                        <div class="prev-temps">
+                            <span class="temp-max">{{ prev.temp_max }}°</span>
+                            <span class="temp-min">{{ prev.temp_min }}°</span>
+                        </div>
+                        {% if prev.pluie > 0 %}
+                        <div class="pluie-prob">
+                            <span class="pluie-icon">🌧️</span>
+                            <span>{{ prev.pluie }}%</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <!-- Alertes Météo -->
+            <div class="alertes-meteo">
+                <h3>⚠️ Alertes météo</h3>
+                {% for alerte in alertes_meteo %}
+                <div class="alerte-meteo alerte-{{ alerte.urgence }}">
+                    <span class="alerte-icon">
+                        {% if alerte.type == 'vent' %}💨{% else %}🌧️{% endif %}
+                    </span>
+                    <p>{{ alerte.message }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Conseils de Saison -->
+            <div class="conseils-saison">
+                <h3>💡 Conseils de saison</h3>
+                <ul class="conseils-list">
+                    {% for conseil in conseils_saison %}
+                    <li>{{ conseil }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 3: 🧑‍🌾 MES PARCELLES -->
+        <section id="parcelles" class="dashboard-section">
+            <div class="section-header">
+                <div class="section-header-content">
+                    <div>
+                        <h1>🧑‍🌾 Mes Parcelles</h1>
+                        <p>Gestion de vos terres et suivi des cultures</p>
+                    </div>
+                    <button class="btn-add-parcelle" id="btn-add-parcelle">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Ajouter un terrain</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Statistiques rapides -->
+            <div class="parcelles-stats">
+                <div class="stat-box">
+                    <div class="stat-icon-box">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="stat-info-box">
+                        <span class="stat-value-box">{{ parcelles|length }}</span>
+                        <span class="stat-label-box">Parcelles</span>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon-box">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="stat-info-box">
+                        <span class="stat-value-box">{{ parcelles|length }}</span>
+                        <span class="stat-label-box">En culture</span>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon-box">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <div class="stat-info-box">
+                        <span class="stat-value-box">{{ parcelles|length }} ha</span>
+                        <span class="stat-label-box">Superficie totale</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Carte Interactive (Placeholder) -->
+            <div class="carte-parcelles">
+                <div class="carte-header">
+                    <h3><i class="fas fa-map"></i> Carte de vos parcelles</h3>
+                    <button class="btn-icon-only" title="Vue plein écran">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <p>Carte interactive (Leaflet/Mapbox)</p>
+                        <span>Vos parcelles seront affichées ici</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Liste des Parcelles -->
+            <div class="parcelles-list">
+                <div class="list-header">
+                    <h3><i class="fas fa-list"></i> Détails des parcelles</h3>
+                    <div class="list-filters">
+                        <button class="filter-btn active" data-filter="all">Toutes</button>
+                        <button class="filter-btn" data-filter="active">Actives</button>
+                        <button class="filter-btn" data-filter="jachere">Jachère</button>
+                    </div>
+                </div>
+                
+                <div class="parcelles-grid">
+                    {% for parcelle in parcelles %}
+                    <div class="parcelle-card-modern" data-statut="{{ parcelle.statut|lower }}">
+                        <div class="parcelle-card-header">
+                            <div class="parcelle-icon-wrapper">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <div class="parcelle-title-section">
+                                <h4>{{ parcelle.nom }}</h4>
+                                <span class="parcelle-location">
+                                    <i class="fas fa-location-dot"></i>
+                                    {{ parcelle.region|default:"Non spécifiée" }}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="parcelle-card-body">
+                            <div class="parcelle-info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-ruler-combined"></i>
+                                </div>
+                                <div class="info-content">
+                                    <span class="info-label">Superficie</span>
+                                    <span class="info-value">{{ parcelle.superficie }} ha</span>
+                                </div>
+                            </div>
+                            
+                            <div class="parcelle-info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <div class="info-content">
+                                    <span class="info-label">Culture</span>
+                                    <span class="info-value">{{ parcelle.culture }}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="parcelle-info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="info-content">
+                                    <span class="info-label">Rendement attendu</span>
+                                    <span class="info-value">{{ parcelle.rendement_attendu }} t/ha</span>
+                                </div>
+                            </div>
+                            
+                            <div class="parcelle-status-badge-modern status-{{ parcelle.statut|lower|cut:' ' }}">
+                                <i class="fas fa-circle"></i>
+                                <span>{{ parcelle.statut }}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="parcelle-card-footer">
+                            <button class="btn-action-modern btn-edit-parcelle" data-parcelle-id="{{ parcelle.id|default:forloop.counter }}">
+                                <i class="fas fa-edit"></i>
+                                <span>Modifier</span>
+                            </button>
+                            <button class="btn-action-modern btn-secondary-modern">
+                                <i class="fas fa-microscope"></i>
+                                <span>Analyse sol</span>
+                            </button>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="no-parcelles">
+                        <div class="no-parcelles-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h4>Aucune parcelle enregistrée</h4>
+                        <p>Commencez par ajouter votre premier terrain</p>
+                        <button class="btn-add-parcelle-empty" id="btn-add-parcelle-empty">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Ajouter un terrain</span>
+                        </button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        
+        <!-- Modal Formulaire Ajout Parcelle -->
+        <div class="modal-overlay" id="modal-parcelle">
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h2>
+                        <i class="fas fa-map-marked-alt"></i>
+                        Ajouter un nouveau terrain
+                    </h2>
+                    <button class="modal-close" id="close-modal-parcelle">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <form class="form-parcelle" method="post" action="#">
+                    {% csrf_token %}
+                    
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <i class="fas fa-info-circle"></i>
+                            Informations générales
+                        </h3>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="parcelle-nom">
+                                    <i class="fas fa-tag"></i>
+                                    Nom de la parcelle *
+                                </label>
+                                <input type="text" id="parcelle-nom" name="nom" required 
+                                       placeholder="Ex: Champ A, Parcelle Nord">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="parcelle-superficie">
+                                    <i class="fas fa-ruler-combined"></i>
+                                    Superficie (hectares) *
+                                </label>
+                                <input type="number" id="parcelle-superficie" name="superficie" 
+                                       step="0.01" min="0" required placeholder="0.00">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Localisation
+                        </h3>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="parcelle-region">
+                                    <i class="fas fa-map"></i>
+                                    Région *
+                                </label>
+                                <select id="parcelle-region" name="region" required>
+                                    <option value="">Sélectionnez une région</option>
+                                    <option value="dakar">Dakar</option>
+                                    <option value="thies">Thiès</option>
+                                    <option value="saint-louis">Saint-Louis</option>
+                                    <option value="kaolack">Kaolack</option>
+                                    <option value="ziguinchor">Ziguinchor</option>
+                                    <option value="tambacounda">Tambacounda</option>
+                                    <option value="matam">Matam</option>
+                                    <option value="sedhiou">Sédhiou</option>
+                                    <option value="kolda">Kolda</option>
+                                    <option value="kebemer">Kébémer</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="parcelle-departement">
+                                    <i class="fas fa-map-pin"></i>
+                                    Département
+                                </label>
+                                <input type="text" id="parcelle-departement" name="departement" 
+                                       placeholder="Ex: Dakar Plateau">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="parcelle-commune">
+                                    <i class="fas fa-city"></i>
+                                    Commune / Village
+                                </label>
+                                <input type="text" id="parcelle-commune" name="commune" 
+                                       placeholder="Ex: Ngor">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="parcelle-coordonnees">
+                                    <i class="fas fa-crosshairs"></i>
+                                    Coordonnées GPS (optionnel)
+                                </label>
+                                <input type="text" id="parcelle-coordonnees" name="coordonnees" 
+                                       placeholder="Ex: 14.7167, -17.4677">
+                                <small class="form-hint">Format: latitude, longitude</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <i class="fas fa-seedling"></i>
+                            Culture
+                        </h3>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="parcelle-culture">
+                                    <i class="fas fa-wheat-awn"></i>
+                                    Type de culture *
+                                </label>
+                                <select id="parcelle-culture" name="culture" required>
+                                    <option value="">Sélectionnez une culture</option>
+                                    <option value="arachide">Arachide</option>
+                                    <option value="mil">Mil</option>
+                                    <option value="riz">Riz</option>
+                                    <option value="mais">Maïs</option>
+                                    <option value="sorgho">Sorgho</option>
+                                    <option value="cotton">Coton</option>
+                                    <option value="tomate">Tomate</option>
+                                    <option value="oignon">Oignon</option>
+                                    <option value="autre">Autre</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="parcelle-rendement">
+                                    <i class="fas fa-chart-line"></i>
+                                    Rendement attendu (t/ha)
+                                </label>
+                                <input type="number" id="parcelle-rendement" name="rendement_attendu" 
+                                       step="0.1" min="0" placeholder="0.0">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="parcelle-statut">
+                                    <i class="fas fa-circle-check"></i>
+                                    Statut *
+                                </label>
+                                <select id="parcelle-statut" name="statut" required>
+                                    <option value="">Sélectionnez un statut</option>
+                                    <option value="en-preparation">En préparation</option>
+                                    <option value="en-culture">En culture</option>
+                                    <option value="en-recolte">En récolte</option>
+                                    <option value="jachere">Jachère</option>
+                                    <option value="abandonne">Abandonné</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3 class="form-section-title">
+                            <i class="fas fa-clipboard-list"></i>
+                            Informations supplémentaires
+                        </h3>
+                        
+                        <div class="form-group">
+                            <label for="parcelle-description">
+                                <i class="fas fa-align-left"></i>
+                                Description / Notes
+                            </label>
+                            <textarea id="parcelle-description" name="description" rows="4" 
+                                      placeholder="Notes supplémentaires sur cette parcelle..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" id="cancel-modal-parcelle">
+                            <i class="fas fa-times"></i>
+                            Annuler
+                        </button>
+                        <button type="submit" class="btn-submit-parcelle">
+                            <i class="fas fa-save"></i>
+                            Enregistrer la parcelle
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Section 4: 🎓 FORMATIONS -->
+        <section id="formations" class="dashboard-section">
+            <div class="section-header">
+                <h1>🎓 Formations</h1>
+                <p>Apprentissage continu pour améliorer vos pratiques</p>
+            </div>
+            
+            <!-- Formations Disponibles -->
+            <div class="formations-disponibles">
+                <h3>📚 Formations disponibles</h3>
+                {% for formation in formations_disponibles %}
+                <div class="formation-card">
+                    <div class="formation-header">
+                        <h4>{{ formation.titre }}</h4>
+                        <span class="formation-niveau">{{ formation.niveau }}</span>
+                    </div>
+                    <div class="formation-details">
+                        <p><strong>Durée:</strong> {{ formation.duree }}</p>
+                        <p><strong>Type:</strong> {{ formation.type }}</p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: {{ formation.progression }}%"></div>
+                    </div>
+                    <p class="progress-text">{{ formation.progression }}% terminé</p>
+                    <button class="btn-action">Continuer</button>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Certificats Obtenus -->
+            <div class="certificats-obtenus">
+                <h3>🏆 Certificats obtenus</h3>
+                <div class="certificats-grid">
+                    {% for cert in certificats_obtenus %}
+                    <div class="certificat-card">
+                        <span class="certificat-badge">{{ cert.badge }}</span>
+                        <h4>{{ cert.titre }}</h4>
+                        <p>{{ cert.date }}</p>
+                        <button class="btn-sm">📄 Télécharger</button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <!-- Formations Recommandées -->
+            <div class="formations-recommandees">
+                <h3>💡 Formations recommandées</h3>
+                {% for reco in formations_recommandees %}
+                <div class="reco-card">
+                    <h4>{{ reco.titre }}</h4>
+                    <p>{{ reco.raison }}</p>
+                    <p><strong>Durée:</strong> {{ reco.duree }}</p>
+                    <button class="btn-secondary">S'inscrire</button>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+
+
+        <!-- Section 7: 🧭 ASSISTANCE & CONSEILS -->
+        <section id="assistance" class="dashboard-section">
+            <div class="section-header">
+                <h1>🧭 Assistance & Conseils</h1>
+                <p>Aide personnalisée pour résoudre vos problèmes agricoles</p>
+            </div>
+            
+            <!-- Types d'Aide -->
+            <div class="types-aide">
+                <h3>🤝 Demander une assistance</h3>
+                {% for aide in types_aide %}
+                <div class="aide-card">
+                    <h4>{{ aide.nom }}</h4>
+                    <p>{{ aide.description }}</p>
+                    <p><strong>Durée:</strong> {{ aide.duree }}</p>
+                    <button class="btn-action">Demander</button>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Demandes en Cours -->
+            <div class="demandes-en-cours">
+                <h3>📋 Mes demandes</h3>
+                {% for demande in demandes_en_cours %}
+                <div class="demande-card">
+                    <div class="demande-header">
+                        <h4>{{ demande.type }}</h4>
+                        <span class="demande-statut status-{{ demande.statut|lower|cut:' ' }}">{{ demande.statut }}</span>
+                    </div>
+                    <p><strong>Date:</strong> {{ demande.date }}</p>
+                    <p><strong>Expert:</strong> {{ demande.expert }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+    </main>
+
+    {% comment %} Navigation mobile avec partial {% endcomment %}
+    {% include 'agriculture/partials/mobile_navigation.html' with active_page='dashboard' %}
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/dashboard.js' %}"></script>
+    <script src="{% static 'js/mobile_navigation.js' %}"></script>
+    <script src="{% static 'js/pwa.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    {% include 'agriculture/partials/pwa_meta.html' %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/newsfeed.css' %}">
+    <link rel="stylesheet" href="{% static 'css/formations.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mobile_navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/logo.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar Supérieure -->
+    <nav class="newsfeed-navbar">
+        <!-- Bouton hamburger pour mobile -->
+        <button class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <div class="navbar-container">
+            <!-- Logo et Recherche -->
+            <div class="navbar-left">
+                {% include 'agriculture/partials/logo.html' %}
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Rechercher une formation...">
+                </div>
+            </div>
+            
+            <!-- Navigation Centrale -->
+            <div class="navbar-center">
+                <a href="{% url 'home' %}" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Accueil</span>
+                </a>
+                <a href="{% url 'newsfeed' %}" class="nav-item">
+                    <i class="fas fa-newspaper"></i>
+                    <span>Actualités</span>
+                </a>
+                <a href="{% url 'formations:formations' %}" class="nav-item active">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Formations</span>
+                </a>
+                <a href="{% url 'agriculteur_dashboard' %}" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Messages</span>
+                </a>
+            </div>
+            
+            <!-- Profil et Notifications -->
+            <div class="navbar-right">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-menu">
+                    <div class="user-avatar">
+                        <span>{{ user.first_name|first }}{{ user.last_name|first }}</span>
+                    </div>
+                    <div class="user-dropdown">
+                        <a href="{% url 'agriculteur_dashboard' %}" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            Mon Profil
+                        </a>
+                        <a href="{% url 'logout' %}" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Déconnexion
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu mobile (partial) -->
+    {% include 'agriculture/partials/mobile_navigation.html' with active_page='formations' %}
+
+    <!-- Contenu Principal -->
+    <main class="formations-main">
+        <!-- Barre de Filtres -->
+        <div class="filters-bar-formations">
+            <div class="filters-container-formations">
+                <form method="get" action="{% url 'formations:formations' %}" class="filters-form">
+                    <div class="search-section">
+                        <div class="search-input-wrapper">
+                            <i class="fas fa-search"></i>
+                            <input type="text" name="recherche" id="search-formations" 
+                                   placeholder="Rechercher une formation..." 
+                                   value="{{ filtres_actifs.recherche }}">
+                        </div>
+                    </div>
+                    
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label for="filter-categorie">Catégorie</label>
+                            <select name="categorie" id="filter-categorie">
+                                <option value="">Toutes les catégories</option>
+                                {% for cat in categories %}
+                                <option value="{{ cat }}" {% if filtres_actifs.categorie == cat %}selected{% endif %}>{{ cat }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="filter-niveau">Niveau</label>
+                            <select name="niveau" id="filter-niveau">
+                                <option value="">Tous les niveaux</option>
+                                {% for niv in niveaux %}
+                                <option value="{{ niv }}" {% if filtres_actifs.niveau == niv %}selected{% endif %}>{{ niv }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="filter-prix-min">Prix min (FCFA)</label>
+                            <input type="number" name="prix_min" id="filter-prix-min" 
+                                   placeholder="0" value="{{ filtres_actifs.prix_min }}" min="0">
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label for="filter-prix-max">Prix max (FCFA)</label>
+                            <input type="number" name="prix_max" id="filter-prix-max" 
+                                   placeholder="50000" value="{{ filtres_actifs.prix_max }}" min="0">
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="gratuite" value="true" 
+                                       {% if filtres_actifs.gratuite == 'true' %}checked{% endif %}>
+                                <span>Gratuites uniquement</span>
+                            </label>
+                        </div>
+                        
+                        <div class="filter-actions">
+                            <button type="submit" class="btn-filter">
+                                <i class="fas fa-filter"></i> Filtrer
+                            </button>
+                            <a href="{% url 'formations:formations' %}" class="btn-reset">
+                                <i class="fas fa-redo"></i> Réinitialiser
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Contenu -->
+        <div class="formations-content">
+            <!-- Sidebar Gauche - Formations en cours -->
+            <aside class="formations-sidebar-left">
+                <div class="mes-formations-card">
+                    <h3><i class="fas fa-book-open"></i> Mes Formations</h3>
+                    {% if formations_en_cours %}
+                    <div class="mes-formations-list">
+                        {% for formation in formations_en_cours %}
+                        <div class="formation-en-cours-item">
+                            <div class="formation-progress-header">
+                                <h4>{{ formation.titre }}</h4>
+                                <span class="progress-percentage">{{ formation.progression }}%</span>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar" style="width: {{ formation.progression }}%"></div>
+                            </div>
+                            <div class="formation-meta">
+                                <span class="statut-badge {% if formation.statut == 'En cours' %}en-cours{% endif %}">{{ formation.statut }}</span>
+                                <a href="#" class="btn-continuer">Continuer</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <p class="no-formations">Aucune formation en cours</p>
+                    {% endif %}
+                    <a href="#" class="voir-toutes-btn">Voir toutes mes formations</a>
+                </div>
+            </aside>
+
+            <!-- Contenu Central - Liste des Formations -->
+            <div class="formations-center">
+                <div class="formations-header">
+                    <div>
+                        <h1>🎓 Formations Disponibles</h1>
+                        <p class="subtitle">{{ nombre_formations }} formation{{ nombre_formations|pluralize }} disponible{{ nombre_formations|pluralize }}</p>
+                    </div>
+                </div>
+
+                {% if formations %}
+                <div class="formations-grid">
+                    {% for formation in formations %}
+                    <div class="formation-card">
+                        <div class="formation-image">
+                            <img src="{{ formation.image }}" alt="{{ formation.titre }}">
+                            {% if formation.gratuite %}
+                            <span class="badge-gratuit">GRATUIT</span>
+                            {% endif %}
+                            {% if formation.certificat %}
+                            <span class="badge-certificat">
+                                <i class="fas fa-certificate"></i> Certificat
+                            </span>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="formation-content">
+                            <div class="formation-category">
+                                <i class="fas fa-tag"></i> {{ formation.categorie }}
+                            </div>
+                            
+                            <h3 class="formation-title">{{ formation.titre }}</h3>
+                            
+                            <p class="formation-description">{{ formation.description }}</p>
+                            
+                            <div class="formation-meta-info">
+                                <div class="meta-item">
+                                    <i class="fas fa-user-tie"></i>
+                                    <span>{{ formation.formateur }}</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>{{ formation.duree }}h</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>{{ formation.participants }} participants</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>{{ formation.note }}/5</span>
+                                </div>
+                            </div>
+                            
+                            <div class="formation-footer">
+                                <div class="formation-prix">
+                                    {% if formation.gratuite %}
+                                    <span class="prix-gratuit">Gratuit</span>
+                                    {% else %}
+                                    <span class="prix">{{ formation.prix|floatformat:0 }} FCFA</span>
+                                    {% endif %}
+                                </div>
+                                <div class="formation-actions">
+                                    <button class="btn-details" data-formation-id="{{ formation.id }}">Détails</button>
+                                    <button class="btn-inscrire" data-formation-id="{{ formation.id }}">
+                                        {% if formation.gratuite %}
+                                        <i class="fas fa-play"></i> Commencer
+                                        {% else %}
+                                        <i class="fas fa-shopping-cart"></i> S'inscrire
+                                        {% endif %}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="no-results">
+                    <i class="fas fa-search"></i>
+                    <h3>Aucune formation trouvée</h3>
+                    <p>Essayez de modifier vos critères de recherche</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/mobile_navigation.js' %}"></script>
+    <script src="{% static 'js/formations.js' %}"></script>
+    <script src="{% static 'js/pwa.js' %}"></script>
+</body>
+</html>
+
