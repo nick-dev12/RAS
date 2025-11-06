@@ -1213,7 +1213,7 @@
         "kind": 2,
         "importPath": "agriculture.personal_views.dashboard_views",
         "description": "agriculture.personal_views.dashboard_views",
-        "peekOfCode": "def newsfeed_view(request):\n    \"\"\"\n    Fil d'actualités agricole - Mur social pour tous les acteurs\n    \"\"\"\n    user = request.user\n    # Données simulées pour le fil d'actualités\n    publications = [\n        {\n            'id': 1,\n            'auteur': {",
+        "peekOfCode": "def newsfeed_view(request):\n    \"\"\"\n    Fil d'actualités agricole - Mur social pour tous les acteurs\n    \"\"\"\n    user = request.user\n    # Données simulées pour le fil d'actualités - Toutes liées à l'agriculture et la ferme\n    publications = [\n        {\n            'id': 1,\n            'auteur': {",
         "detail": "agriculture.personal_views.dashboard_views",
         "documentation": {}
     },

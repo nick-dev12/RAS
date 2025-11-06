@@ -189,7 +189,7 @@ def newsfeed_view(request):
     """
     user = request.user
     
-    # Données simulées pour le fil d'actualités
+    # Données simulées pour le fil d'actualités - Toutes liées à l'agriculture et la ferme
     publications = [
         {
             'id': 1,
@@ -202,9 +202,9 @@ def newsfeed_view(request):
             },
             'date': '2h',
             'type': 'conseil',
-            'titre': 'Techniques d\'irrigation goutte-à-goutte',
-            'contenu': 'Partage d\'une technique efficace pour économiser l\'eau dans mes cultures de tomates. Le rendement a augmenté de 30% !',
-            'image': 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=500&fit=crop',
+            'titre': 'Techniques d\'irrigation goutte-à-goutte pour économiser l\'eau',
+            'contenu': 'Partage d\'une technique efficace pour économiser l\'eau dans mes cultures de tomates. Le système d\'irrigation goutte-à-goutte permet d\'arroser directement les racines. Le rendement a augmenté de 30% !',
+            'image': 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=500&fit=crop&q=80',
             'likes': 24,
             'commentaires': 8,
             'partages': 3,
@@ -222,9 +222,9 @@ def newsfeed_view(request):
             },
             'date': '4h',
             'type': 'annonce',
-            'titre': 'Formation gratuite - Gestion des sols',
-            'contenu': 'L\'ANSD organise une formation gratuite sur la gestion durable des sols. Inscriptions ouvertes jusqu\'au 30 novembre.',
-            'image': 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&h=500&fit=crop',
+            'titre': 'Formation gratuite - Gestion durable des sols agricoles',
+            'contenu': 'L\'ANSD organise une formation gratuite sur la gestion durable des sols agricoles. Apprenez les techniques de fertilisation naturelle, la prévention de l\'érosion et l\'amélioration de la fertilité. Inscriptions ouvertes jusqu\'au 30 novembre.',
+            'image': 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&h=500&fit=crop&q=80',
             'likes': 45,
             'commentaires': 12,
             'partages': 7,
@@ -242,9 +242,9 @@ def newsfeed_view(request):
             },
             'date': '6h',
             'type': 'photo',
-            'titre': 'Récolte exceptionnelle cette année !',
-            'contenu': 'Regardez cette belle récolte d\'arachide ! Merci aux conseils de la communauté R.A.S 🌾',
-            'image': 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=800&h=500&fit=crop',
+            'titre': 'Récolte exceptionnelle d\'arachide cette année !',
+            'contenu': 'Regardez cette belle récolte d\'arachide ! Les plants sont sains et les gousses bien remplies. Merci aux conseils de la communauté R.A.S sur la fertilisation bio 🌾',
+            'image': 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=800&h=500&fit=crop&q=80',
             'likes': 67,
             'commentaires': 15,
             'partages': 9,
@@ -263,8 +263,8 @@ def newsfeed_view(request):
             'date': '1j',
             'type': 'article',
             'titre': 'Impact du changement climatique sur l\'agriculture sénégalaise',
-            'contenu': 'Analyse des défis et opportunités pour adapter nos pratiques agricoles aux nouvelles conditions climatiques.',
-            'image': 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&h=500&fit=crop',
+            'contenu': 'Analyse approfondie des défis et opportunités pour adapter nos pratiques agricoles aux nouvelles conditions climatiques. Stratégies de résilience pour les cultures locales.',
+            'image': 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&h=500&fit=crop&q=80',
             'likes': 89,
             'commentaires': 23,
             'partages': 15,
@@ -276,15 +276,15 @@ def newsfeed_view(request):
             'auteur': {
                 'nom': 'Coopérative de Ziguinchor',
                 'photo': '🏢',
-                'role': 'Coopérative',
+                'role': 'Coopérative Agricole',
                 'region': 'Ziguinchor',
                 'verifie': True
             },
             'date': '2j',
             'type': 'annonce',
-            'titre': 'Achat groupé d\'engrais bio',
-            'contenu': 'Nous organisons un achat groupé d\'engrais biologiques. Prix préférentiel pour les membres. Contactez-nous !',
-            'image': 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&h=500&fit=crop',
+            'titre': 'Achat groupé d\'engrais biologiques pour fermes',
+            'contenu': 'Nous organisons un achat groupé d\'engrais biologiques certifiés. Compost, fumier et engrais verts disponibles. Prix préférentiel pour les membres de la coopérative. Contactez-nous !',
+            'image': 'https://images.unsplash.com/photo-1584747420644-5c767eebcbe6?w=800&h=500&fit=crop&q=80',
             'likes': 34,
             'commentaires': 6,
             'partages': 4,
@@ -302,9 +302,9 @@ def newsfeed_view(request):
             },
             'date': '3j',
             'type': 'photo',
-            'titre': 'Nouvelles plantations de riz',
-            'contenu': 'Début de la saison des plantations. Cette année on teste une nouvelle variété résistante à la sécheresse !',
-            'image': 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=500&fit=crop',
+            'titre': 'Nouvelles plantations de riz dans les rizières',
+            'contenu': 'Début de la saison des plantations de riz. Cette année on teste une nouvelle variété résistante à la sécheresse et aux maladies ! Les jeunes plants poussent bien dans les rizières.',
+            'image': 'https://images.unsplash.com/photo-1659333555620-0d58d9fd1a5a?w=800&h=500&fit=crop&q=80',
             'likes': 52,
             'commentaires': 11,
             'partages': 5,
@@ -322,9 +322,9 @@ def newsfeed_view(request):
             },
             'date': '4j',
             'type': 'conseil',
-            'titre': 'Technique de rotation des cultures',
-            'contenu': 'La rotation des cultures a amélioré la qualité de mon sol et réduit les maladies. Partage d\'expérience !',
-            'image': 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&h=500&fit=crop',
+            'titre': 'Technique de rotation des cultures en maraîchage',
+            'contenu': 'La rotation des cultures a considérablement amélioré la qualité de mon sol et réduit les maladies. Cette année : tomates, puis haricots, puis choux. Partage d\'expérience avec la communauté !',
+            'image': 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&h=500&fit=crop&q=80',
             'likes': 78,
             'commentaires': 19,
             'partages': 12,
@@ -336,20 +336,100 @@ def newsfeed_view(request):
             'auteur': {
                 'nom': 'Union des Coopératives',
                 'photo': '🏢',
-                'role': 'Coopérative',
+                'role': 'Coopérative Agricole',
                 'region': 'Dakar',
                 'verifie': True
             },
             'date': '5j',
             'type': 'annonce',
-            'titre': 'Marché de producteurs - Samedi prochain',
-            'contenu': 'Grand marché de producteurs locaux le samedi 23 novembre. Venez découvrir les produits frais de la région !',
-            'image': 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&h=500&fit=crop',
+            'titre': 'Marché de producteurs agricoles - Samedi prochain',
+            'contenu': 'Grand marché de producteurs locaux le samedi 23 novembre. Venez découvrir les produits frais de la région : légumes, fruits, céréales, produits laitiers de la ferme. Soutenez l\'agriculture locale !',
+            'image': 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&h=500&fit=crop&q=80',
             'likes': 91,
             'commentaires': 24,
             'partages': 18,
             'vues': 567,
             'liked': False
+        },
+        {
+            'id': 9,
+            'auteur': {
+                'nom': 'Ibrahima Fall',
+                'photo': '👨‍🌾',
+                'role': 'Éleveur',
+                'region': 'Louga',
+                'verifie': True
+            },
+            'date': '6j',
+            'type': 'conseil',
+            'titre': 'Gestion du bétail en période de sécheresse',
+            'contenu': 'Conseils pratiques pour nourrir et hydrater le bétail pendant la saison sèche. Stockage du foin, points d\'eau et compléments nutritionnels. Expérience de 15 ans d\'élevage !',
+            'image': 'https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=800&h=500&fit=crop&q=80',
+            'likes': 56,
+            'commentaires': 14,
+            'partages': 8,
+            'vues': 298,
+            'liked': False
+        },
+        {
+            'id': 10,
+            'auteur': {
+                'nom': 'Mariama Diallo',
+                'photo': '👩‍🌾',
+                'role': 'Productrice de Mil',
+                'region': 'Tambacounda',
+                'verifie': False
+            },
+            'date': '1 sem',
+            'type': 'photo',
+            'titre': 'Champs de mil en pleine croissance',
+            'contenu': 'Mes champs de mil poussent magnifiquement cette saison ! Les épis commencent à se former. Variété locale adaptée au climat sénégalais. 🌾',
+            'image': 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=500&fit=crop&q=80',
+            'likes': 43,
+            'commentaires': 9,
+            'partages': 6,
+            'vues': 201,
+            'liked': True
+        },
+        {
+            'id': 11,
+            'auteur': {
+                'nom': 'Coopérative de Diourbel',
+                'photo': '🏢',
+                'role': 'Coopérative Agricole',
+                'region': 'Diourbel',
+                'verifie': True
+            },
+            'date': '1 sem',
+            'type': 'annonce',
+            'titre': 'Formation sur l\'agriculture biologique',
+            'contenu': 'Formation pratique sur les techniques d\'agriculture biologique : compostage, lutte biologique contre les ravageurs, associations de cultures. Certificat délivré à la fin.',
+            'image': 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&h=500&fit=crop&q=80',
+            'likes': 72,
+            'commentaires': 18,
+            'partages': 11,
+            'vues': 423,
+            'liked': False
+        },
+        {
+            'id': 12,
+            'auteur': {
+                'nom': 'Papa Samba',
+                'photo': '👨‍🌾',
+                'role': 'Producteur de Maïs',
+                'region': 'Kolda',
+                'verifie': True
+            },
+            'date': '1 sem',
+            'type': 'conseil',
+            'titre': 'Récolte et stockage du maïs',
+            'contenu': 'Moment crucial pour la récolte du maïs ! Partage de techniques pour bien sécher et stocker les épis pour éviter les moisissures et les pertes. Conservation optimale jusqu\'à la prochaine saison.',
+            'image': 'https://images.unsplash.com/photo-1593113616828-c4b94bc5ab85?w=800&h=500&fit=crop&q=80',
+            'likes': 61,
+            'commentaires': 13,
+            'partages': 7,
+            'vues': 334,
+            'liked': True
         }
     ]
     
@@ -489,7 +569,7 @@ def marketplace_view(request):
             },
             'date_publication': '2024-01-15',
             'certification_bio': True,
-            'images': ['https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop', 'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop'],
+            'images': ['https://images.unsplash.com/photo-1724058663142-e6e1a5e89f2d?w=400&h=300&fit=crop&q=80', 'https://images.unsplash.com/photo-1724058663142-e6e1a5e89f2d?w=400&h=300&fit=crop&q=80'],
             'quantite_disponible': '500 kg',
             'localisation': 'Keur Moussa'
         },
@@ -529,7 +609,7 @@ def marketplace_view(request):
             },
             'date_publication': '2024-01-13',
             'certification_bio': False,
-            'images': ['https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=400&h=300&fit=crop'],
+            'images': ['https://images.unsplash.com/photo-1663018084454-86fd8150f950?w=400&h=300&fit=crop&q=80'],
             'quantite_disponible': '1 tonne',
             'localisation': 'Bignona'
         },
@@ -549,7 +629,7 @@ def marketplace_view(request):
             },
             'date_publication': '2024-01-12',
             'certification_bio': False,
-            'images': ['https://images.unsplash.com/photo-1560114928-40f1f1eb26a0?w=400&h=300&fit=crop'],
+            'images': ['https://images.unsplash.com/photo-1690670022551-65b08fc9c486?w=400&h=300&fit=crop&q=80'],
             'quantite_disponible': '5 têtes',
             'localisation': 'Vélingara'
         },
@@ -569,7 +649,7 @@ def marketplace_view(request):
             },
             'date_publication': '2024-01-11',
             'certification_bio': True,
-            'images': ['https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=300&fit=crop'],
+            'images': ['https://images.unsplash.com/photo-1730127564699-9673611b2398?w=400&h=300&fit=crop&q=80'],
             'quantite_disponible': '2 tonnes',
             'localisation': 'Podor'
         },
@@ -589,7 +669,7 @@ def marketplace_view(request):
             },
             'date_publication': '2024-01-10',
             'certification_bio': False,
-            'images': ['https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=400&h=300&fit=crop'],
+            'images': ['https://images.unsplash.com/photo-1708417134532-58723b020afe?w=400&h=300&fit=crop&q=80'],
             'quantite_disponible': 'Illimité',
             'localisation': 'Kaolack et environs'
         },
@@ -609,7 +689,7 @@ def marketplace_view(request):
             },
             'date_publication': '2024-01-09',
             'certification_bio': False,
-            'images': ['https://images.unsplash.com/photo-1618512496246-a07c2b552789?w=400&h=300&fit=crop'],
+            'images': ['https://images.unsplash.com/photo-1720240462804-6b4216e1ac5e?w=400&h=300&fit=crop&q=80'],
             'quantite_disponible': '800 kg',
             'localisation': 'Matam'
         },
@@ -629,7 +709,7 @@ def marketplace_view(request):
             },
             'date_publication': '2024-01-08',
             'certification_bio': False,
-            'images': ['https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop'],
+            'images': ['https://images.unsplash.com/photo-1590686824485-09dab5abe6f1?w=400&h=300&fit=crop&q=80'],
             'quantite_disponible': '12 têtes',
             'localisation': 'Tambacounda'
         },
@@ -649,7 +729,7 @@ def marketplace_view(request):
             },
             'date_publication': '2024-01-07',
             'certification_bio': True,
-            'images': ['https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=400&h=300&fit=crop'],
+            'images': ['https://images.unsplash.com/photo-1578855691621-8a08ea00d1fb?w=400&h=300&fit=crop&q=80'],
             'quantite_disponible': '300 kg',
             'localisation': 'Foundiougne'
         },
@@ -669,7 +749,7 @@ def marketplace_view(request):
             },
             'date_publication': '2024-01-06',
             'certification_bio': True,
-            'images': ['https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=300&fit=crop'],
+            'images': ['https://images.unsplash.com/photo-1653580524515-77b19c176b88?w=400&h=300&fit=crop&q=80'],
             'quantite_disponible': '1 tonne',
             'localisation': 'Kébémer'
         },
@@ -689,7 +769,7 @@ def marketplace_view(request):
             },
             'date_publication': '2024-01-05',
             'certification_bio': False,
-            'images': ['https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&h=300&fit=crop'],
+            'images': ['https://images.unsplash.com/photo-1703597803465-20f393f84e0a?w=400&h=300&fit=crop&q=80'],
             'quantite_disponible': 'Illimité',
             'localisation': 'Dakar et environs'
         },
@@ -709,7 +789,7 @@ def marketplace_view(request):
             },
             'date_publication': '2024-01-04',
             'certification_bio': False,
-            'images': ['https://images.unsplash.com/photo-1611269154421-4e27233ac5c7?w=400&h=300&fit=crop'],
+            'images': ['https://images.unsplash.com/photo-1590165482129-1b8b27698780?w=400&h=300&fit=crop&q=80'],
             'quantite_disponible': '600 kg',
             'localisation': 'Bambey'
         },
@@ -729,7 +809,7 @@ def marketplace_view(request):
             },
             'date_publication': '2024-01-03',
             'certification_bio': False,
-            'images': ['https://images.unsplash.com/photo-1594322436404-5a0526db4dc8?w=400&h=300&fit=crop'],
+            'images': ['https://images.unsplash.com/photo-1701326786998-3688beceadda?w=400&h=300&fit=crop&q=80'],
             'quantite_disponible': '5 tonnes',
             'localisation': 'Kaffrine'
         },
@@ -749,7 +829,7 @@ def marketplace_view(request):
             },
             'date_publication': '2024-01-02',
             'certification_bio': False,
-            'images': ['https://images.unsplash.com/photo-1608439543850-d36e3e3d9069?w=400&h=300&fit=crop'],
+            'images': ['https://images.unsplash.com/photo-1727113836223-b3ed82929ca3?w=400&h=300&fit=crop&q=80'],
             'quantite_disponible': '8 têtes',
             'localisation': 'Sédhiou'
         },
@@ -867,7 +947,7 @@ def terrain_agricole_view(request):
             'qualite_sol': 'Excellente',
             'acces_eau': 'Forage + puits',
             'photos': [
-                'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop',
+                'https://images.unsplash.com/photo-1638432546372-7c6adf2ec9f8?w=400&h=300&fit=crop&q=80',
                 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop'
             ],
             'date_publication': '2024-01-15',
@@ -897,7 +977,7 @@ def terrain_agricole_view(request):
             'qualite_sol': 'Très bonne',
             'acces_eau': 'Fleuve Sénégal + pompe',
             'photos': [
-                'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop'
+                'https://images.unsplash.com/photo-1714894323778-280ad00919d8?w=400&h=300&fit=crop&q=80'
             ],
             'date_publication': '2024-01-14',
             'infrastructure': 'Système d\'irrigation, route d\'accès',
@@ -926,7 +1006,7 @@ def terrain_agricole_view(request):
             'qualite_sol': 'Bonne',
             'acces_eau': 'Puits + réservoir',
             'photos': [
-                'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop'
+                'https://images.unsplash.com/photo-1759162339512-c2e0f23d4dff?w=400&h=300&fit=crop&q=80'
             ],
             'date_publication': '2024-01-13',
             'infrastructure': 'Hangar, système d\'arrosage',
@@ -955,7 +1035,7 @@ def terrain_agricole_view(request):
             'qualite_sol': 'Excellente',
             'acces_eau': 'Réseau + forage',
             'photos': [
-                'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop'
+                'https://images.unsplash.com/photo-1677146342889-e229cb60acc8?w=400&h=300&fit=crop&q=80'
             ],
             'date_publication': '2024-01-12',
             'infrastructure': 'Serres, système d\'irrigation, hangar',
@@ -984,7 +1064,7 @@ def terrain_agricole_view(request):
             'qualite_sol': 'Bonne',
             'acces_eau': 'Puits traditionnel',
             'photos': [
-                'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop'
+                'https://images.unsplash.com/photo-1717942026963-114a7ce1cb26?w=400&h=300&fit=crop&q=80'
             ],
             'date_publication': '2024-01-11',
             'infrastructure': 'Clôture basique',
@@ -1013,7 +1093,7 @@ def terrain_agricole_view(request):
             'qualite_sol': 'Excellente',
             'acces_eau': 'Forage + système hydroponique',
             'photos': [
-                'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop'
+                'https://images.unsplash.com/photo-1592841200221-a6898f307baa?w=400&h=300&fit=crop&q=80'
             ],
             'date_publication': '2024-01-10',
             'infrastructure': 'Serre moderne, système hydroponique, hangar',
@@ -1042,7 +1122,7 @@ def terrain_agricole_view(request):
             'qualite_sol': 'Très bonne',
             'acces_eau': 'Fleuve Sénégal + pompe',
             'photos': [
-                'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop'
+                'https://images.unsplash.com/photo-1720240462804-6b4216e1ac5e?w=400&h=300&fit=crop&q=80'
             ],
             'date_publication': '2024-01-09',
             'infrastructure': 'Hangar de stockage, route d\'accès',
@@ -1071,7 +1151,7 @@ def terrain_agricole_view(request):
             'qualite_sol': 'Excellente',
             'acces_eau': 'Forage + système d\'aspersion',
             'photos': [
-                'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop'
+                'https://images.unsplash.com/photo-1701326786998-3688beceadda?w=400&h=300&fit=crop&q=80'
             ],
             'date_publication': '2024-01-08',
             'infrastructure': 'Laboratoire, hangar, système d\'irrigation',
@@ -1100,41 +1180,13 @@ def terrain_agricole_view(request):
             'qualite_sol': 'Bonne',
             'acces_eau': 'Forage + système goutte-à-goutte',
             'photos': [
-                'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop'
+                'https://images.unsplash.com/photo-1755288618719-6cabec04f01d?w=400&h=300&fit=crop&q=80'
             ],
             'date_publication': '2024-01-07',
             'infrastructure': 'Hangar, système d\'irrigation, clôture',
             'certification': 'Bio'
         },
-        {
-            'id': 10,
-            'titre': 'Champ de manioc - Vélingara',
-            'description': 'Parcelle de 5.5 hectares pour la culture du manioc. Sol profond, bien drainé. Variétés résistantes aux maladies.',
-            'latitude': 13.1500,
-            'longitude': -14.1167,
-            'region': 'Kolda',
-            'departement': 'Vélingara',
-            'village': 'Vélingara',
-            'surface': 5.5,
-            'type_culture': 'Manioc',
-            'disponibilite': 'location',
-            'prix': 250000,
-            'prix_unite': 'FCFA/an',
-            'proprietaire': {
-                'nom': 'Moussa Diallo',
-                'photo': 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop',
-                'telephone': '+221 76 012 34 56',
-                'rating': 4.4
-            },
-            'qualite_sol': 'Bonne',
-            'acces_eau': 'Puits + réservoir',
-            'photos': [
-                'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop'
-            ],
-            'date_publication': '2024-01-06',
-            'infrastructure': 'Hangar de stockage',
-            'certification': 'Conventionnel'
-        },
+
         {
             'id': 11,
             'titre': 'Parcelle de pommes de terre - Tambacounda',
@@ -1158,7 +1210,7 @@ def terrain_agricole_view(request):
             'qualite_sol': 'Très bonne',
             'acces_eau': 'Forage + système d\'aspersion',
             'photos': [
-                'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop'
+                'https://images.unsplash.com/photo-1590165482129-1b8b27698780?w=400&h=300&fit=crop&q=80'
             ],
             'date_publication': '2024-01-05',
             'infrastructure': 'Hangar, système d\'irrigation',
@@ -1187,7 +1239,7 @@ def terrain_agricole_view(request):
             'qualite_sol': 'Bonne',
             'acces_eau': 'Puits + réservoir',
             'photos': [
-                'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop'
+                'https://images.unsplash.com/photo-1740344109534-926227ad9e79?w=400&h=300&fit=crop&q=80'
             ],
             'date_publication': '2024-01-04',
             'infrastructure': 'Hangar, clôture',
@@ -1216,7 +1268,7 @@ def terrain_agricole_view(request):
             'qualite_sol': 'Bonne',
             'acces_eau': 'Forage + système goutte-à-goutte',
             'photos': [
-                'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop'
+                'https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&h=300&fit=crop&q=80'
             ],
             'date_publication': '2024-01-03',
             'infrastructure': 'Hangar, système d\'irrigation, route d\'accès',
@@ -1245,7 +1297,7 @@ def terrain_agricole_view(request):
             'qualite_sol': 'Excellente',
             'acces_eau': 'Rivière + système d\'irrigation',
             'photos': [
-                'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop'
+                'https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&h=300&fit=crop&q=80'
             ],
             'date_publication': '2024-01-02',
             'infrastructure': 'Hangar, système d\'irrigation, route d\'accès',
@@ -1274,7 +1326,7 @@ def terrain_agricole_view(request):
             'qualite_sol': 'Bonne',
             'acces_eau': 'Puits traditionnel',
             'photos': [
-                'https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=400&h=300&fit=crop'
+                'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=300&fit=crop&q=80'
             ],
             'date_publication': '2024-01-01',
             'infrastructure': 'Hangar, clôture',

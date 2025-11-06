@@ -53,21 +53,44 @@ function createCustomIcon(statut) {
         'visite': '#FF9800'
     };
     
+    // Détecter la taille d'écran
+    const width = window.innerWidth;
+    let markerSize, borderSize;
+    
+    if (width <= 480) {
+        // Très petit mobile : 12px
+        markerSize = 12;
+        borderSize = 1.5;
+    } else if (width <= 768) {
+        // Mobile : 16px
+        markerSize = 16;
+        borderSize = 2;
+    } else {
+        // Desktop : 20px (réduit de 30px)
+        markerSize = 20;
+        borderSize = 2.5;
+    }
+    
+    const anchor = markerSize / 2;
+    
     return L.divIcon({
         className: 'custom-marker',
         html: `<div style="background: ${colors[statut] || '#4CAF50'}; 
-                           width: 30px; height: 30px; 
+                           width: ${markerSize}px; height: ${markerSize}px; 
                            border-radius: 50%; 
-                           border: 3px solid white;
-                           box-shadow: 0 2px 8px rgba(0,0,0,0.3);"></div>`,
-        iconSize: [30, 30],
-        iconAnchor: [15, 15]
+                           border: ${borderSize}px solid white;
+                           box-shadow: 0 2px 6px rgba(0,0,0,0.3);"></div>`,
+        iconSize: [markerSize, markerSize],
+        iconAnchor: [anchor, anchor]
     });
 }
 
 function loadTerrains() {
     // Récupérer les terrains depuis les data attributes
     const terrainCards = document.querySelectorAll('.terrain-card-compact');
+    
+    // Réinitialiser la liste
+    currentTerrains = [];
     
     terrainCards.forEach(card => {
         const terrain = {
@@ -355,6 +378,32 @@ function initMobileMenu() {
         if (window.innerWidth > 768) {
             closeMenu();
         }
+        // Recréer les marqueurs avec la nouvelle taille
+        refreshMarkers();
+    });
+}
+
+// ===============================================================
+// 🔄 ACTUALISER LES MARQUEURS (pour redimensionnement)
+// ===============================================================
+
+function refreshMarkers() {
+    // Sauvegarder les terrains actuels
+    const terrainsToReload = currentTerrains.map(terrain => ({
+        id: terrain.id,
+        lat: terrain.lat,
+        lng: terrain.lng,
+        titre: terrain.titre,
+        statut: terrain.statut
+    }));
+    
+    // Retirer tous les marqueurs
+    markers.forEach(m => map.removeLayer(m));
+    markers = [];
+    
+    // Recréer les marqueurs avec la nouvelle taille
+    terrainsToReload.forEach(terrain => {
+        addMarker(terrain);
     });
 }
 
